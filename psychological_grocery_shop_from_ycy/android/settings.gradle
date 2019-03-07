@@ -1,0 +1,3 @@
+rootProject.name = 'psychological_grocery_shop_from_ycy'
+
+include ':app'
