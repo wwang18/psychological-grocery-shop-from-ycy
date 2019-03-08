@@ -8,7 +8,8 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, ImageBackground, AppRegistry, Button, Alert} from 'react-native';
+import Orientation from 'react-native-orientation';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -19,13 +20,72 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+componentWillMount() {
+       Orientation.lockToLandscape();
+}
+
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+            <ImageBackground
+                style={{
+              	flex: 1
+              	}}
+              source={require("./img/ycy_open.jpg")}>
+
+      <View style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'space-between'}}>
+      <View style={{flex: 5}}/>
+      <View style={{
+              flex: 3,
+              flexDirection: 'column',
+              alignItems: 'flex-end',
+              justifyContent: 'space-between'}}>
+        <View style={{flex: 1,width: 50}} />
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
+        </View>
+        <View style={{flex: 1,width: 50}} />
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
+        </View>
+        <View style={{flex: 1,width: 50}} />
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
+        </View>
+        <View style={{flex: 1,width: 50}} />
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
+        </View>
+        <View style={{flex: 1,width: 50,}} />
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
+        </View>
+        <View style={{flex: 1,width: 50}} />
       </View>
+      <View style={{flex: 1}}/>
+      </View>
+       </ImageBackground>
     );
   }
 }
