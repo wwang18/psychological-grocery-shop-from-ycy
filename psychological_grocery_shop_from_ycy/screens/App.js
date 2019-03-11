@@ -1,1 +1,1 @@
-// empty file, later used for main page
+// empty file, later used for main page， will clean the current app.js later

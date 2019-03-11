@@ -30,7 +30,7 @@ import {
 from 'react-navigation';
 
 import PageWriteLetter from './screens/PageWriteLetter';
-
+import RNExitApp from 'react-native-exit-app';
 
 const instructions = Platform.select({
 		ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -50,10 +50,32 @@ class HomeScreen extends React.Component {
 		Alert.alert('You tapped the button!')
 	}
 
-//	_onPressWriteLetterButton() {
-//		//Alert.alert('You tapped the button!')
-//		this.props.navigation.push('WriteLetter');
-//	}
+	_onPressButton_hist_letter() {
+    	Alert.alert('本地存档的历史信件.')
+    }
+
+    _onPressButton_creator() {
+        Alert.alert('开发人员表')
+    }
+
+    _onPressButton_bgm() {
+        Alert.alert('大佬们的BGM')
+    }
+
+
+    _onPressButton_exit() {
+       RNExitApp.exitApp();
+    }
+
+
+
+
+
+
+	//	_onPressWriteLetterButton() {
+	//		//Alert.alert('You tapped the button!')
+	//		this.props.navigation.push('WriteLetter');
+	//	}
 
 	render() {
 		return (
@@ -79,12 +101,12 @@ class HomeScreen extends React.Component {
 				}
 			}
 			/>
-			      <View style={{
-			              flex: 3,
-			              flexDirection: 'column',
-			              alignItems: 'flex-end',
-			              justifyContent: 'space-between'}}>
-			        <View style={{flex: 1,width: 50}} / >
+									      <View style={{
+									              flex: 3,
+									              flexDirection: 'column',
+									              alignItems: 'flex-end',
+									              justifyContent: 'space-between'}}>
+									        <View style={{flex: 1,width: 50}} / >
 			 < View style = {
 				styles.buttonContainer
 			}
@@ -93,20 +115,20 @@ class HomeScreen extends React.Component {
 			onPress = {
 				() => this.props.navigation.push('WriteLetter')
 			}
-			title = "Write Letter"
+			title = "写信给超越"
 				/>
-				        </View >
+												        </View >
 				 < View style = { {
 					flex: 1,
 					width: 50
 				}
 			}
 			/>
-			        <View style={styles.buttonContainer}>
-			          <Button
-			            onPress={this._onPressButton}
-			            title="Press Me"
-			          / >
+									        <View style={styles.buttonContainer}>
+									          <Button
+									            onPress={this._onPressButton_hist_letter}
+									            title="心灵的秘密花园"
+									          / >
 			 <  / View >
 			 < View style = { {
 					flex: 1,
@@ -114,11 +136,11 @@ class HomeScreen extends React.Component {
 				}
 			}
 			/>
-			        <View style={styles.buttonContainer}>
-			          <Button
-			            onPress={this._onPressButton}
-			            title="Press Me"
-			          / >
+									        <View style={styles.buttonContainer}>
+									          <Button
+									            onPress={this._onPressButton_creator}
+									            title="进店看看"
+									          / >
 			 <  / View >
 			 < View style = { {
 					flex: 1,
@@ -126,11 +148,11 @@ class HomeScreen extends React.Component {
 				}
 			}
 			/>
-			        <View style={styles.buttonContainer}>
-			          <Button
-			            onPress={this._onPressButton}
-			            title="Press Me"
-			          / >
+									        <View style={styles.buttonContainer}>
+									          <Button
+									            onPress={this._onPressButton_bgm}
+									            title="BGM"
+									          / >
 			 <  / View >
 			 < View style = { {
 					flex: 1,
@@ -138,11 +160,11 @@ class HomeScreen extends React.Component {
 				}
 			}
 			/>
-			        <View style={styles.buttonContainer}>
-			          <Button
-			            onPress={this._onPressButton}
-			            title="Press Me"
-			          / >
+									        <View style={styles.buttonContainer}>
+									          <Button
+									            onPress={this._onPressButton_exit}
+									            title="离开小店"
+									          / >
 			 <  / View >
 			 < View style = { {
 					flex: 1,
@@ -150,13 +172,13 @@ class HomeScreen extends React.Component {
 				}
 			}
 			/>
-			      </View >
+									      </View >
 			 < View style = { {
 					flex: 1
 				}
 			}
 			/>
-			      </View >
+									      </View >
 			 <  / ImageBackground > );
 	}
 }
@@ -180,20 +202,27 @@ const styles = StyleSheet.create({
 		},
 	});
 
-const AppNavigator = createStackNavigator(
-  {
-    Home: HomeScreen,
-    WriteLetter: PageWriteLetter,
-  },
-  {
-    initialRouteName: "Home"
-  }
-);
+const AppNavigator = createStackNavigator({
+		Home: {
+			screen: HomeScreen,
+			navigationOptions: {
+				header: null
+			}
+		},
+		WriteLetter: {
+			screen: PageWriteLetter,
+			navigationOptions: {
+				header: null
+			}
+		}
+	}, {
+		initialRouteName: "Home"
+	});
 
 const AppContainer = createAppContainer(AppNavigator);
 //export default createAppContainer(AppNavigator);
 export default class App extends React.Component {
-  render() {
-    return <AppContainer/>;
-  }
+	render() {
+		return  < AppContainer /  > ;
+	}
 }

@@ -7,12 +7,29 @@ import HomeScreen from '../app'
 class PageWriteLetter extends React.Component {
   render() {
     return (
+    < ImageBackground
+    			style = {
+    					styles.container
+    			}
+    			source = {
+    				require("./../img/background2.jpg")
+    			}
+    			 >
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>PageWriteLetter</Text>
       </View>
+      </ImageBackground>
     );
   }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: Platform.OS === 'ios' ? 60 : 80,
+  }
+});
 
 //const AppNavigator = createStackNavigator(
 //  {
