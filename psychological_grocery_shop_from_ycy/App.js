@@ -46,10 +46,6 @@ class HomeScreen extends React.Component {
 		Orientation.lockToLandscape();
 	}
 
-	_onPressButton() {
-		Alert.alert('You tapped the button!')
-	}
-
 	_onPressButton_hist_letter() {
     	Alert.alert('本地存档的历史信件.')
     }
@@ -66,16 +62,6 @@ class HomeScreen extends React.Component {
     _onPressButton_exit() {
        RNExitApp.exitApp();
     }
-
-
-
-
-
-
-	//	_onPressWriteLetterButton() {
-	//		//Alert.alert('You tapped the button!')
-	//		this.props.navigation.push('WriteLetter');
-	//	}
 
 	render() {
 		return (
