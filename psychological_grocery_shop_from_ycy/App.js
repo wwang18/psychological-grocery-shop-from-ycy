@@ -31,6 +31,7 @@ from 'react-navigation';
 
 import PageWriteLetter from './screens/PageWriteLetter';
 import RNExitApp from 'react-native-exit-app';
+import SplashScreen from 'react-native-splash-screen';
 
 const instructions = Platform.select({
 		ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -58,6 +59,9 @@ class HomeScreen extends React.Component {
         Alert.alert('大佬们的BGM')
     }
 
+    componentDidMount() {
+        SplashScreen.hide()
+    }
 
     _onPressButton_exit() {
        RNExitApp.exitApp();
