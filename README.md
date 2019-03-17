@@ -13,7 +13,7 @@
 - [build for ios](#build-for-ios)
 
 <h2 id="react-native-installation"> 📋 Prepare For Development Envirement </h2>
-Windows环境下，杨超越解忧杂货铺的开发需要准备以下开发环境：    
+Windows环境下，杨超越解忧杂货铺的开发需要准备以下开发环境：        
 Node, Python2, JDK    
 Node installation: https://nodejs.org/en/    
 Python installation: https://www.python.org/downloads/    
@@ -36,17 +36,17 @@ React navigation中文教程位于：https://reactnavigation.org/docs/zh-Hans/ge
 
 <h2 id="debug-run">  📋 Debug Run</h2>
 Master Branch的代码clone后应当可以直接运行。    
-开发者可于，../psychological-grocery-shop-from-ycy/ 文件夹运行 `npm-install` 来安装依赖。     
-在启动安卓模拟器后，可在同一窗口运行 `react-native run-android` 来运行程序。
+开发者可于，../psychological-grocery-shop-from-ycy/ 文件夹运行 `npm-install` 来安装依赖。    
+在启动安卓模拟器后，可在同一窗口运行 `react-native run-android` 来运行程序。    
 
-常见错误： 500， script didn't run. 开发者错误关闭了npm 运行窗口。出现此错误可新开一个CMD窗口重新运行  `react-native run-android` ， 或者新开一个窗口运行 `npm start` 再于原窗口运行 `react-native run-android`
+常见错误： 500， script didn't run. 开发者错误关闭了npm 运行窗口。出现此错误可新开一个CMD窗口重新运行  `react-native run-android` ， 或者新开一个窗口运行 `npm start` 再于原窗口运行 `react-native run-android`    
 
 <h2 id="package-to-apk"> 📋 Package To apk</h2>
-打包APK的教程在：https://reactnative.cn/docs/signed-apk-android/
-配置的重点是秘钥的部分，请严格按照教程一步步执行。
+打包APK的教程在：https://reactnative.cn/docs/signed-apk-android/    
+配置的重点是秘钥的部分，请严格按照教程一步步执行。    
 
-常见打包失败原因：
-link 错误，找不到资源。 在Node_Modules 文件夹下找到包：`react-native-orientation`, `react-native-screens`, `react-native-splash-screen`,  `react-native-exit-app`, 修改其中的 `/android/build.gradle` 文件，将compileSdkVersion 和targetSdkVersion 修改为 28
+常见打包失败原因：    
+link 错误，找不到资源。 在Node_Modules 文件夹下找到包：`react-native-orientation`, `react-native-screens`, `react-native-splash-screen`,  `react-native-exit-app`, 修改其中的 `/android/build.gradle` 文件，将compileSdkVersion 和targetSdkVersion 修改为 28    
 
 <h2 id="build-for-ios"> 📋 build for ios</h2>
 To be added.
