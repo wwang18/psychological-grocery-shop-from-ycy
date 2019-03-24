@@ -5,6 +5,7 @@ import {
   Text,
   View,
   ImageBackground,
+  TouchableOpacity,
   AppRegistry,
   Button,
   Alert
@@ -21,16 +22,12 @@ class Home extends Component {
     Orientation.lockToLandscape();
   }
 
-  _onPressButton_hist_letter() {
-    Alert.alert("本地存档的历史信件.");
+  _onPressButton_introduction() {
+    Alert.alert("团队介绍.");
   }
 
-  _onPressButton_creator() {
-    Alert.alert("开发人员表");
-  }
-
-  _onPressButton_bgm() {
-    Alert.alert("大佬们的BGM");
+  _onPressButton_enter_shore() {
+    Alert.alert("进店看看");
   }
 
   componentDidMount() {
@@ -47,87 +44,40 @@ class Home extends Component {
         style={{
           flex: 1
         }}
-        source={require("../img/ycy_open.jpg")}
+        source={require("../img/ycy_open.gif")}
       >
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "space-between"
-          }}
-        >
-          <View
-            style={{
-              flex: 5
-            }}
-          />
-          <View
-            style={{
-              flex: 3,
-              flexDirection: "column",
-              alignItems: "flex-end",
-              justifyContent: "space-between"
-            }}
-          >
-            <View style={{ flex: 1, width: 50 }} />
-            <View style={styles.buttonContainer}>
-              <Button
-                onPress={() => this.props.navigation.push("WriteLetter")}
-                title="写信给超越"
-              />
-            </View>
-            <View
-              style={{
-                flex: 1,
-                width: 50
-              }}
-            />
-            <View style={styles.buttonContainer}>
-              <Button
-                onPress={this._onPressButton_hist_letter}
-                title="心灵的秘密花园"
-              />
-            </View>
-            <View
-              style={{
-                flex: 1,
-                width: 50
-              }}
-            />
-            <View style={styles.buttonContainer}>
-              <Button onPress={this._onPressButton_creator} title="进店看看" />
-            </View>
-            <View
-              style={{
-                flex: 1,
-                width: 50
-              }}
-            />
-            <View style={styles.buttonContainer}>
-              <Button onPress={this._onPressButton_bgm} title="BGM" />
-            </View>
-            <View
-              style={{
-                flex: 1,
-                width: 50
-              }}
-            />
-            <View style={styles.buttonContainer}>
-              <Button onPress={this._onPressButton_exit} title="离开小店" />
-            </View>
-            <View
-              style={{
-                flex: 1,
-                width: 50
-              }}
-            />
-          </View>
-          <View
-            style={{
-              flex: 1
-            }}
-          />
+
+      <View style={{flex: 1, flexDirection: 'column'}}>
+        <View style={{flex: 350}} />
+        <View style={{flex: 140}}>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <View style={{flex: 90}}/>
+                <View style={{flex: 460}}>
+                <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.push("WriteLetter")}/>
+                </View>
+                <View style={{flex: 810}}/>
+                <View style={{flex: 460}}>
+                <TouchableOpacity style={{flex: 1}} onPress={() => this._onPressButton_introduction()}/>
+                </View>
+                <View style={{flex: 90}} />
+              </View>
         </View>
+        <View style={{flex: 60}} />
+        <View style={{flex: 150}}>
+                      <View style={{flex: 1, flexDirection: 'row'}}>
+                        <View style={{flex: 90}} />
+                        <View style={{flex: 460}}>
+                        <TouchableOpacity style={{flex: 1}} onPress={() => this._onPressButton_enter_shore()}/>
+                        </View>
+                        <View style={{flex: 810}} />
+                        <View style={{flex: 460}}>
+                        <TouchableOpacity style={{flex: 1}} onPress={() => this._onPressButton_exit()}/>
+                        </View>
+                        <View style={{flex: 90}} />
+                      </View>
+        </View>
+        <View style={{flex: 380}} />
+      </View>
       </ImageBackground>
     );
   }
