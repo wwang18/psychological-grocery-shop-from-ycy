@@ -5,11 +5,9 @@ import {
   Text,
   View,
   ImageBackground,
-  AppRegistry,
   Button,
   Alert
 } from "react-native";
-import Orientation from "react-native-orientation";
 import RNExitApp from "react-native-exit-app";
 import SplashScreen from "react-native-splash-screen";
 
@@ -17,10 +15,6 @@ import SplashScreen from "react-native-splash-screen";
 type Props = {};
 
 class Home extends Component {
-  componentWillMount() {
-    Orientation.lockToLandscape();
-  }
-
   _onPressButton_hist_letter() {
     Alert.alert("本地存档的历史信件.");
   }
