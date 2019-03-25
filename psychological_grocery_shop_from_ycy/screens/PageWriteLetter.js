@@ -133,7 +133,7 @@ class PageWriteLetter extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === "ios" ? 60 : 80
+    paddingTop: Platform.OS === "ios" ? 60 : 0
   }
 });
 

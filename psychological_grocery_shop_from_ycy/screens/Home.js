@@ -13,7 +13,6 @@ import {
 import RNExitApp from "react-native-exit-app";
 import SplashScreen from "react-native-splash-screen";
 
-
 type Props = {};
 
 class Home extends Component {
@@ -41,38 +40,49 @@ class Home extends Component {
         }}
         source={require("../img/ycy_open.gif")}
       >
-
-      <View style={{flex: 1, flexDirection: 'column'}}>
-        <View style={{flex: 350}} />
-        <View style={{flex: 140}}>
-              <View style={{flex: 1, flexDirection: 'row'}}>
-                <View style={{flex: 90}}/>
-                <View style={{flex: 460}}>
-                <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.push("MailBox_i")}/>
-                </View>
-                <View style={{flex: 810}}/>
-                <View style={{flex: 460}}>
-                <TouchableOpacity style={{flex: 1}} onPress={() => this._onPressButton_introduction()}/>
-                </View>
-                <View style={{flex: 90}} />
+        <View style={{ flex: 1, flexDirection: "column" }}>
+          <View style={{ flex: 350 }} />
+          <View style={{ flex: 140 }}>
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <View style={{ flex: 90 }} />
+              <View style={{ flex: 460 }}>
+                <TouchableOpacity
+                  style={{ flex: 1 }}
+                  onPress={() => this.props.navigation.push("MailBox_i")}
+                />
               </View>
+              <View style={{ flex: 810 }} />
+              <View style={{ flex: 460 }}>
+                <TouchableOpacity
+                  style={{ flex: 1 }}
+                  onPress={() => this._onPressButton_introduction()}
+                />
+              </View>
+              <View style={{ flex: 90 }} />
+            </View>
+          </View>
+          <View style={{ flex: 60 }} />
+          <View style={{ flex: 150 }}>
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <View style={{ flex: 90 }} />
+              <View style={{ flex: 460 }}>
+                <TouchableOpacity
+                  style={{ flex: 1 }}
+                  onPress={() => this._onPressButton_enter_shore()}
+                />
+              </View>
+              <View style={{ flex: 810 }} />
+              <View style={{ flex: 460 }}>
+                <TouchableOpacity
+                  style={{ flex: 1 }}
+                  onPress={() => this._onPressButton_exit()}
+                />
+              </View>
+              <View style={{ flex: 90 }} />
+            </View>
+          </View>
+          <View style={{ flex: 380 }} />
         </View>
-        <View style={{flex: 60}} />
-        <View style={{flex: 150}}>
-                      <View style={{flex: 1, flexDirection: 'row'}}>
-                        <View style={{flex: 90}} />
-                        <View style={{flex: 460}}>
-                        <TouchableOpacity style={{flex: 1}} onPress={() => this._onPressButton_enter_shore()}/>
-                        </View>
-                        <View style={{flex: 810}} />
-                        <View style={{flex: 460}}>
-                        <TouchableOpacity style={{flex: 1}} onPress={() => this._onPressButton_exit()}/>
-                        </View>
-                        <View style={{flex: 90}} />
-                      </View>
-        </View>
-        <View style={{flex: 380}} />
-      </View>
       </ImageBackground>
     );
   }
