@@ -25,6 +25,7 @@ const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     WriteLetter: PageWriteLetter,
+    MailBox_i:PageMailBox_i,
   },
   {
     initialRouteName: "Home"

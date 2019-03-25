@@ -6,6 +6,7 @@ import {
 from 'react-navigation';
 import Home from './screens/Home'
 import PageWriteLetter from './screens/PageWriteLetter';
+import PageMailBox_i from './screens/PageMailBox_i';
 
 const AppNavigator = createStackNavigator({
 		Home: {
@@ -19,7 +20,13 @@ const AppNavigator = createStackNavigator({
 			navigationOptions: {
 				header: null
 			}
-		}
+		},
+		MailBox_i: {
+        			screen: PageMailBox_i,
+        			navigationOptions: {
+        				header: null
+        			}
+        		},
 	}, {
 		initialRouteName: "Home"
 	});

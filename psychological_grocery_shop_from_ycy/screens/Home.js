@@ -53,7 +53,7 @@ class Home extends Component {
               <View style={{flex: 1, flexDirection: 'row'}}>
                 <View style={{flex: 90}}/>
                 <View style={{flex: 460}}>
-                <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.push("WriteLetter")}/>
+                <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.push("MailBox_i")}/>
                 </View>
                 <View style={{flex: 810}}/>
                 <View style={{flex: 460}}>
