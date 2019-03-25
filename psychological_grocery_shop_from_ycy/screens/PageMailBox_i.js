@@ -21,7 +21,7 @@ class PageMailBox_i extends Component {
    }
 
    _onPressButton_mail_to_ChaoYue() {
-     Alert.alert("写信给超越");
+     this.props.navigation.push("MailToChaoYue_j")
    }
 
   render() {

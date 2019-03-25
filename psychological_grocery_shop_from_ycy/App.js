@@ -6,6 +6,7 @@ import PageWriteLetter from "./screens/PageWriteLetter";
 import SubTopic from "./screens/SubTopic";
 import LetterPaper from "./screens/LetterPaper";
 import PageMailBox_i from './screens/PageMailBox_i';
+import PageMailToChaoYue_j from './screens/PageMailToChaoYue_j';
 
 const AppNavigator = createStackNavigator(
   {
@@ -35,6 +36,12 @@ const AppNavigator = createStackNavigator(
     },
 	MailBox_i: {
        screen: PageMailBox_i,
+       navigationOptions: {
+        header: null
+       }
+      },
+	MailToChaoYue_j: {
+       screen: PageMailToChaoYue_j,
        navigationOptions: {
         header: null
        }
