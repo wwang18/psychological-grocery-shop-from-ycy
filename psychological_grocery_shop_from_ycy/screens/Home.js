@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   AppRegistry,
   Button,
+  StatusBar,
   Alert
 } from "react-native";
 import RNExitApp from "react-native-exit-app";
@@ -34,56 +35,65 @@ class Home extends Component {
 
   render() {
     return (
-      <ImageBackground
-        style={{
-          flex: 1
-        }}
-        source={require("../img/ycy_open.gif")}
-      >
-        <View style={{ flex: 1, flexDirection: "column" }}>
-          <View style={{ flex: 350 }} />
-          <View style={{ flex: 140 }}>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <View style={{ flex: 90 }} />
-              <View style={{ flex: 460 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this.props.navigation.push("MailBox_i")}
-                />
+      <View style={{ flex: 1 }}>
+        <StatusBar
+          backgroundColor="#ff0000"
+          translucent={true}
+          hidden={true}
+          animated={true}
+        />
+        <ImageBackground
+          resizeMode="stretch"
+          style={{
+            flex: 1
+          }}
+          source={require("../img/ycy_open.gif")}
+        >
+          <View style={{ flex: 1, flexDirection: "column" }}>
+            <View style={{ flex: 350 }} />
+            <View style={{ flex: 140 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 90 }} />
+                <View style={{ flex: 460 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this.props.navigation.push("MailBox_i")}
+                  />
+                </View>
+                <View style={{ flex: 810 }} />
+                <View style={{ flex: 460 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_introduction()}
+                  />
+                </View>
+                <View style={{ flex: 90 }} />
               </View>
-              <View style={{ flex: 810 }} />
-              <View style={{ flex: 460 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_introduction()}
-                />
-              </View>
-              <View style={{ flex: 90 }} />
             </View>
-          </View>
-          <View style={{ flex: 60 }} />
-          <View style={{ flex: 150 }}>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <View style={{ flex: 90 }} />
-              <View style={{ flex: 460 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_enter_shore()}
-                />
+            <View style={{ flex: 60 }} />
+            <View style={{ flex: 150 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 90 }} />
+                <View style={{ flex: 460 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_enter_shore()}
+                  />
+                </View>
+                <View style={{ flex: 810 }} />
+                <View style={{ flex: 460 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_exit()}
+                  />
+                </View>
+                <View style={{ flex: 90 }} />
               </View>
-              <View style={{ flex: 810 }} />
-              <View style={{ flex: 460 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_exit()}
-                />
-              </View>
-              <View style={{ flex: 90 }} />
             </View>
+            <View style={{ flex: 380 }} />
           </View>
-          <View style={{ flex: 380 }} />
-        </View>
-      </ImageBackground>
+        </ImageBackground>
+      </View>
     );
   }
 }

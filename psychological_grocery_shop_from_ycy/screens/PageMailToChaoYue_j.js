@@ -7,6 +7,7 @@ import {
   ImageBackground,
   AppRegistry,
   Button,
+  StatusBar,
   Alert,
   TouchableOpacity
 } from "react-native";
@@ -16,75 +17,84 @@ class PageMailToChaoYue_j extends Component {
     this.props.navigation.goBack();
   }
 
-  _onPressButton_topic = (topic) => {
+  _onPressButton_topic = topic => {
     this.props.navigation.push("SubTopic", topic);
-  }
+  };
 
   render() {
     return (
-      <ImageBackground
-        style={styles.container}
-        source={require("./../img/topics.gif")}
-      >
-        <View style={{ flex: 1, flexDirection: "column" }}>
-          <View style={{ flex: 80 }} />
-          <View style={{ flex: 132 }} />
-          <View style={{ flex: 71 }} />
-          <View style={{ flex: 110 }}>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <View style={{ flex: 316 }} />
-              <View style={{ flex: 260 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_topic('family')}
-                />
+      <View style={{ flex: 1 }}>
+        <StatusBar
+          backgroundColor="#ff0000"
+          translucent={true}
+          hidden={true}
+          animated={true}
+        />
+        <ImageBackground
+          resizeMode="stretch"
+          style={styles.container}
+          source={require("./../img/topics.gif")}
+        >
+          <View style={{ flex: 1, flexDirection: "column" }}>
+            <View style={{ flex: 80 }} />
+            <View style={{ flex: 132 }} />
+            <View style={{ flex: 71 }} />
+            <View style={{ flex: 110 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 316 }} />
+                <View style={{ flex: 260 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_topic("family")}
+                  />
+                </View>
+                <View style={{ flex: 182 }} />
+                <View style={{ flex: 260 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_topic("career")}
+                  />
+                </View>
+                <View style={{ flex: 316 }} />
               </View>
-              <View style={{ flex: 182 }} />
-              <View style={{ flex: 260 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_topic('career')}
-                />
-              </View>
-              <View style={{ flex: 316 }} />
             </View>
-          </View>
-          <View style={{ flex: 30 }} />
-          <View style={{ flex: 110 }}>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <View style={{ flex: 316 }} />
-              <View style={{ flex: 260 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_topic('love')}
-                />
+            <View style={{ flex: 30 }} />
+            <View style={{ flex: 110 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 316 }} />
+                <View style={{ flex: 260 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_topic("love")}
+                  />
+                </View>
+                <View style={{ flex: 182 }} />
+                <View style={{ flex: 260 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_topic("social")}
+                  />
+                </View>
+                <View style={{ flex: 316 }} />
               </View>
-              <View style={{ flex: 182 }} />
-              <View style={{ flex: 260 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_topic('social')}
-                />
-              </View>
-              <View style={{ flex: 316 }} />
             </View>
-          </View>
-          <View style={{ flex: 60 }} />
-          <View style={{ flex: 110 }}>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <View style={{ flex: 378 }} />
-              <View style={{ flex: 578 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_topic('idol')}
-                />
+            <View style={{ flex: 60 }} />
+            <View style={{ flex: 110 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 378 }} />
+                <View style={{ flex: 578 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_topic("idol")}
+                  />
+                </View>
+                <View style={{ flex: 378 }} />
               </View>
-              <View style={{ flex: 378 }} />
             </View>
+            <View style={{ flex: 47 }} />
           </View>
-          <View style={{ flex: 47 }} />
-        </View>
-      </ImageBackground>
+        </ImageBackground>
+      </View>
     );
   }
 }
