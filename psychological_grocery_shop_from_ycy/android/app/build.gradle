@@ -155,6 +155,8 @@ dependencies {
     implementation "com.facebook.react:react-native:0.20.1"  // From node_modules
     implementation "com.android.support:support-core-utils:28.0.0"
     implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "com.facebook.fresco:fresco:1.13.0"
+    implementation "com.facebook.fresco:animated-gif:1.13.0"
     implementation project(':react-native-splash-screen')
 }
 
