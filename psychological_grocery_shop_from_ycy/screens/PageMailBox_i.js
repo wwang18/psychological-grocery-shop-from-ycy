@@ -28,7 +28,7 @@ class PageMailBox_i extends Component {
     return (
       <ImageBackground
         style={styles.container}
-        source={require("./../img/i_page.gif")}
+        source={require("./../img/post_office.gif")}
       >
         <View style={{ flex: 1, flexDirection: "row" }}>
           <View style={{ flex: 184 }} />

@@ -16,36 +16,15 @@ class PageMailToChaoYue_j extends Component {
     this.props.navigation.goBack();
   }
 
-  _onPressButton_family() {
-    Alert.alert("家庭");
-    this.props.navigation.push("SubTopic");
-  }
-
-  _onPressButton_work() {
-    Alert.alert("工作");
-    this.props.navigation.push("SubTopic");
-  }
-
-  _onPressButton_love() {
-    Alert.alert("爱情");
-    this.props.navigation.push("SubTopic");
-  }
-
-  _onPressButton_social() {
-    Alert.alert("人际");
-    this.props.navigation.push("SubTopic");
-  }
-
-  _onPressButton_Chaoyue() {
-    Alert.alert("超越");
-    this.props.navigation.push("SubTopic");
+  _onPressButton_topic = (topic) => {
+    this.props.navigation.push("SubTopic", topic);
   }
 
   render() {
     return (
       <ImageBackground
         style={styles.container}
-        source={require("./../img/j_page.gif")}
+        source={require("./../img/topics.gif")}
       >
         <View style={{ flex: 1, flexDirection: "column" }}>
           <View style={{ flex: 80 }} />
@@ -57,14 +36,14 @@ class PageMailToChaoYue_j extends Component {
               <View style={{ flex: 260 }}>
                 <TouchableOpacity
                   style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_family()}
+                  onPress={() => this._onPressButton_topic('family')}
                 />
               </View>
               <View style={{ flex: 182 }} />
               <View style={{ flex: 260 }}>
                 <TouchableOpacity
                   style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_work()}
+                  onPress={() => this._onPressButton_topic('career')}
                 />
               </View>
               <View style={{ flex: 316 }} />
@@ -77,14 +56,14 @@ class PageMailToChaoYue_j extends Component {
               <View style={{ flex: 260 }}>
                 <TouchableOpacity
                   style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_love()}
+                  onPress={() => this._onPressButton_topic('love')}
                 />
               </View>
               <View style={{ flex: 182 }} />
               <View style={{ flex: 260 }}>
                 <TouchableOpacity
                   style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_social()}
+                  onPress={() => this._onPressButton_topic('social')}
                 />
               </View>
               <View style={{ flex: 316 }} />
@@ -97,7 +76,7 @@ class PageMailToChaoYue_j extends Component {
               <View style={{ flex: 578 }}>
                 <TouchableOpacity
                   style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_Chaoyue()}
+                  onPress={() => this._onPressButton_topic('idol')}
                 />
               </View>
               <View style={{ flex: 378 }} />

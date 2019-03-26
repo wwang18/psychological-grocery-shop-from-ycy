@@ -11,8 +11,8 @@ class SubTopic extends Component {
         return require("./../img/subtopic/subtopic_family.gif");
       case 'love':
         return require("./../img/subtopic/subtopic_love.gif");
-      case 'people':
-        return require("./../img/subtopic/subtopic_people.gif");
+      case 'social':
+        return require("./../img/subtopic/subtopic_social.gif");
       default:
         return require("./../img/subtopic/subtopic_chaoyue.gif");
     }
@@ -39,7 +39,8 @@ class SubTopic extends Component {
   }
 
   render() {
-    const bgImg = this._getSubTopicBG('career');
+    const {params} = this.props.navigation.state;
+    const bgImg = this._getSubTopicBG(params);
 
     return (
       <ImageBackground
