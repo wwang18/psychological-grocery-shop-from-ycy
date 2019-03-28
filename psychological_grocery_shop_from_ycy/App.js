@@ -51,31 +51,31 @@ const AppNavigator = createStackNavigator(
         header: null
       }
     },
-    PageGiftCardView_q: {
+    GiftCardView_q: {
       screen: PageGiftCardView_q,
       navigationOptions: {
         header: null
       }
     },
-    PageGiftCard_q: {
+    GiftCard_q: {
       screen: PageGiftCard_q,
       navigationOptions: {
         header: null
       }
     },
-    PageMailBox_n: {
+    MailBox_n: {
       screen: PageMailBox_n,
       navigationOptions: {
         header: null
       }
     },
-    PagePersonCard_p: {
+    PersonCard_p: {
       screen: PagePersonCard_p,
       navigationOptions: {
         header: null
       }
     },
-    PagePersonCardView_p: {
+    PersonCardView_p: {
       screen: PagePersonCardView_p,
       navigationOptions: {
         header: null

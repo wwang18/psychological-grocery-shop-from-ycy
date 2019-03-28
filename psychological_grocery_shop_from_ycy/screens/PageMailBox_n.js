@@ -12,18 +12,14 @@ import {
   TouchableOpacity
 } from "react-native";
 
-class PageMailBox_i extends Component {
+class PageMailBox_n extends Component {
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
 
-  _onPressButton_mail_box() {
-    Alert.alert("点击邮箱");
-  }
-
-  _onPressButton_mail_to_ChaoYue() {
-    this.props.navigation.push("MailToChaoYue_j");
-  }
+  _onPressButton_topic = topic => {
+    this.props.navigation.push(topic);
+  };
 
   render() {
     return (
@@ -34,13 +30,64 @@ class PageMailBox_i extends Component {
           hidden={true}
           animated={true}
         />
-
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/post_office.gif")}
+          source={require("./../img/N.png")}
         >
-        
+          <View style={{ flex: 1, flexDirection: "column" }}>
+            <View style={{ flex: 326 }} />
+            <View style={{ flex: 100 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 185 }} />
+                <View style={{ flex: 355 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_topic("receiveMailCard")}
+                  />
+                </View>
+                <View style={{ flex: 254 }} />
+                <View style={{ flex: 355 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_topic("PersonCard_p")}
+                  />
+                </View>
+                <View style={{ flex: 185 }} />
+              </View>
+            </View>
+            <View style={{ flex: 54 }} />
+            <View style={{ flex: 100 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 794 }} />
+                <View style={{ flex: 355 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_topic("GiftCard_q")}
+                  />
+                </View>
+                <View style={{ flex: 185 }} />
+              </View>
+            </View>
+            <View style={{ flex: 170 }}>
+              <View style={{ flex: 1, flexDirection: "column" }}>
+                <View style={{ flex: 101 }} />
+                <View style={{ flex: 43 }}>
+                  <View style={{ flex: 1, flexDirection: "row" }}>
+                    <View style={{ flex: 1200 }} />
+                    <View style={{ flex: 86 }}>
+                      <TouchableOpacity
+                        style={{ flex: 1 }}
+                        onPress={() => this._onPressButton_back()}
+                      />
+                    </View>
+                    <View style={{ flex: 48 }} />
+                  </View>
+                </View>
+                <View style={{ flex: 26 }} />
+              </View>
+            </View>
+          </View>
         </ImageBackground>
       </View>
     );
@@ -54,4 +101,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PageMailBox_i;
+export default PageMailBox_n;
