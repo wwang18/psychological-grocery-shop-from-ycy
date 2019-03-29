@@ -18,7 +18,7 @@ class PageMailBox_i extends Component {
   }
 
   _onPressButton_mail_box() {
-    Alert.alert("点击邮箱");
+    this.props.navigation.push("MailBox_n");
   }
 
   _onPressButton_mail_to_ChaoYue() {
