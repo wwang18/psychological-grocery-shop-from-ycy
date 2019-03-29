@@ -22,7 +22,7 @@ class Home extends Component {
   }
 
   _onPressButton_enter_shore() {
-    Alert.alert("进店看看");
+    this.props.navigation.push("InStore");
   }
 
   componentDidMount() {
