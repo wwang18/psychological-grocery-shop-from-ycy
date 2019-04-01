@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  TouchableOpacity,
-  AppRegistry,
-  Button,
+  TouchableHighlight,
+  Image,
   StatusBar,
   Alert
 } from "react-native";
@@ -17,20 +14,20 @@ import SplashScreen from "react-native-splash-screen";
 type Props = {};
 
 class Home extends Component {
-  _onPressButton_introduction() {
-    Alert.alert("团队介绍.");
-  }
-
-  _onPressButton_enter_shore() {
-    Alert.alert("进店看看");
-  }
 
   componentDidMount() {
     SplashScreen.hide();
   }
 
-  _onPressButton_exit() {
-    RNExitApp.exitApp();
+  _handleButtonClick = btn => {
+    switch(btn) {
+      case 'letter':
+        return this.props.navigation.push("MailBox_i");
+      case 'exit':
+        return RNExitApp.exitApp();
+      default:
+        return Alert.alert(btn);
+    }
   }
 
   render() {
@@ -47,50 +44,43 @@ class Home extends Component {
           style={{
             flex: 1
           }}
-          source={require("../img/ycy_open.gif")}
+          source={require("../img/bg/home.jpg")}
         >
-          <View style={{ flex: 1, flexDirection: "column" }}>
-            <View style={{ flex: 350 }} />
-            <View style={{ flex: 140 }}>
-              <View style={{ flex: 1, flexDirection: "row" }}>
-                <View style={{ flex: 90 }} />
-                <View style={{ flex: 460 }}>
-                  <TouchableOpacity
-                    style={{ flex: 1 }}
-                    onPress={() => this.props.navigation.push("MailBox_i")}
+          <View style={styles.container}>
+            <View style={styles.btnContainer}>
+              <View style={styles.btns}>
+                <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleButtonClick('letter')}>
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require('../img/btns/home_letter.png')}
                   />
-                </View>
-                <View style={{ flex: 810 }} />
-                <View style={{ flex: 460 }}>
-                  <TouchableOpacity
-                    style={{ flex: 1 }}
-                    onPress={() => this._onPressButton_introduction()}
+                </TouchableHighlight>
+                <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleButtonClick('store')}>
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require('../img/btns/home_store.png')}
                   />
-                </View>
-                <View style={{ flex: 90 }} />
+                </TouchableHighlight>
+              </View>
+              <View style={styles.btns}>
+                <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleButtonClick('team')}>
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require('../img/btns/home_team.png')}
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleButtonClick('exit')}>
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require('../img/btns/home_exit.png')}
+                  />
+                </TouchableHighlight>
               </View>
             </View>
-            <View style={{ flex: 60 }} />
-            <View style={{ flex: 150 }}>
-              <View style={{ flex: 1, flexDirection: "row" }}>
-                <View style={{ flex: 90 }} />
-                <View style={{ flex: 460 }}>
-                  <TouchableOpacity
-                    style={{ flex: 1 }}
-                    onPress={() => this._onPressButton_enter_shore()}
-                  />
-                </View>
-                <View style={{ flex: 810 }} />
-                <View style={{ flex: 460 }}>
-                  <TouchableOpacity
-                    style={{ flex: 1 }}
-                    onPress={() => this._onPressButton_exit()}
-                  />
-                </View>
-                <View style={{ flex: 90 }} />
-              </View>
-            </View>
-            <View style={{ flex: 380 }} />
           </View>
         </ImageBackground>
       </View>
@@ -102,18 +92,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    alignItems: "center"
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
+  btnContainer: {
+    height: '50%',
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: "space-between",
   },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+  btns: {
+    flex: 0.3,
+    justifyContent: "space-between",
+  },
+  btnWrapper: {
+    flex: 1,
+  },
+  button: {
+    width: null,
+    height: null,
+    flex: 1,
   }
 });
 

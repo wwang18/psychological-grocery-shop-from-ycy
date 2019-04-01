@@ -24,7 +24,6 @@ from 'react-navigation';
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    WriteLetter: PageWriteLetter,
     MailBox_i:PageMailBox_i,
     MailToChaoYue_j:PageMailToChaoYue_j,
   },
