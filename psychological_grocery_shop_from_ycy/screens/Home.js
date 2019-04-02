@@ -14,6 +14,9 @@ import SplashScreen from "react-native-splash-screen";
 type Props = {};
 
 class Home extends Component {
+  _onPressButton_introduction() {
+    Alert.alert("团队介绍.");
+  }
 
   componentDidMount() {
     SplashScreen.hide();
@@ -56,7 +59,7 @@ class Home extends Component {
                     source={require('../img/btns/home_letter.png')}
                   />
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleButtonClick('store')}>
+                <TouchableHighlight style={styles.btnWrapper} onPress={() => this.props.navigation.navigate("InStore")}>
                   <Image
                     style={styles.button}
                     resizeMode="contain"
