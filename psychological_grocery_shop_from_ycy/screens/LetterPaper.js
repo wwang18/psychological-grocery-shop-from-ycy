@@ -4,7 +4,8 @@ import {
   TextInput,
   StyleSheet,
   View,
-  TouchableOpacity
+  Image,
+  TouchableHighlight
 } from "react-native";
 
 class LetterPaper extends Component {
@@ -20,7 +21,7 @@ class LetterPaper extends Component {
     // TODO
     this.setState({ replying: true });
     setTimeout(() => {
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate("MailBox_i");
     }, 1000);
   }
 
@@ -38,8 +39,15 @@ class LetterPaper extends Component {
     ) : (
       <ImageBackground
         style={styles.container}
-        source={require("./../img/letter_paper.png")}
+        source={require("./../img/bg/letter_paper.jpg")}
       >
+        <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleSendOut()}>
+          <Image
+            style={styles.btn}
+            resizeMode="contain"
+            source={require('../img/btns/letterpaper_send.png')}
+          />
+        </TouchableHighlight>
         <View style={styles.textContainer}>
           <TextInput
             style={styles.text}
@@ -49,16 +57,13 @@ class LetterPaper extends Component {
             value={this.state.text}
           />
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
+        <TouchableHighlight style={styles.btnWrapper} onPress={() => this._onPressButton_back()}>
+          <Image
             style={styles.btn}
-            onPress={() => this._handleSendOut()}
-          />
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => this._onPressButton_back()}
-          />
-        </View>
+            resizeMode="contain"
+            source={require('../img/btns/letterpaper_back.png')}
+            />
+        </TouchableHighlight>
       </ImageBackground>
     );
   }
@@ -66,25 +71,29 @@ class LetterPaper extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection: "row",
   },
   textContainer: {
     flex: 5,
     flexDirection: "row",
     justifyContent: "center"
   },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: "row"
-  },
   text: {
-    fontSize: 24,
+    fontSize: 20,
+    color: '#ddd',
     width: "70%",
     height: "70%",
     marginTop: "7%"
   },
+  btnWrapper: {
+    flex: 1,
+    flexDirection: 'column-reverse'
+  },
   btn: {
-    flex: 1
+    flex: 0.2,
+    width: null,
+    height: null
   }
 });
 
