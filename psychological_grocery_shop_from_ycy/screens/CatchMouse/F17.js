@@ -4,7 +4,7 @@ import { StyleSheet, View, ImageBackground, TouchableOpacity, Image, Alert, Anim
 
 const MAX_TRY = 10;
 const MOUSE_SIZE = 100;
-const MOUSE_SPEED = 1000;
+const MOUSE_SPEED = 900;
 const MOUSE_REST = 2000;
 
 const { height, width } = Dimensions.get('window');
@@ -24,7 +24,7 @@ function getRndMouseRest() {
 class F17 extends React.Component {
   state = {
     mouseCatched: false,
-    mouseLeftPosition: new Animated.Value(0),
+    mouseLeftPosition: new Animated.Value(0 - MOUSE_SIZE * 2),
     mouseTopPosition: new Animated.Value(getRndTopPosition()),
   }
 
@@ -49,17 +49,21 @@ class F17 extends React.Component {
         }
       ),
     ]).start(() => {
-      if (!this.state.mouseCatched && counter > 0) {
-        this.mouseRunningAnimation(!direction, counter - 1);
-      } else {
-        this.props.navigation.popToTop();
-        this.props.navigation.navigate('M1');
+      if (!this.state.mouseCatched) {
+        if (counter > 0) {
+          this.mouseRunningAnimation(!direction, counter - 1);
+        } else {
+          this.props.navigation.popToTop();
+          this.props.navigation.navigate('M1');
+        }
       }
     });
   }
 
   componentDidMount() {
-    this.mouseRunningAnimation(true, MAX_TRY);
+    setTimeout(() => {
+      this.mouseRunningAnimation(true, MAX_TRY);
+    }, MOUSE_REST);
   }
 
   componentWillUnmount() {
@@ -70,9 +74,16 @@ class F17 extends React.Component {
     let { mouseTopPosition, mouseLeftPosition } = this.state;
 
     const catchMouse = () => {
-      this.state.mouseCatched = true;
-      this.props.navigation.popToTop();
-      this.props.navigation.navigate('F18');
+      if (!this.state.mouseCatched) {
+        this.state.mouseCatched = true;
+        this.state.mouseLeftPosition.stopAnimation();
+        this.state.mouseTopPosition.stopAnimation();
+  
+        setTimeout(() => {
+          this.props.navigation.popToTop();
+          this.props.navigation.navigate('F18');
+        }, 3000);
+      }
     };
 
     return (
@@ -112,8 +123,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     position: 'absolute',
-    top: 100,
-    left: 100,
   },
   theMouse: {
     width: '100%',
