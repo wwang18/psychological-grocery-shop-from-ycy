@@ -13,7 +13,7 @@ export const M1 = (props) => {
       <ImageBackground
         resizeMode="stretch"
         style={styles.container}
-        source={require("../../img/mouse/M1.jpg")}>
+        source={require("../../img/instore/M1.jpg")}>
         <View style={styles.container}>
           <View style={styles.buttonArea}>
             <TouchableOpacity

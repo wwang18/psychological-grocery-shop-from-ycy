@@ -31,7 +31,7 @@ export const F13 = (props) => {
       <ImageBackground
         resizeMode="stretch"
         style={styles.container}
-        source={require("../../img/mouse/F13.jpg")}>
+        source={require("../../img/instore/F13.jpg")}>
         <View style={styles.container}>
           <View style={styles.topPlaceholder}></View>
           <View style={styles.buttonArea}>

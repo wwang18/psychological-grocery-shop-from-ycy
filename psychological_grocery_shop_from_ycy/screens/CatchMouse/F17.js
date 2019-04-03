@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Image, Alert, Animated, Dimensions } from 'react-native';
+import { StyleSheet, View, ImageBackground, TouchableOpacity, Image, Animated, Dimensions } from 'react-native';
 
 
 const MAX_TRY = 10;
@@ -91,7 +91,7 @@ class F17 extends React.Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("../../img/mouse/F17.jpg")}>
+          source={require("../../img/instore/F17.jpg")}>
           <View style={styles.container}>
             <Animated.View
               style={{
@@ -104,7 +104,7 @@ class F17 extends React.Component {
                 style={styles.theMouse}>
                 <Image
                   style={styles.theMouse}
-                  source={require("../../img/mouse/TheMouse.jpeg")}
+                  source={require("../../img/instore/TheMouse.jpeg")}
                 />
               </TouchableOpacity>
             </Animated.View>
