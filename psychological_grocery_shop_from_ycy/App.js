@@ -11,6 +11,7 @@ import PageGiftCard_q from "./screens/PageGiftCard_q";
 import PageMailBox_n from "./screens/PageMailBox_n";
 import PagePersonCard_p from "./screens/PagePersonCard_p";
 import PagePersonCardView_p from "./screens/PagePersonCardView_p";
+import PageReturnedMailCard_s from "./screens/PageReturnedMailCard_s";
 import InStore from './screens/InStore';
 import F11 from './screens/CatchMouse/F11';
 import F12 from './screens/CatchMouse/F12';
@@ -81,6 +82,12 @@ const AppNavigator = createStackNavigator(
     },
     PersonCardView_p: {
       screen: PagePersonCardView_p,
+      navigationOptions: {
+        header: null
+      }
+    },
+    ReturnedMailCard_s: {
+      screen: PageReturnedMailCard_s,
       navigationOptions: {
         header: null
       }

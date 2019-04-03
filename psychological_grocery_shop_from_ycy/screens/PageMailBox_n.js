@@ -43,7 +43,7 @@ class PageMailBox_n extends Component {
                 <View style={{ flex: 355 }}>
                   <TouchableOpacity
                     style={{ flex: 1 }}
-                    onPress={() => this._onPressButton_topic("receiveMailCard")}
+                    onPress={() => this._onPressButton_topic("ReturnedMailCard_s")}
                   />
                 </View>
                 <View style={{ flex: 254 }} />
