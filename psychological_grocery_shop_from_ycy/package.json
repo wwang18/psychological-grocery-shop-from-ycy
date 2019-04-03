@@ -12,6 +12,7 @@
     "react-native-exit-app": "^1.0.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-orientation": "^3.1.3",
+    "react-native-sound-level": "^1.1.0",
     "react-native-splash-screen": "^3.2.0",
     "react-navigation": "^3.3.2"
   },
@@ -24,5 +25,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }

@@ -13,7 +13,7 @@ export const F14 = (props) => {
       <ImageBackground
         resizeMode="stretch"
         style={styles.container}
-        source={require("../../img/mouse/F14.jpg")}>
+        source={require("../../img/instore/F14.jpg")}>
         <View style={styles.container}>
           <View style={styles.buttonArea}>
             <TouchableOpacity
