@@ -4,19 +4,9 @@ import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions } from 
 const { height, width } = Dimensions.get('window');
 
 export const InStore = (props) => {
-  const gotoCatchMouse = () => {
+  const gotoPage = (pageName) => {
     props.navigation.popToTop();
-    props.navigation.navigate('F11');
-  };
-
-  const gotoMinisMachine = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('MinisMachine');
-  };
-
-  const gotoDebugPage = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('F17');
+    props.navigation.navigate(pageName);
   };
 
   return (
@@ -28,19 +18,25 @@ export const InStore = (props) => {
         <View style={styles.container}>
           <View style={styles.catchMouseButtonArea}>
             <TouchableOpacity
-              onPress={gotoCatchMouse}
+              onPress={() => gotoPage('F11')}
               style={styles.button}>
             </TouchableOpacity>
           </View>
           <View style={styles.minisMachineButtonArea}>
             <TouchableOpacity
-              onPress={gotoMinisMachine}
+              onPress={() => gotoPage('MinisMachine')}
+              style={styles.button}>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.phonographButtonArea}>
+            <TouchableOpacity
+              onPress={() => gotoPage('Phonograph')}
               style={styles.button}>
             </TouchableOpacity>
           </View>
           <View style={styles.debugButtonArea}>
             <TouchableOpacity
-              onPress={gotoDebugPage}
+              onPress={() => gotoPage('F17')}
               style={styles.button}>
             </TouchableOpacity>
           </View>

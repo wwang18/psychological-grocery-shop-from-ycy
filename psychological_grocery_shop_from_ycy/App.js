@@ -25,6 +25,7 @@ import M2 from './screens/CatchMouse/M2';
 import MinisMachine from './screens/MinisMachine/U';
 import U1 from './screens/MinisMachine/U1';
 import U2 from './screens/MinisMachine/U2';
+import Phonograph from './screens/Phonograph/V';
 
 const AppNavigator = createStackNavigator(
   {
@@ -168,6 +169,12 @@ const AppNavigator = createStackNavigator(
     },
     U2: {
       screen: U2,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Phonograph: {
+      screen: Phonograph,
       navigationOptions: {
         header: null
       }
