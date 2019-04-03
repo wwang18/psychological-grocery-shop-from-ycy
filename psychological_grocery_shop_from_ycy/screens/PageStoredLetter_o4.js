@@ -12,7 +12,7 @@ import {
   TouchableOpacity
 } from "react-native";
 
-class PageReturnedMailCard_o extends Component {
+class PageStoredLetter_o4 extends Component {
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
@@ -30,7 +30,7 @@ class PageReturnedMailCard_o extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/O.png")}
+          source={require("./../img/O4.png")}
         >
 
         </ImageBackground>
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PageReturnedMailCard_o;
+export default PageStoredLetter_o4;

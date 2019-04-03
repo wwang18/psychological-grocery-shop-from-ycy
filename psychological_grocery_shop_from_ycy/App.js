@@ -12,6 +12,11 @@ import PageMailBox_n from "./screens/PageMailBox_n";
 import PagePersonCard_p from "./screens/PagePersonCard_p";
 import PagePersonCardView_p from "./screens/PagePersonCardView_p";
 import PageReturnedMailCard_s from "./screens/PageReturnedMailCard_s";
+import PageReturnedMailCard_o from "./screens/PageReturnedMailCard_o";
+import PageCharacterCard_o1 from "./screens/PageCharacterCard_o1";
+import PageGiftCard_o2 from "./screens/PageGiftCard_o2";
+import PageBackPage_o3 from "./screens/PageBackPage_o3";
+import PageStoredLetter_o4 from "./screens/PageStoredLetter_o4";
 import InStore from './screens/InStore';
 import F11 from './screens/CatchMouse/F11';
 import F12 from './screens/CatchMouse/F12';
@@ -88,6 +93,36 @@ const AppNavigator = createStackNavigator(
     },
     ReturnedMailCard_s: {
       screen: PageReturnedMailCard_s,
+      navigationOptions: {
+        header: null
+      }
+    },
+    ReturnedMailCard_o: {
+      screen: PageReturnedMailCard_o,
+      navigationOptions: {
+        header: null
+      }
+    },
+    CharacterCard_o1: {
+      screen: PageCharacterCard_o1,
+      navigationOptions: {
+        header: null
+      }
+    },
+    GiftCard_o2: {
+      screen: PageGiftCard_o2,
+      navigationOptions: {
+        header: null
+      }
+    },
+    BackPage_o3: {
+      screen: PageBackPage_o3,
+      navigationOptions: {
+        header: null
+      }
+    },
+    StoredLetter_o4: {
+      screen: PageStoredLetter_o4,
       navigationOptions: {
         header: null
       }
