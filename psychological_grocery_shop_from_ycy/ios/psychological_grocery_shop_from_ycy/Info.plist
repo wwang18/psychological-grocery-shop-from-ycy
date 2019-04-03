@@ -57,5 +57,7 @@
 	<array>
 		<string>DFPWaWaW5-GB.ttf</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This sample uses the microphone to analyze sound level.</string>
 </dict>
 </plist>

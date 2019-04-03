@@ -8,7 +8,7 @@ export const InStore = (props) => {
   };
 
   const gotoDebugPage = () => {
-    props.navigation.navigate("F17");
+    props.navigation.navigate("F13");
   };
 
   return (
