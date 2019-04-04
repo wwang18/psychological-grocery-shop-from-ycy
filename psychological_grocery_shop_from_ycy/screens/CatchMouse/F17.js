@@ -14,7 +14,7 @@ function getRndInteger(min, max) {
 }
 
 function getRndTopPosition() {
-  return getRndInteger(50, height - MOUSE_SIZE);
+  return getRndInteger(100, height - MOUSE_SIZE);
 }
 
 function getRndMouseRest() {
@@ -24,6 +24,7 @@ function getRndMouseRest() {
 class F17 extends React.Component {
   state = {
     mouseCatched: false,
+    mouseYDegree: new Animated.Value(0),
     mouseLeftPosition: new Animated.Value(0 - MOUSE_SIZE * 2),
     mouseTopPosition: new Animated.Value(getRndTopPosition()),
   }
@@ -39,6 +40,13 @@ class F17 extends React.Component {
         {
           toValue: desitination,
           duration: getRndInteger(200, MOUSE_SPEED),
+        }
+      ),
+      Animated.timing(
+        this.state.mouseYDegree,
+        {
+          toValue: direction ? 1 : 0,
+          duration: 50,
         }
       ),
       Animated.timing(
@@ -71,18 +79,22 @@ class F17 extends React.Component {
   }
 
   render() {
-    let { mouseTopPosition, mouseLeftPosition } = this.state;
+    let { mouseTopPosition, mouseLeftPosition, mouseYDegree } = this.state;
+    let interpolate = mouseYDegree.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '180deg']
+    });
 
     const catchMouse = () => {
       if (!this.state.mouseCatched) {
         this.state.mouseCatched = true;
         this.state.mouseLeftPosition.stopAnimation();
         this.state.mouseTopPosition.stopAnimation();
-  
+
         setTimeout(() => {
           this.props.navigation.popToTop();
           this.props.navigation.navigate('F18');
-        }, 3000);
+        }, 1000);
       }
     };
 
@@ -98,13 +110,14 @@ class F17 extends React.Component {
                 ...styles.theMousePosition,
                 top: mouseTopPosition,
                 left: mouseLeftPosition,
+                transform: [{ rotateY: interpolate }]
               }}>
               <TouchableOpacity
                 onPress={catchMouse}
                 style={styles.theMouse}>
                 <Image
                   style={styles.theMouse}
-                  source={require("../../img/instore/TheMouse.jpeg")}
+                  source={require("../../img/instore/TheMouse.gif")}
                 />
               </TouchableOpacity>
             </Animated.View>

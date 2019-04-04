@@ -1,10 +1,13 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, Alert } from 'react-native';
 
 export class WawaText extends React.Component {
   render() {
     return (
-      <Text style={{fontFamily: 'DFPWaWaW5-GB', ...this.props.style}}>{this.props.children}</Text>
+      // Cannot use bold font, otherwise the font will return to default.
+      <Text style={{ ...this.props.style, fontWeight: 'normal', fontFamily: 'DFPWaWaW5-GB' }}>
+        {this.props.children}
+      </Text>
     );
   }
 }
