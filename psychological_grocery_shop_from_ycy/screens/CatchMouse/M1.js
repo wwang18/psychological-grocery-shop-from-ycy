@@ -9,21 +9,16 @@ export const M1 = (props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        resizeMode="stretch"
-        style={styles.container}
-        source={require("../../img/instore/M1.jpg")}>
-        <View style={styles.container}>
-          <View style={styles.buttonArea}>
-            <TouchableOpacity
-              onPress={gotoNextPage}
-              style={styles.button}>
-            </TouchableOpacity>
-          </View>
+    <InStoreView backgroundImage={require("../../img/instore/F17.jpg")}>
+      <View style={styles.container}>
+        <View style={styles.buttonArea}>
+          <TouchableOpacity
+            onPress={gotoNextPage}
+            style={styles.button}>
+          </TouchableOpacity>
         </View>
-      </ImageBackground>
-    </View>
+      </View>
+    </InStoreView>
   )
 }
 

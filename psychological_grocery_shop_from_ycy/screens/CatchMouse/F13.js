@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import RNSoundLevel from 'react-native-sound-level';
 
+import { InStoreView } from '../InStoreView';
+import { WawaText } from '../../components/WawaText';
 
 export const F13 = (props) => {
   const gotoNextPage = () => {
@@ -27,54 +29,51 @@ export const F13 = (props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        resizeMode="stretch"
-        style={styles.container}
-        source={require("../../img/instore/F13.jpg")}>
-        <View style={styles.container}>
-          <View style={styles.topPlaceholder}></View>
-          <View style={styles.buttonArea}>
-            <View style={styles.buttonPadding}></View>
-            <TouchableOpacity
-              onPressIn={startMeasuring}
-              onPressOut={stopMeasuring}
-              style={[styles.button, styles.roundButton]}>
-            </TouchableOpacity>
-            <View style={styles.buttonPadding}></View>
-          </View>
-          <View style={styles.buttomPlaceHolder}></View>
-          <View style={styles.skipButtonArea}>
-            <TouchableOpacity
-              onPress={gotoNextPage}
-              style={styles.button}>
-            </TouchableOpacity>
-          </View>
+    <InStoreView backgroundImage={require("../../img/instore/FWithButton.jpg")}>
+      <View style={styles.topArea}>
+        <View style={styles.roundButtonPlaceHolder}></View>
+        <TouchableOpacity
+          onPressIn={startMeasuring}
+          onPressOut={stopMeasuring}
+          style={[styles.button, styles.roundButton]}>
+          <ImageBackground
+            resizeMode="stretch"
+            style={styles.buttonBackgournd}
+            source={require("../../img/instore/BtnRecord.png")}>
+          </ImageBackground>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.bottomArea}>
+        <View style={styles.textContainer}>
+          <WawaText style={styles.displayText}>
+            请按着中心圆键，并大声叫“超越，你打工迟到了！”（温馨提示：小声就感应不到哦）
+          </WawaText>
         </View>
-      </ImageBackground>
-    </View>
+      </View>
+      <View style={styles.skipButtonArea}>
+        <TouchableOpacity
+          onPress={gotoNextPage}
+          style={styles.button}>
+        </TouchableOpacity>
+      </View>
+    </InStoreView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
+  topArea: {
+    flex: 500,
+    alignItems: 'center',
   },
-  topPlaceholder: {
-    flex: 147,
+  bottomArea: {
+    flex: 250,
   },
-  buttonArea: {
-    flex: 390,
-    flexDirection: 'row',
-  },
-  buttomPlaceHolder: {
-    flex: 213,
-  },
-  buttonPadding: {
-    flex: 472,
+  roundButtonPlaceHolder: {
+    flex: 100,
   },
   roundButton: {
-    flex: 390,
+    flex: 200,
+    width: 200,
     borderRadius: 3000,
   },
   button: {
@@ -88,7 +87,21 @@ const styles = StyleSheet.create({
     right: '5%',
     width: '15%',
     height: '15%',
-  }
+  },
+  buttonBackgournd: {
+    width: '100%',
+    height: '100%',
+  },
+  textContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(120, 120, 220, 0.5)',
+    paddingHorizontal: 80,
+    paddingVertical: 30,
+  },
+  displayText: {
+    color: 'white',
+    fontSize: 24,
+  },
 });
 
 export default F13;
