@@ -9,6 +9,7 @@ import {
   Button,
   StatusBar,
   Alert,
+  Image,
   TouchableOpacity
 } from "react-native";
 
@@ -42,17 +43,29 @@ class PageMailBox_n extends Component {
                 <View style={{ flex: 185 }} />
                 <View style={{ flex: 355 }}>
                   <TouchableOpacity
-                    style={{ flex: 1 }}
-                    //onPress={() => this._onPressButton_topic("ReturnedMailCard_s")}
+                  style={styles.btnWrapper}
                     onPress={() => this._onPressButton_topic("ReturnedMailCard_s")}
+                  >
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require('../img/btns/n_ReturnedMailCard.png')}
                   />
+                  </TouchableOpacity>
+
                 </View>
                 <View style={{ flex: 254 }} />
                 <View style={{ flex: 355 }}>
                   <TouchableOpacity
                     style={{ flex: 1 }}
                     onPress={() => this._onPressButton_topic("PersonCard_p")}
+                  >
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require('../img/btns/n_PersonalCard.png')}
                   />
+                  </TouchableOpacity>
                 </View>
                 <View style={{ flex: 185 }} />
               </View>
@@ -65,7 +78,13 @@ class PageMailBox_n extends Component {
                   <TouchableOpacity
                     style={{ flex: 1 }}
                     onPress={() => this._onPressButton_topic("GiftCard_q")}
+                  >
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require('../img/btns/n_GiftCard.png')}
                   />
+                  </TouchableOpacity>
                 </View>
                 <View style={{ flex: 185 }} />
               </View>
@@ -80,7 +99,13 @@ class PageMailBox_n extends Component {
                       <TouchableOpacity
                         style={{ flex: 1 }}
                         onPress={() => this._onPressButton_back()}
+                      >
+                      <Image
+                        style={styles.button}
+                        resizeMode="contain"
+                        source={require('../img/btns/n_Return.png')}
                       />
+                      </TouchableOpacity>
                     </View>
                     <View style={{ flex: 48 }} />
                   </View>
@@ -99,6 +124,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 60 : 0
+  },
+  btnWrapper: {
+    flex: 1,
+  },
+  button: {
+    width: null,
+    height: null,
+    flex: 1,
   }
 });
 
