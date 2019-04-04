@@ -3,14 +3,15 @@ import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image,
 
 import { WawaText } from '../components/WawaText';
 
-const { height, width } = Dimensions.get('window');
+
+function getScreenDimensions() {
+  const { height, width } = Dimensions.get('window');
+  return height > width ? [height, width] : [width, height];
+}
+
+const [WIDTH, HEIGHT] = getScreenDimensions();
 
 export const InStoreView = (props) => {
-  const gotoPage = (pageName) => {
-    props.navigation.popToTop();
-    props.navigation.navigate(pageName);
-  };
-
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -70,24 +71,24 @@ const styles = StyleSheet.create({
   },
   gearButtonArea: {
     position: 'absolute',
-    left: width * 0.0,
-    top: height * 0.0,
-    width: width * 0.1,
-    height: height * 0.2,
+    left: WIDTH * 0.0,
+    top: HEIGHT * 0.0,
+    width: WIDTH * 0.1,
+    height: HEIGHT * 0.2,
   },
   heartButtonArea: {
     position: 'absolute',
-    right: width * 0.01,
-    top: height * 0.01,
-    width: width * 0.22,
-    height: height * 0.12,
+    right: WIDTH * 0.01,
+    top: HEIGHT * 0.01,
+    width: WIDTH * 0.22,
+    height: HEIGHT * 0.12,
   },
   coinButtonArea: {
     position: 'absolute',
-    right: width * 0.01,
-    top: height * 0.11,
-    width: width * 0.22,
-    height: height * 0.12,
+    right: WIDTH * 0.01,
+    top: HEIGHT * 0.11,
+    width: WIDTH * 0.22,
+    height: HEIGHT * 0.12,
   },
 });
 

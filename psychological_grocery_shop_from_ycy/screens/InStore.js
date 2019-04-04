@@ -3,7 +3,12 @@ import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image 
 
 import { InStoreView } from './InStoreView';
 
-const { height, width } = Dimensions.get('window');
+function getScreenDimensions() {
+  const { height, width } = Dimensions.get('window');
+  return height > width ? [height, width] : [width, height];
+}
+
+const [WIDTH, HEIGHT] = getScreenDimensions();
 
 export const InStore = (props) => {
   const gotoPage = (pageName) => {
@@ -73,38 +78,38 @@ const styles = StyleSheet.create({
   },
   catchMouseButtonArea: {
     position: 'absolute',
-    left: width * 0.13,
-    top: height * 0.303,
-    width: width * 0.3,
-    height: height * 0.33,
+    left: WIDTH * 0.13,
+    top: HEIGHT * 0.303,
+    width: WIDTH * 0.3,
+    height: HEIGHT * 0.33,
   },
   minisMachineButtonArea: {
     position: 'absolute',
-    left: width * 0.22,
-    top: height * 0.66,
-    width: width * 0.15,
-    height: height * 0.31,
+    left: WIDTH * 0.22,
+    top: HEIGHT * 0.66,
+    width: WIDTH * 0.15,
+    height: HEIGHT * 0.31,
   },
   phonographButtonArea: {
     position: 'absolute',
-    left: width * 0.44,
-    top: height * 0.38,
-    width: width * 0.2,
-    height: height * 0.31,
+    left: WIDTH * 0.44,
+    top: HEIGHT * 0.38,
+    width: WIDTH * 0.2,
+    height: HEIGHT * 0.31,
   },
   mailBoxButtonArea: {
     position: 'absolute',
-    left: width * 0.05,
-    top: height * 0.66,
-    width: width * 0.15,
-    height: height * 0.31,
+    left: WIDTH * 0.05,
+    top: HEIGHT * 0.66,
+    width: WIDTH * 0.15,
+    height: HEIGHT * 0.31,
   },
   debugButtonArea: {
     position: 'absolute',
-    left: width * 0.2,
-    top: height * 0.1,
-    width: width * 0.12,
-    height: height * 0.12,
+    left: WIDTH * 0.2,
+    top: HEIGHT * 0.1,
+    width: WIDTH * 0.12,
+    height: HEIGHT * 0.12,
   },
 });
 
