@@ -3,6 +3,7 @@ package com.psychological_grocery_shop_from_ycy;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.brentvatne.react.ReactVideoPackage;
 import com.punarinta.RNSoundLevel.RNSoundLevel;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new ReactVideoPackage(),
             new RNSoundLevel(),
                     new SplashScreenReactPackage(),
                     new RNExitAppPackage(),

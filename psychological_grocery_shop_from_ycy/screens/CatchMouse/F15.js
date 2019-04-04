@@ -1,46 +1,35 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Dimensions, TouchableOpacity, Alert } from 'react-native';
+import Video from 'react-native-video';
 
+import { InStoreView } from '../InStoreView';
 
-const WAIT_TIME = 6000;  // ms
-
-export const F15 = (props) => {
-  const gotoNextPage = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('F16');
+class F15 extends React.Component {
+  gotoNextPage = () => {
+    this.props.navigation.popToTop();
+    this.props.navigation.navigate('F16');
   };
 
-  const interval = setTimeout(gotoNextPage, WAIT_TIME);
+  render() {
+    const f15Video = require('../../img/instore/F15.mp4');
 
-  const touchScreen = () => {
-    clearInterval(interval);
-    gotoNextPage();
-  };
-
-  return (
-    <View style={styles.container}>
-      <ImageBackground
-        resizeMode="stretch"
-        style={styles.container}
-        source={require("../../img/instore/F15.jpg")}>
-        <View style={styles.container}>
-          <TouchableOpacity
-            onPress={touchScreen}
-            style={styles.button}>
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
-    </View>
-  )
+    return (
+      <InStoreView backgroundImage={require("../../img/instore/F14.jpg")}>
+        <Video source={f15Video}
+          ref={(ref) => {
+            this.player = ref
+          }}
+          onEnd={() => this.gotoNextPage()}
+          resizeMode="stretch"
+          style={styles.backgroundVideo} />
+      </InStoreView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  backgroundVideo: {
     flex: 1,
-  },
-  button: {
-    flex: 1,
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
   },
 });
 
