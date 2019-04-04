@@ -29,7 +29,7 @@ export class F14 extends React.Component {
 
   render() {
     return (
-      <InStoreView backgroundImage={require("../../img/instore/FWithButton.jpg")}>
+      <InStoreView backgroundImage={require("../../img/instore/F14.jpg")}>
         <View style={styles.topPlaceholder}>
         </View>
         <View style={styles.buttonArea}>
