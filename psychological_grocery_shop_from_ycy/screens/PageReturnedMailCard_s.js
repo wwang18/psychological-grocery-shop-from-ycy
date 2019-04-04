@@ -49,7 +49,7 @@ class PageReturnedMailCard_s extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/PQS/1ReturnedCard.png")}
+          source={require("./../img/ReturnedMailCard_s.png")}
         >
           <View style={{ flex: 1, flexDirection: "column" }}>
             <View style={{ flex: 150 }} />
