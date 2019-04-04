@@ -11,7 +11,8 @@ import {
   Image,
   FlatList,
   Alert,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableHighlight
 } from "react-native";
 
 class PageReturnedMailCard_s extends Component {
@@ -24,6 +25,10 @@ class PageReturnedMailCard_s extends Component {
 
   _onPressButton_back() {
     this.props.navigation.goBack();
+  }
+
+  _handleButtonClick(index) {
+    Alert.alert(index);
   }
 
   componentDidMount() {
@@ -64,10 +69,16 @@ class PageReturnedMailCard_s extends Component {
                       <View
                         style={{ flex: 1, flexDirection: "column", margin: 10 }}
                       >
-                        <Image
-                          style={styles.imageThumbnail}
-                          source={{ uri: item.src }}
-                        />
+                        <TouchableHighlight
+                          onPress={(item, index) =>
+                            this._handleButtonClick(index)
+                          }
+                        >
+                          <Image
+                            style={styles.imageThumbnail}
+                            source={{ uri: item.src }}
+                          />
+                        </TouchableHighlight>
                       </View>
                     )}
                     //Setting the number of column
