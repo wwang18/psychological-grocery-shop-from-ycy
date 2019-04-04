@@ -28,7 +28,7 @@ class PageReturnedMailCard_s extends Component {
   }
 
   _handleButtonClick(index) {
-    Alert.alert(index);
+    this.props.navigation.push("ReturnedMailCard_o");
   }
 
   componentDidMount() {
