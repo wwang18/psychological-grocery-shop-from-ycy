@@ -28,6 +28,10 @@ import F17 from './screens/CatchMouse/F17';
 import F18 from './screens/CatchMouse/F18';
 import M1 from './screens/CatchMouse/M1';
 import M2 from './screens/CatchMouse/M2';
+import MinisMachine from './screens/MinisMachine/U';
+import U1 from './screens/MinisMachine/U1';
+import U2 from './screens/MinisMachine/U2';
+import Phonograph from './screens/Phonograph/V';
 
 const AppNavigator = createStackNavigator(
   {
@@ -189,6 +193,30 @@ const AppNavigator = createStackNavigator(
     },
     M2: {
       screen: M2,
+      navigationOptions: {
+        header: null
+      }
+    },
+    MinisMachine: {
+      screen: MinisMachine,
+      navigationOptions: {
+        header: null
+      }
+    },
+    U1: {
+      screen: U1,
+      navigationOptions: {
+        header: null
+      }
+    },
+    U2: {
+      screen: U2,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Phonograph: {
+      screen: Phonograph,
       navigationOptions: {
         header: null
       }

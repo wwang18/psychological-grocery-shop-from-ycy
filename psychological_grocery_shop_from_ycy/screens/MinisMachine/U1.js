@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
 
 
-export const F11 = (props) => {
+export const U1 = (props) => {
   const gotoNextPage = () => {
     props.navigation.popToTop();
-    props.navigation.navigate('F12');
+    props.navigation.navigate('U2');
   };
 
   return (
@@ -13,10 +13,8 @@ export const F11 = (props) => {
       <ImageBackground
         resizeMode="stretch"
         style={styles.container}
-        source={require("../../img/instore/F11.jpg")}>
+        source={require("../../img/instore/U1.jpg")}>
         <View style={styles.container}>
-          <View style={styles.topPlaceholder}>
-          </View>
           <View style={styles.buttonArea}>
             <TouchableOpacity
               onPress={gotoNextPage}
@@ -29,15 +27,18 @@ export const F11 = (props) => {
   )
 }
 
+const { height, width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  topPlaceholder: {
-    flex: 480,
-  },
   buttonArea: {
-    flex: 270,
+    position: 'absolute',
+    bottom: height * 0.05,
+    right: width * 0.05,
+    width: width * 0.15,
+    height: height * 0.15,
   },
   button: {
     flex: 1,
@@ -45,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default F11;
+export default U1;

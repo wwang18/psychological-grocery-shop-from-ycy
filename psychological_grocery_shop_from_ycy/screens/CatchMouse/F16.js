@@ -18,7 +18,7 @@ export const F16 = (props) => {
       <ImageBackground
         resizeMode="stretch"
         style={styles.container}
-        source={require("../../img/mouse/F16.jpg")}>
+        source={require("../../img/instore/F16.jpg")}>
         <View style={styles.container}>
           <View style={styles.topPlaceholder}>
           </View>

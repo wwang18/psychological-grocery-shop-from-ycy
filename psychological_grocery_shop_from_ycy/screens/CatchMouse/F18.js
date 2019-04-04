@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
 
 
 export const F18 = (props) => {
@@ -13,7 +13,7 @@ export const F18 = (props) => {
       <ImageBackground
         resizeMode="stretch"
         style={styles.container}
-        source={require("../../img/mouse/F18.jpg")}>
+        source={require("../../img/instore/F18.jpg")}>
         <View style={styles.container}>
           <View style={styles.buttonArea}>
             <TouchableOpacity
@@ -27,16 +27,18 @@ export const F18 = (props) => {
   )
 }
 
+const { height, width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   buttonArea: {
     position: 'absolute',
-    bottom: '5%',
-    right: '5%',
-    width: '15%',
-    height: '15%',
+    bottom: height * 0.05,
+    right: width * 0.05,
+    width: width * 0.15,
+    height: height * 0.15,
   },
   button: {
     flex: 1,

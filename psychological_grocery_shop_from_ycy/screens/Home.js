@@ -6,10 +6,26 @@ import {
   TouchableHighlight,
   Image,
   StatusBar,
-  Alert
+  Alert,
+  PermissionsAndroid
 } from "react-native";
 import RNExitApp from "react-native-exit-app";
 import SplashScreen from "react-native-splash-screen";
+
+async function requestCameraPermission() {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('You can use the camera');
+    } else {
+      console.log('Camera permission denied');
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+}
 
 type Props = {};
 
@@ -20,6 +36,7 @@ class Home extends Component {
 
   componentDidMount() {
     SplashScreen.hide();
+    requestCameraPermission();
   }
 
   _handleButtonClick = btn => {
