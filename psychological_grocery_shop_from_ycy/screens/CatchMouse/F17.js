@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Image, Animated, Dimensions } from 'react-native';
 
+import { InStoreView } from '../InStoreView';
 
 const MAX_TRY = 10;
 const MOUSE_SIZE = 100;
@@ -99,31 +100,24 @@ class F17 extends React.Component {
     };
 
     return (
-      <View style={styles.container}>
-        <ImageBackground
-          resizeMode="stretch"
-          style={styles.container}
-          source={require("../../img/instore/F17.jpg")}>
-          <View style={styles.container}>
-            <Animated.View
-              style={{
-                ...styles.theMousePosition,
-                top: mouseTopPosition,
-                left: mouseLeftPosition,
-                transform: [{ rotateY: interpolate }]
-              }}>
-              <TouchableOpacity
-                onPress={catchMouse}
-                style={styles.theMouse}>
-                <Image
-                  style={styles.theMouse}
-                  source={require("../../img/instore/TheMouse.gif")}
-                />
-              </TouchableOpacity>
-            </Animated.View>
-          </View>
-        </ImageBackground>
-      </View>
+      <InStoreView backgroundImage={require("../../img/instore/F17.jpg")}>
+        <Animated.View
+          style={{
+            ...styles.theMousePosition,
+            top: mouseTopPosition,
+            left: mouseLeftPosition,
+            transform: [{ rotateY: interpolate }]
+          }}>
+          <TouchableOpacity
+            onPress={catchMouse}
+            style={styles.theMouse}>
+            <Image
+              style={styles.theMouse}
+              source={require("../../img/instore/TheMouse.gif")}
+            />
+          </TouchableOpacity>
+        </Animated.View>
+      </InStoreView>
     )
   }
 }
