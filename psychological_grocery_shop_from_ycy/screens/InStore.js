@@ -56,7 +56,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.debugButtonArea}>
         <TouchableOpacity
-          onPress={() => gotoPage('F15')}
+          onPress={() => gotoPage('F18')}
           style={styles.button}>
         </TouchableOpacity>
       </View>
