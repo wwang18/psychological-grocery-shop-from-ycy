@@ -67,7 +67,8 @@ class SubTopic extends Component {
           </View>
         </View>
         </ImageBackground>
-        <TouchableHighlight style={styles.goBack} onPress={() => this._onPressButton_back()}>
+        <TouchableHighlight underlayColor='transparent' style={styles.goBack}
+          onPress={() => this._onPressButton_back()}>
           <Image
             style={styles.backBtn}
             resizeMode="contain"

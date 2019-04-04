@@ -41,7 +41,8 @@ class LetterPaper extends Component {
         style={styles.container}
         source={require("./../img/bg/letter_paper.jpg")}
       >
-        <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleSendOut()}>
+        <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+          onPress={() => this._handleSendOut()}>
           <Image
             style={styles.btn}
             resizeMode="contain"
@@ -57,7 +58,8 @@ class LetterPaper extends Component {
             value={this.state.text}
           />
         </View>
-        <TouchableHighlight style={styles.btnWrapper} onPress={() => this._onPressButton_back()}>
+        <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+          onPress={() => this._onPressButton_back()}>
           <Image
             style={styles.btn}
             resizeMode="contain"

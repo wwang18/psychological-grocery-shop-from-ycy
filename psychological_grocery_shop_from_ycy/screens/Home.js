@@ -30,10 +30,6 @@ async function requestCameraPermission() {
 type Props = {};
 
 class Home extends Component {
-  _onPressButton_introduction() {
-    Alert.alert("团队介绍.");
-  }
-
   componentDidMount() {
     SplashScreen.hide();
     requestCameraPermission();
@@ -43,6 +39,8 @@ class Home extends Component {
     switch(btn) {
       case 'letter':
         return this.props.navigation.push("MailBox_i");
+      case 'store':
+        return this.props.navigation.push("InStore");
       case 'exit':
         return RNExitApp.exitApp();
       default:
@@ -69,14 +67,16 @@ class Home extends Component {
           <View style={styles.container}>
             <View style={styles.btnContainer}>
               <View style={styles.btns}>
-                <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleButtonClick('letter')}>
+                <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+                  onPress={() => this._handleButtonClick('letter')}>
                   <Image
                     style={styles.button}
                     resizeMode="contain"
                     source={require('../img/btns/home_letter.png')}
                   />
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.btnWrapper} onPress={() => this.props.navigation.navigate("InStore")}>
+                <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+                  onPress={() => this._handleButtonClick('store')}>
                   <Image
                     style={styles.button}
                     resizeMode="contain"
@@ -85,14 +85,16 @@ class Home extends Component {
                 </TouchableHighlight>
               </View>
               <View style={styles.btns}>
-                <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleButtonClick('team')}>
+                <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+                  onPress={() => this._handleButtonClick('team')}>
                   <Image
                     style={styles.button}
                     resizeMode="contain"
                     source={require('../img/btns/home_team.png')}
                   />
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.btnWrapper} onPress={() => this._handleButtonClick('exit')}>
+                <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+                  onPress={() => this._handleButtonClick('exit')}>
                   <Image
                     style={styles.button}
                     resizeMode="contain"
