@@ -7,13 +7,14 @@ import {
   Image,
   TouchableHighlight
 } from "react-native";
+import { scale } from 'react-native-size-matters';
 
 class LetterPaper extends Component {
   constructor(props) {
     super(props);
     this.state = {
       replying: false,
-      text: "Hello, 超越。"
+      text: ""
     };
   }
 
@@ -54,6 +55,7 @@ class LetterPaper extends Component {
             style={styles.text}
             multiline={true}
             numberOfLines={8}
+            placeholder="超越亲启..."
             onChangeText={text => this.setState({ text })}
             value={this.state.text}
           />
@@ -78,15 +80,13 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 5,
-    flexDirection: "row",
-    justifyContent: "center"
+    flexDirection: "row"
   },
   text: {
-    fontSize: 20,
-    color: '#ddd',
-    width: "70%",
-    height: "70%",
-    marginTop: "7%"
+    fontSize: scale(22),
+    color: '#888',
+    height: "60%",
+    marginTop: "10%"
   },
   btnWrapper: {
     flex: 1,
