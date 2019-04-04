@@ -33,16 +33,6 @@ class PagePersonCard_p extends Component {
     });
   }
 
-  componentDidMount() {
-    var that = this;
-    let items = Array.apply(null, Array(36)).map((v, i) => {
-      return { id: i, src: "http://placehold.it/200x200?text=" + (i + 1) };
-    });
-    that.setState({
-      dataSource: items
-    });
-  }
-
   render() {
     return (
       <ImageBackground

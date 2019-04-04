@@ -8,13 +8,32 @@ import {
   AppRegistry,
   Button,
   StatusBar,
+  Image,
+  FlatList,
   Alert,
   TouchableOpacity
 } from "react-native";
 
 class PageReturnedMailCard_s extends Component {
+  constructor() {
+    super();
+    this.state = {
+      dataSource: {}
+    };
+  }
+
   _onPressButton_back() {
     this.props.navigation.goBack();
+  }
+
+  componentDidMount() {
+    var that = this;
+    let items = Array.apply(null, Array(36)).map((v, i) => {
+      return { id: i, src: "http://placehold.it/200x200?text=" + (i + 1) };
+    });
+    that.setState({
+      dataSource: items
+    });
   }
 
   render() {
@@ -30,9 +49,47 @@ class PageReturnedMailCard_s extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/S.png")}
+          source={require("./../img/PQS/1ReturnedCard.png")}
         >
-
+          <View style={{ flex: 1, flexDirection: "column" }}>
+            <View style={{ flex: 150 }} />
+            <View style={{ flex: 30 }} />
+            <View style={{ flex: 490 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 250 }} />
+                <View style={{ flex: 830, justifyContent: "center" }}>
+                  <FlatList
+                    data={this.state.dataSource}
+                    renderItem={({ item }) => (
+                      <View
+                        style={{ flex: 1, flexDirection: "column", margin: 10 }}
+                      >
+                        <Image
+                          style={styles.imageThumbnail}
+                          source={{ uri: item.src }}
+                        />
+                      </View>
+                    )}
+                    //Setting the number of column
+                    numColumns={3}
+                    keyExtractor={(item, index) => index}
+                  />
+                </View>
+                <View style={{ flex: 254 }} />
+              </View>
+            </View>
+            <View style={{ flex: 80 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 1210 }} />
+                <View style={{ flex: 124 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_back()}
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
         </ImageBackground>
       </View>
     );
@@ -43,6 +100,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 60 : 0
+  },
+  MainContainer: {
+    justifyContent: "center",
+    flex: 810
+  },
+  imageThumbnail: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 80
   }
 });
 
