@@ -51,7 +51,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.debugButtonArea}>
         <TouchableOpacity
-          onPress={() => gotoPage('F17')}
+          onPress={() => gotoPage('F13')}
           style={styles.button}>
         </TouchableOpacity>
       </View>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
+    backgroundColor: 'rgba(220, 120, 220, 0.5)',
   },
   buttonBackgournd: {
     width: '100%',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   debugButtonArea: {
     position: 'absolute',
-    left: width * 0.1,
+    left: width * 0.2,
     top: height * 0.1,
     width: width * 0.12,
     height: height * 0.12,

@@ -30,14 +30,14 @@ export const InStoreView = (props) => {
           <ImageBackground
             style={styles.numberContainer}
             source={require("../img/instore/Heart.png")}>
-            <WawaText style={styles.numberDisplay}>10000</WawaText>
+            <WawaText style={styles.numberDisplay}>1000000</WawaText>
           </ImageBackground>
         </View>
         <View style={styles.coinButtonArea}>
           <ImageBackground
             style={styles.numberContainer}
             source={require("../img/instore/Coin.png")}>
-            <WawaText style={styles.numberDisplay}>10000</WawaText>
+            <WawaText style={styles.numberDisplay}>1000000</WawaText>
           </ImageBackground>
         </View>
         {props.children}
