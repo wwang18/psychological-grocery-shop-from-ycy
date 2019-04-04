@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 
+import { InStoreView } from '../InStoreView';
 
 export const M2 = (props) => {
   const saveImage = () => {
@@ -17,37 +18,30 @@ export const M2 = (props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        resizeMode="stretch"
-        style={styles.container}
-        source={require("../../img/instore/M2.jpg")}>
-        <View style={styles.container}>
-          <View style={styles.topPlaceholder}>
-          </View>
-          <View style={styles.buttonArea}>
-            <View style={styles.buttonPadding}></View>
-            <TouchableOpacity
-              onPress={saveImage}
-              style={[styles.button, styles.saveButton]}>
-            </TouchableOpacity>
-            <View style={styles.buttonPadding}></View>
-            <TouchableOpacity
-              onPress={shareImage}
-              style={[styles.button, styles.shareButton]}>
-            </TouchableOpacity>
-            <View style={styles.buttonGap}></View>
-            <TouchableOpacity
-              onPress={backToHome}
-              style={[styles.button, styles.backButton]}>
-            </TouchableOpacity>
-            <View style={styles.buttonPadding}></View>
-          </View>
-          <View style={styles.buttomPlaceHolder}>
-          </View>
-        </View>
-      </ImageBackground>
-    </View>
+    <InStoreView backgroundImage={require("../../img/instore/M2.jpg")}>
+      <View style={styles.topPlaceholder}>
+      </View>
+      <View style={styles.buttonArea}>
+        <View style={styles.buttonPadding}></View>
+        <TouchableOpacity
+          onPress={saveImage}
+          style={[styles.button, styles.saveButton]}>
+        </TouchableOpacity>
+        <View style={styles.buttonPadding}></View>
+        <TouchableOpacity
+          onPress={shareImage}
+          style={[styles.button, styles.shareButton]}>
+        </TouchableOpacity>
+        <View style={styles.buttonGap}></View>
+        <TouchableOpacity
+          onPress={backToHome}
+          style={[styles.button, styles.backButton]}>
+        </TouchableOpacity>
+        <View style={styles.buttonPadding}></View>
+      </View>
+      <View style={styles.buttomPlaceHolder}>
+      </View>
+    </InStoreView>
   )
 }
 

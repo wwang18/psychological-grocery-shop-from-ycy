@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 
+import { InStoreView } from '../InStoreView';
 
 export const M1 = (props) => {
   const gotoNextPage = () => {
@@ -9,7 +10,7 @@ export const M1 = (props) => {
   };
 
   return (
-    <InStoreView backgroundImage={require("../../img/instore/F17.jpg")}>
+    <InStoreView backgroundImage={require("../../img/instore/M1.jpg")}>
       <View style={styles.container}>
         <View style={styles.buttonArea}>
           <TouchableOpacity
