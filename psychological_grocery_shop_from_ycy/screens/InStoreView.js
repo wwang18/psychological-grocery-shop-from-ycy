@@ -4,14 +4,6 @@ import { scale } from 'react-native-size-matters';
 
 import { WawaText } from '../components/WawaText';
 
-
-function getScreenDimensions() {
-  const { height, width } = Dimensions.get('window');
-  return height > width ? [height, width] : [width, height];
-}
-
-const [WIDTH, HEIGHT] = getScreenDimensions();
-
 export const InStoreView = (props) => {
   return (
     <View style={styles.container}>
@@ -54,7 +46,6 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
   },
   buttonBackgournd: {
     width: '100%',
@@ -62,7 +53,6 @@ const styles = StyleSheet.create({
   },
   numberContainer: {
     flex: 1,
-    backgroundColor: 'rgba(120, 220, 120, 0.5)',
     paddingStart: 45,
     paddingVertical: 15,
   },
@@ -72,24 +62,24 @@ const styles = StyleSheet.create({
   },
   gearButtonArea: {
     position: 'absolute',
-    left: WIDTH * 0.0,
-    top: HEIGHT * 0.0,
-    width: WIDTH * 0.1,
-    height: HEIGHT * 0.2,
+    left: 0,
+    top: 0,
+    width: 71,
+    height: 76,
   },
   heartButtonArea: {
     position: 'absolute',
-    right: WIDTH * 0.01,
-    top: HEIGHT * 0.01,
-    width: WIDTH * 0.22,
-    height: HEIGHT * 0.12,
+    right: 20,
+    top: 2,
+    width: 135,
+    height: 45,
   },
   coinButtonArea: {
     position: 'absolute',
-    right: WIDTH * 0.01,
-    top: HEIGHT * 0.11,
-    width: WIDTH * 0.22,
-    height: HEIGHT * 0.12,
+    right: 20,
+    top: 38,
+    width: 135,
+    height: 45,
   },
 });
 

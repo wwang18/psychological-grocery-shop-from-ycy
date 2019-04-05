@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image } from 'react-native';
+import { StyleSheet, View, Alert, TouchableOpacity, Dimensions, Image } from 'react-native';
 
 import { InStoreView } from './InStoreView';
 
@@ -15,6 +15,10 @@ export const InStore = (props) => {
 
   const gotoPage = (pageName) => {
     props.navigation.navigate(pageName);
+  };
+
+  const notFinished = () => {
+    Alert.alert('还没做完，敬请期待！');
   };
 
   return (
@@ -55,6 +59,51 @@ export const InStore = (props) => {
             source={require("../img/instore/FBtnPhonograph.png")} />
         </TouchableOpacity>
       </View>
+      <View style={styles.btnGallery}>
+        <TouchableOpacity
+          onPress={() => notFinished()}
+          style={styles.button}>
+          <Image
+            style={styles.buttonBackgournd}
+            source={require("../img/instore/FBtnGallery.png")} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.btnFriends}>
+        <TouchableOpacity
+          onPress={() => notFinished()}
+          style={styles.button}>
+          <Image
+            style={styles.buttonBackgournd}
+            source={require("../img/instore/FBtnFriends.png")} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.btnMission}>
+        <TouchableOpacity
+          onPress={() => notFinished()}
+          style={styles.button}>
+          <Image
+            style={styles.buttonBackgournd}
+            source={require("../img/instore/FBtnMission.png")} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.btnReturn}>
+        <TouchableOpacity
+          onPress={() => notFinished()}
+          style={styles.button}>
+          <Image
+            style={styles.buttonBackgournd}
+            source={require("../img/instore/FBtnReturn.png")} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.btnBackyard}>
+        <TouchableOpacity
+          onPress={() => notFinished()}
+          style={styles.button}>
+          <Image
+            style={styles.buttonBackgournd}
+            source={require("../img/instore/FBtnBackyard.png")} />
+        </TouchableOpacity>
+      </View>
       <View style={styles.debugButtonArea}>
         <TouchableOpacity
           onPress={() => gotoPage('F17')}
@@ -65,13 +114,13 @@ export const InStore = (props) => {
   )
 }
 
+// 683 * 411
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   button: {
     flex: 1,
-    backgroundColor: 'rgba(220, 120, 220, 0.5)',
   },
   buttonBackgournd: {
     width: '100%',
@@ -79,38 +128,73 @@ const styles = StyleSheet.create({
   },
   catchMouseButtonArea: {
     position: 'absolute',
-    left: WIDTH * 0.13,
-    top: HEIGHT * 0.303,
-    width: WIDTH * 0.3,
-    height: HEIGHT * 0.33,
-  },
-  minisMachineButtonArea: {
-    position: 'absolute',
-    left: WIDTH * 0.22,
-    top: HEIGHT * 0.66,
-    width: WIDTH * 0.15,
-    height: HEIGHT * 0.31,
+    left: 89,
+    top: 125,
+    width: 205,
+    height: 136,
   },
   phonographButtonArea: {
     position: 'absolute',
-    left: WIDTH * 0.44,
-    top: HEIGHT * 0.38,
-    width: WIDTH * 0.2,
-    height: HEIGHT * 0.31,
+    left: 300,
+    top: 156,
+    width: 117,
+    height: 127,
   },
   mailBoxButtonArea: {
     position: 'absolute',
-    left: WIDTH * 0.05,
-    top: HEIGHT * 0.66,
-    width: WIDTH * 0.15,
-    height: HEIGHT * 0.31,
+    left: 34,
+    bottom: 10,
+    width: 102,
+    height: 127,
+  },
+  minisMachineButtonArea: {
+    position: 'absolute',
+    left: 150,
+    bottom: 10,
+    width: 102,
+    height: 127,
+  },
+  btnGallery: {
+    position: 'absolute',
+    left: 270,
+    bottom: 10,
+    width: 60,
+    height: 64,
+  },
+  btnFriends: {
+    position: 'absolute',
+    left: 335,
+    bottom: 10,
+    width: 60,
+    height: 64,
+  },
+  btnMission: {
+    position: 'absolute',
+    left: 400,
+    bottom: 10,
+    width: 60,
+    height: 64,
+  },
+  btnReturn: {
+    position: 'absolute',
+    left: 465,
+    bottom: 10,
+    width: 60,
+    height: 64,
+  },
+  btnBackyard: {
+    position: 'absolute',
+    right: 0,
+    top: 110,
+    width: 136,
+    height: 145,
   },
   debugButtonArea: {
     position: 'absolute',
-    left: WIDTH * 0.2,
-    top: HEIGHT * 0.1,
-    width: WIDTH * 0.12,
-    height: HEIGHT * 0.12,
+    left: 165,
+    top: 0,
+    width: 82,
+    height: 90,
   },
 });
 
