@@ -11,8 +11,9 @@ function getScreenDimensions() {
 const [WIDTH, HEIGHT] = getScreenDimensions();
 
 export const InStore = (props) => {
+  props.navigation.dismiss();
+
   const gotoPage = (pageName) => {
-    props.navigation.popToTop();
     props.navigation.navigate(pageName);
   };
 
@@ -56,7 +57,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.debugButtonArea}>
         <TouchableOpacity
-          onPress={() => gotoPage('F18')}
+          onPress={() => gotoPage('F17')}
           style={styles.button}>
         </TouchableOpacity>
       </View>

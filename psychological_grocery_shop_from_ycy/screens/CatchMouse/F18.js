@@ -5,12 +5,13 @@ import { scale } from 'react-native-size-matters';
 
 import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
+import { DialogBox } from '../../components/DialogBox';
 
 const f18Video = require('../../img/instore/F18.mp4');
 
 class F18 extends React.Component {
   state = {
-    showVideo: true,
+    showVideo: false,
   }
 
   componentDidMount() {
@@ -37,18 +38,13 @@ class F18 extends React.Component {
         {!this.state.showVideo &&
           <View style={styles.container}>
             <View style={styles.topPlaceHolder}></View>
-            <TouchableOpacity
-              onPress={() => this.gotoNextPage()}
-              style={styles.button}>
-              <ImageBackground
-                resizeMode="stretch"
-                style={styles.dialogArea}
-                source={require("../../img/instore/EmptyDialogBox.png")}>
+            <View style={styles.dialogContainer}>
+              <DialogBox onPress={() => this.gotoNextPage()}>
                 <WawaText style={styles.displayText}>
                   好棒！抓到老鼠啦！
-              </WawaText>
-              </ImageBackground>
-            </TouchableOpacity>
+                </WawaText>
+              </DialogBox>
+            </View>
           </View>
         }
       </InStoreView>
@@ -65,27 +61,11 @@ const styles = StyleSheet.create({
   topPlaceHolder: {
     flex: 500,
   },
-  buttonArea: {
-    position: 'absolute',
-    bottom: height * 0.05,
-    right: width * 0.05,
-    width: width * 0.15,
-    height: height * 0.15,
-  },
-  button: {
+  dialogContainer: {
     flex: 250,
-    paddingStart: 30,
-    paddingEnd: 26,
   },
   backgroundVideo: {
     flex: 1,
-  },
-  dialogArea: {
-    flex: 1,
-    marginTop: 10,
-    marginBottom: 4,
-    paddingHorizontal: 50,
-    paddingVertical: 20,
   },
   displayText: {
     color: 'white',

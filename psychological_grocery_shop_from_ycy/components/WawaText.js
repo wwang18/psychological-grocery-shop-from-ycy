@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Alert } from 'react-native';
+import { Text } from 'react-native';
 
 export class WawaText extends React.Component {
   render() {

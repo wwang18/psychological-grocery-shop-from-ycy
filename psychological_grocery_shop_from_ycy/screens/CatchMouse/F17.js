@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Image, Animated, Dimensions } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
 import { InStoreView } from '../InStoreView';
+import { WawaText } from '../../components/WawaText';
+import { DialogBox } from '../../components/DialogBox';
 
 const MAX_TRY = 10;
 const MOUSE_SIZE = 100;
@@ -24,10 +27,27 @@ function getRndMouseRest() {
 
 class F17 extends React.Component {
   state = {
+    startCatch: false,
     mouseCatched: false,
     mouseYDegree: new Animated.Value(0),
     mouseLeftPosition: new Animated.Value(0 - MOUSE_SIZE * 2),
     mouseTopPosition: new Animated.Value(getRndTopPosition()),
+  }
+
+  componentDidMount() {
+    this.props.navigation.dismiss();
+  }
+
+  componentWillUnmount() {
+    this.state.mouseCatched = true;
+  }
+
+  gameStart() {
+    this.setState({startCatch: true});
+
+    setTimeout(() => {
+      this.mouseRunningAnimation(true, MAX_TRY);
+    }, MOUSE_REST);
   }
 
   mouseRunningAnimation(direction, counter) {
@@ -68,17 +88,6 @@ class F17 extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.props.navigation.dismiss();
-    setTimeout(() => {
-      this.mouseRunningAnimation(true, MAX_TRY);
-    }, MOUSE_REST);
-  }
-
-  componentWillUnmount() {
-    this.state.mouseCatched = true;
-  }
-
   catchMouse() {
     if (!this.state.mouseCatched) {
       this.state.mouseCatched = true;
@@ -100,22 +109,36 @@ class F17 extends React.Component {
 
     return (
       <InStoreView backgroundImage={require("../../img/instore/F17.jpg")}>
-        <Animated.View
-          style={{
-            ...styles.theMousePosition,
-            top: mouseTopPosition,
-            left: mouseLeftPosition,
-            transform: [{ rotateY: interpolate }]
-          }}>
-          <TouchableOpacity
-            onPress={() => this.catchMouse()}
-            style={styles.theMouse}>
-            <Image
-              style={styles.theMouse}
-              source={require("../../img/instore/TheMouse.gif")}
-            />
-          </TouchableOpacity>
-        </Animated.View>
+        {!this.state.startCatch &&
+          <View style={styles.container}>
+            <View style={styles.topPlaceHolder}></View>
+            <View style={styles.dialogContainer}>
+              <DialogBox onPress={() => this.gameStart()}>
+                <WawaText style={styles.displayText}>
+                  提示：请抓住老鼠。点击开始。
+                </WawaText>
+              </DialogBox>
+            </View>
+          </View>
+        }
+        {this.state.startCatch &&
+          <Animated.View
+            style={{
+              ...styles.theMousePosition,
+              top: mouseTopPosition,
+              left: mouseLeftPosition,
+              transform: [{ rotateY: interpolate }]
+            }}>
+            <TouchableOpacity
+              onPress={() => this.catchMouse()}
+              style={styles.theMouse}>
+              <Image
+                style={styles.theMouse}
+                source={require("../../img/instore/TheMouse.gif")}
+              />
+            </TouchableOpacity>
+          </Animated.View>
+        }
       </InStoreView>
     )
   }
@@ -133,7 +156,17 @@ const styles = StyleSheet.create({
   theMouse: {
     width: '100%',
     height: '100%',
-  }
+  },
+  topPlaceHolder: {
+    flex: 500,
+  },
+  dialogContainer: {
+    flex: 250,
+  },
+  displayText: {
+    color: 'white',
+    fontSize: scale(18),
+  },
 });
 
 export default F17;
