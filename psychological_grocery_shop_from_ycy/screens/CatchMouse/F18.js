@@ -11,7 +11,7 @@ const f18Video = require('../../img/instore/F18.mp4');
 
 class F18 extends React.Component {
   state = {
-    showVideo: false,
+    showVideo: true,
   }
 
   componentDidMount() {

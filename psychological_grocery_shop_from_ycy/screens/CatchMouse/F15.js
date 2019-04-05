@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Video from 'react-native-video';
 
 import { InStoreView } from '../InStoreView';

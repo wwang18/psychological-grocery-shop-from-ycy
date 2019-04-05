@@ -3,13 +3,6 @@ import { StyleSheet, View, Alert, TouchableOpacity, Dimensions, Image } from 're
 
 import { InStoreView } from './InStoreView';
 
-function getScreenDimensions() {
-  const { height, width } = Dimensions.get('window');
-  return height > width ? [height, width] : [width, height];
-}
-
-const [WIDTH, HEIGHT] = getScreenDimensions();
-
 export const InStore = (props) => {
   props.navigation.dismiss();
 
@@ -106,7 +99,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.debugButtonArea}>
         <TouchableOpacity
-          onPress={() => gotoPage('F17')}
+          onPress={() => gotoPage('M2')}
           style={styles.button}>
         </TouchableOpacity>
       </View>

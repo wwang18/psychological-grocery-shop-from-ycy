@@ -13,7 +13,7 @@ export const InStoreView = (props) => {
         source={props.backgroundImage}>
         <View style={styles.gearButtonArea}>
           <TouchableOpacity
-            onPress={() => Alert.alert('Settings')}
+            onPress={() => Alert.alert('这个设置还没做好。。')}
             style={styles.button}>
             <Image
               style={styles.buttonBackgournd}

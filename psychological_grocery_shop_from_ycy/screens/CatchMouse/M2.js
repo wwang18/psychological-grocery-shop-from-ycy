@@ -1,17 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
 import { InStoreView } from '../InStoreView';
+import { WawaText } from '../../components/WawaText';
 
 export const M2 = (props) => {
   props.navigation.dismiss();
 
   const saveImage = () => {
-    Alert.alert('save');
+    Alert.alert('啊还没做完！');
   };
 
   const shareImage = () => {
-    Alert.alert('share');
+    Alert.alert('啊也还没做完！');
   };
 
   const backToHome = () => {
@@ -20,63 +22,78 @@ export const M2 = (props) => {
 
   return (
     <InStoreView backgroundImage={require("../../img/instore/M2.jpg")}>
-      <View style={styles.topPlaceholder}>
-      </View>
-      <View style={styles.buttonArea}>
-        <View style={styles.buttonPadding}></View>
-        <TouchableOpacity
-          onPress={saveImage}
-          style={[styles.button, styles.saveButton]}>
-        </TouchableOpacity>
-        <View style={styles.buttonPadding}></View>
-        <TouchableOpacity
-          onPress={shareImage}
-          style={[styles.button, styles.shareButton]}>
-        </TouchableOpacity>
-        <View style={styles.buttonGap}></View>
-        <TouchableOpacity
-          onPress={backToHome}
-          style={[styles.button, styles.backButton]}>
-        </TouchableOpacity>
-        <View style={styles.buttonPadding}></View>
-      </View>
-      <View style={styles.buttomPlaceHolder}>
-      </View>
+      <TouchableOpacity
+        activeOpacity={.7}
+        onPress={saveImage}
+        style={[styles.button, styles.saveButton]}>
+        <ImageBackground
+          resizeMode="stretch"
+          style={styles.buttonBackgournd}
+          source={require("../../img/instore/BtnMdInactive.png")}>
+          <WawaText style={styles.buttonText}>
+            保存
+          </WawaText>
+        </ImageBackground>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={.7}
+        onPress={shareImage}
+        style={[styles.button, styles.shareButton]}>
+        <ImageBackground
+          resizeMode="stretch"
+          style={styles.buttonBackgournd}
+          source={require("../../img/instore/BtnMdInactive.png")}>
+          <WawaText style={styles.buttonText}>
+            分享
+          </WawaText>
+        </ImageBackground>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={.7}
+        onPress={backToHome}
+        style={[styles.button, styles.backButton]}>
+        <ImageBackground
+          resizeMode="stretch"
+          style={styles.buttonBackgournd}
+          source={require("../../img/instore/BtnMdInactive.png")}>
+          <WawaText style={styles.buttonText}>
+            回到店铺
+          </WawaText>
+        </ImageBackground>
+      </TouchableOpacity>
     </InStoreView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  topPlaceholder: {
-    flex: 626,
-  },
-  buttonArea: {
-    flex: 90,
-    flexDirection: 'row',
-  },
-  buttomPlaceHolder: {
-    flex: 34,
-  },
-  buttonPadding: {
-    flex: 76,
-  },
-  buttonGap: {
-    flex: 521,
-  },
   button: {
-    flex: 195,
+    position: 'absolute',
+    width: 120,
+    height: 50,
+  },
+  buttonText: {
+    width: '100%',
+    height: '100%',
+    color: 'white',
+    fontSize: scale(16),
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  buttonBackgournd: {
+    width: '100%',
+    height: '100%',
   },
   saveButton: {
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
+    left: 20,
+    bottom: 10,
   },
   shareButton: {
-    backgroundColor: 'rgba(120, 220, 120, 0.5)',
+    left: 150,
+    bottom: 10,
   },
   backButton: {
-    backgroundColor: 'rgba(120, 120, 220, 0.5)',
+    right: 20,
+    bottom: 10,
   },
 });
 
