@@ -4,9 +4,10 @@ import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'reac
 import { InStoreView } from '../InStoreView';
 
 export const M1 = (props) => {
+  props.navigation.dismiss();
+
   const gotoNextPage = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('M2');
+    props.navigation.push('M2');
   };
 
   return (

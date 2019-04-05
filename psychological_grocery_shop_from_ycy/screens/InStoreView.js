@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image, Alert } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
 import { WawaText } from '../components/WawaText';
 
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   numberDisplay: {
-    fontSize: 18,
+    fontSize: scale(14),
     color: 'white',
   },
   gearButtonArea: {

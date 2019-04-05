@@ -1,14 +1,16 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { scale } from 'react-native-size-matters';
 import RNSoundLevel from 'react-native-sound-level';
 
 import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
 
 export const F13 = (props) => {
+  props.navigation.dismiss();
+
   const gotoNextPage = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('F14');
+    props.navigation.push('F14');
   };
 
   const startMeasuring = () => {
@@ -79,7 +81,6 @@ const styles = StyleSheet.create({
   button: {
     // Display as circle, touch area is still square.
     flex: 1,
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
   },
   skipButtonArea: {
     position: 'absolute',
@@ -94,13 +95,12 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    backgroundColor: 'rgba(120, 120, 220, 0.5)',
     paddingHorizontal: 80,
     paddingVertical: 30,
   },
   displayText: {
     color: 'white',
-    fontSize: 24,
+    fontSize: scale(18),
   },
 });
 

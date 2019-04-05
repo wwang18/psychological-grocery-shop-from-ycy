@@ -1,18 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
 import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
 
 export const F16 = (props) => {
+  props.navigation.dismiss();
+
   const gotoNextPage = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('F17');
+    props.navigation.push('F17');
   };
 
   const skipSteps = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate("M1");
+    props.navigation.push("M1");
   };
 
   return (
@@ -53,7 +54,6 @@ export const F16 = (props) => {
 const styles = StyleSheet.create({
   topPlaceholder: {
     flex: 560,
-    backgroundColor: 'rgba(220, 120, 220, 0.5)',
   },
   bottomPlaceholder: {
     flex: 30,
@@ -69,15 +69,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     color: 'white',
-    fontSize: 20,
+    fontSize: scale(16),
     textAlign: 'center',
     textAlignVertical: 'center',
   },
   mainButton: {
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
   },
   backButton: {
-    backgroundColor: 'rgba(120, 220, 120, 0.5)',
   },
   buttonBackgournd: {
     width: '100%',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
 import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
@@ -14,9 +15,12 @@ export class F14 extends React.Component {
     displayingIndex: 0,
   };
 
+  componentDidMount() {
+    this.props.navigation.dismiss();
+  }
+
   gotoNextPage() {
-    this.props.navigation.popToTop();
-    this.props.navigation.navigate('F15');
+    this.props.navigation.push('F15');
   }
 
   next() {
@@ -55,13 +59,12 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    backgroundColor: 'rgba(120, 120, 220, 0.5)',
     paddingHorizontal: 80,
     paddingVertical: 30,
   },
   displayText: {
     color: 'white',
-    fontSize: 24,
+    fontSize: scale(18),
   },
 });
 

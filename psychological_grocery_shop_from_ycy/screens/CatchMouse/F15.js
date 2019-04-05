@@ -4,17 +4,20 @@ import Video from 'react-native-video';
 
 import { InStoreView } from '../InStoreView';
 
+const f15Video = require('../../img/instore/F15.mp4');
+
 class F15 extends React.Component {
-  gotoNextPage = () => {
-    this.props.navigation.popToTop();
-    this.props.navigation.navigate('F16');
+  componentDidMount() {
+    this.props.navigation.dismiss();
+  }
+
+  gotoNextPage() {
+    this.props.navigation.push('F16');
   };
 
   render() {
-    const f15Video = require('../../img/instore/F15.mp4');
-
     return (
-      <InStoreView backgroundImage={require("../../img/instore/F14.jpg")}>
+      <InStoreView backgroundImage={require("../../img/instore/F15.png")}>
         <Video source={f15Video}
           ref={(ref) => {
             this.player = ref

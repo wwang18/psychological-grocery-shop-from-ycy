@@ -5,7 +5,7 @@ import { InStoreView } from '../InStoreView';
 
 const MAX_TRY = 10;
 const MOUSE_SIZE = 100;
-const MOUSE_SPEED = 900;
+const MOUSE_SPEED = 3900;
 const MOUSE_REST = 2000;
 
 const { height, width } = Dimensions.get('window');
@@ -62,14 +62,14 @@ class F17 extends React.Component {
         if (counter > 0) {
           this.mouseRunningAnimation(!direction, counter - 1);
         } else {
-          this.props.navigation.popToTop();
-          this.props.navigation.navigate('M1');
+          this.props.navigation.push('M1');
         }
       }
     });
   }
 
   componentDidMount() {
+    this.props.navigation.dismiss();
     setTimeout(() => {
       this.mouseRunningAnimation(true, MAX_TRY);
     }, MOUSE_REST);
@@ -79,25 +79,24 @@ class F17 extends React.Component {
     this.state.mouseCatched = true;
   }
 
+  catchMouse() {
+    if (!this.state.mouseCatched) {
+      this.state.mouseCatched = true;
+      this.state.mouseLeftPosition.stopAnimation();
+      this.state.mouseTopPosition.stopAnimation();
+
+      setTimeout(() => {
+        this.props.navigation.push('F18');
+      }, 1000);
+    }
+  }
+
   render() {
     let { mouseTopPosition, mouseLeftPosition, mouseYDegree } = this.state;
     let interpolate = mouseYDegree.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '180deg']
     });
-
-    const catchMouse = () => {
-      if (!this.state.mouseCatched) {
-        this.state.mouseCatched = true;
-        this.state.mouseLeftPosition.stopAnimation();
-        this.state.mouseTopPosition.stopAnimation();
-
-        setTimeout(() => {
-          this.props.navigation.popToTop();
-          this.props.navigation.navigate('F18');
-        }, 1000);
-      }
-    };
 
     return (
       <InStoreView backgroundImage={require("../../img/instore/F17.jpg")}>
@@ -109,7 +108,7 @@ class F17 extends React.Component {
             transform: [{ rotateY: interpolate }]
           }}>
           <TouchableOpacity
-            onPress={catchMouse}
+            onPress={() => this.catchMouse()}
             style={styles.theMouse}>
             <Image
               style={styles.theMouse}

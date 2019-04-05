@@ -4,6 +4,8 @@ import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'reac
 import { InStoreView } from '../InStoreView';
 
 export const M2 = (props) => {
+  props.navigation.dismiss();
+
   const saveImage = () => {
     Alert.alert('save');
   };
@@ -13,8 +15,7 @@ export const M2 = (props) => {
   };
 
   const backToHome = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('InStore');
+    props.navigation.push('InStore');
   };
 
   return (
