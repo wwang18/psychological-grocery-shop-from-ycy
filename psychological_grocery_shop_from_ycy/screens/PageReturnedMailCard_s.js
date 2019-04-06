@@ -54,10 +54,16 @@ class PageReturnedMailCard_s extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/ReturnedMailCard_s.png")}
+          source={require("./../img/PQS/PQS_background.png")}
         >
           <View style={{ flex: 1, flexDirection: "column" }}>
-            <View style={{ flex: 150 }} />
+            <View style={{ flex: 150 }}>
+              <Image
+                style={styles.header}
+                resizeMode="contain"
+                source={require("./../img/PQS/title_ReturnedMailCard.png")}
+              />
+            </View>
             <View style={{ flex: 30 }} />
             <View style={{ flex: 490 }}>
               <View style={{ flex: 1, flexDirection: "row" }}>
@@ -96,7 +102,13 @@ class PageReturnedMailCard_s extends Component {
                   <TouchableOpacity
                     style={{ flex: 1 }}
                     onPress={() => this._onPressButton_back()}
-                  />
+                  >
+                    <Image
+                      style={styles.button}
+                      resizeMode="contain"
+                      source={require("../img/PQS/back.png")}
+                    />
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
@@ -120,6 +132,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: 80
+  },
+  header: {
+    alignItems: "center",
+    height: "100%",
+    width: "100%"
+  },
+  button: {
+    width: null,
+    height: null,
+    flex: 1,
   }
 });
 

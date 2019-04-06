@@ -12,6 +12,7 @@ import {
   Image,
   FlatList,
   ScrollView,
+  TouchableHighlight,
   TouchableOpacity
 } from "react-native";
 
@@ -22,6 +23,15 @@ class PageGiftCard_q extends Component {
       dataSource: {}
     };
   }
+
+  _handleButtonClick(index) {
+    this.props.navigation.push("GiftCardView_q");
+  }
+
+  _onPressButton_back() {
+    this.props.navigation.goBack();
+  }
+
 
   componentDidMount() {
     var that = this;
@@ -45,29 +55,78 @@ class PageGiftCard_q extends Component {
 
   render() {
     return (
-      <ImageBackground
-        resizeMode="stretch"
-        style={styles.container}
-        source={require("./../img/Q.png")}
-      >
-        <View style={{ flex: 70 }} />
-        <View style={styles.MainContainer}>
-          <FlatList
-            data={this.state.dataSource}
-            renderItem={({ item }) => (
-              <View style={{ flex: 1, flexDirection: "column", margin: 1 }}>
-                <Image
-                  style={styles.imageThumbnail}
-                  source={{ uri: item.src }}
-                />
+      <View style={{ flex: 1 }}>
+        <StatusBar
+          backgroundColor="#ff0000"
+          translucent={true}
+          hidden={true}
+          animated={true}
+        />
+
+        <ImageBackground
+          resizeMode="stretch"
+          style={styles.container}
+          source={require("./../img/PQS/PQS_background.png")}
+        >
+          <View style={{ flex: 1, flexDirection: "column" }}>
+            <View style={{ flex: 150 }}>
+            <Image
+              style={styles.header}
+              resizeMode="contain"
+              source={require('./../img/PQS/title_GiftCard.png')}
+            />
+            </View>
+            <View style={{ flex: 30 }} />
+            <View style={{ flex: 490 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 250 }} />
+                <View style={{ flex: 830, justifyContent: "center" }}>
+                  <FlatList
+                    data={this.state.dataSource}
+                    renderItem={({ item }) => (
+                      <View
+                        style={{ flex: 1, flexDirection: "column", margin: 10 }}
+                      >
+                        <TouchableHighlight
+                          onPress={(item, index) =>
+                            this._handleButtonClick(index)
+                          }
+                        >
+                          <Image
+                            style={styles.imageThumbnail}
+                            source={{ uri: item.src }}
+                          />
+                        </TouchableHighlight>
+                      </View>
+                    )}
+                    //Setting the number of column
+                    numColumns={3}
+                    keyExtractor={(item, index) => index}
+                  />
+                </View>
+                <View style={{ flex: 254 }} />
               </View>
-            )}
-            //Setting the number of column
-            numColumns={6}
-            keyExtractor={(item, index) => index}
-          />
-        </View>
-      </ImageBackground>
+            </View>
+            <View style={{ flex: 80 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 1210 }} />
+                <View style={{ flex: 124 }}>
+                <TouchableOpacity
+                  style={{ flex: 1 }}
+                  onPress={() => this._onPressButton_back()}
+                >
+                <Image
+                  style={styles.button}
+                  resizeMode="contain"
+                  source={require("../img/PQS/back.png")}
+                />
+                </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
+        </ImageBackground>
+      </View>
     );
   }
 }
@@ -85,6 +144,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: 100
+  },
+  header:{
+    alignItems: "center",
+    height: '100%',
+    width: '100%',
+  },
+  button: {
+    width: null,
+    height: null,
+    flex: 1,
   }
 });
 
