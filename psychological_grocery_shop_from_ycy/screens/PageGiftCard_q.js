@@ -32,17 +32,6 @@ class PageGiftCard_q extends Component {
     this.props.navigation.goBack();
   }
 
-
-  componentDidMount() {
-    var that = this;
-    let items = Array.apply(null, Array(36)).map((v, i) => {
-      return { id: i, src: "http://placehold.it/200x200?text=" + (i + 1) };
-    });
-    that.setState({
-      dataSource: items
-    });
-  }
-
   componentDidMount() {
     var that = this;
     let items = Array.apply(null, Array(36)).map((v, i) => {
@@ -92,10 +81,11 @@ class PageGiftCard_q extends Component {
                             this._handleButtonClick(index)
                           }
                         >
-                          <Image
-                            style={styles.imageThumbnail}
-                            source={{ uri: item.src }}
-                          />
+                        <Image
+                          style={styles.imageThumbnail}
+                          resizeMode="contain"
+                          source= {require("./../img/PQS/framework_GiftCard.png")}
+                        />
                         </TouchableHighlight>
                       </View>
                     )}

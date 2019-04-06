@@ -80,10 +80,11 @@ class PageReturnedMailCard_s extends Component {
                             this._handleButtonClick(index)
                           }
                         >
-                          <Image
-                            style={styles.imageThumbnail}
-                            source={{ uri: item.src }}
-                          />
+                        <Image
+                          style={styles.imageThumbnail}
+                          resizeMode="contain"
+                          source= {require("./../img/PQS/framework_GiftCard.png")}
+                        />
                         </TouchableHighlight>
                       </View>
                     )}

@@ -36,7 +36,7 @@ class PagePersonCard_p extends Component {
   componentDidMount() {
     var that = this;
     let items = Array.apply(null, Array(36)).map((v, i) => {
-      return { id: i, src: "http://placehold.it/200x200?text=" + (i + 1) };
+      return { id: i, src: "./../img/PQS/framework_PersonalCard.png" };
     });
     that.setState({
       dataSource: items
@@ -84,7 +84,8 @@ class PagePersonCard_p extends Component {
                         >
                           <Image
                             style={styles.imageThumbnail}
-                            source={{ uri: item.src }}
+                            resizeMode="contain"
+                            source= {require("./../img/PQS/framework_GiftCard.png")}
                           />
                         </TouchableHighlight>
                       </View>
@@ -94,7 +95,7 @@ class PagePersonCard_p extends Component {
                     keyExtractor={(item, index) => index}
                   />
                 </View>
-                <View style={{ flex: 254 }} />
+                <View style={{ flex: 250 }} />
               </View>
             </View>
             <View style={{ flex: 80 }}>
