@@ -24,6 +24,8 @@ export const InStore = (props) => {
         ref={(ref) => {
           this.player = ref
         }}
+        audioOnly={true}
+        rate={1}
         repeat={true} />
       <View style={styles.catchMouseButtonArea}>
         <TouchableOpacity
