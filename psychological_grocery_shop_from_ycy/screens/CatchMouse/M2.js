@@ -17,7 +17,7 @@ export const M2 = (props) => {
   };
 
   const backToHome = () => {
-    props.navigation.push('InStore');
+    props.navigation.navigate('InStore');
   };
 
   return (

@@ -17,7 +17,7 @@ import PageCharacterCard_o1 from "./screens/PageCharacterCard_o1";
 import PageGiftCard_o2 from "./screens/PageGiftCard_o2";
 import PageBackPage_o3 from "./screens/PageBackPage_o3";
 import PageStoredLetter_o4 from "./screens/PageStoredLetter_o4";
-import InStore from './screens/InStore';
+import InStore from './screens/InStore/InStore';
 import F11 from './screens/CatchMouse/F11';
 import F12 from './screens/CatchMouse/F12';
 import F13 from './screens/CatchMouse/F13';
