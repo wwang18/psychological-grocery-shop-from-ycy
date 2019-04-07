@@ -88,6 +88,7 @@ export class InStoreView extends React.Component {
           repeat={true} />
         <View style={styles.gearButtonArea}>
           <TouchableOpacity
+            activeOpacity={.7}
             onPress={() => Alert.alert('这个设置还没做好。。')}
             style={styles.button}>
             <Image

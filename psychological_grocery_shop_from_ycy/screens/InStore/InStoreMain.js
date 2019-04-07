@@ -20,6 +20,7 @@ export const InStore = (props) => {
       source={require("../../img/instore/F.jpg")}>
       <View style={styles.catchMouseButtonArea}>
         <TouchableOpacity
+          activeOpacity={.7}
           onPress={() => gotoPage(pageIds.F11)}
           style={styles.button}>
           <Image
@@ -29,6 +30,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.minisMachineButtonArea}>
         <TouchableOpacity
+          activeOpacity={.7}
           onPress={() => gotoPage(pageIds.minisMachine)}
           style={styles.button}>
           <Image
@@ -38,6 +40,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.mailBoxButtonArea}>
         <TouchableOpacity
+          activeOpacity={.7}
           onPress={() => gotoPage(pageIds.mailBox)}
           style={styles.button}>
           <Image
@@ -47,6 +50,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.phonographButtonArea}>
         <TouchableOpacity
+          activeOpacity={.7}
           onPress={() => gotoPage(pageIds.phonograph)}
           style={styles.button}>
           <Image
@@ -56,6 +60,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.btnGallery}>
         <TouchableOpacity
+          activeOpacity={.7}
           onPress={() => notFinished()}
           style={styles.button}>
           <Image
@@ -65,6 +70,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.btnFriends}>
         <TouchableOpacity
+          activeOpacity={.7}
           onPress={() => notFinished()}
           style={styles.button}>
           <Image
@@ -74,24 +80,29 @@ export const InStore = (props) => {
       </View>
       <View style={styles.btnMission}>
         <TouchableOpacity
+          activeOpacity={.7}
           onPress={() => notFinished()}
           style={styles.button}>
           <Image
+            activeOpacity={.7}
             style={styles.buttonBackgournd}
             source={require("../../img/instore/FBtnMission.png")} />
         </TouchableOpacity>
       </View>
       <View style={styles.btnReturn}>
         <TouchableOpacity
+          activeOpacity={.7}
           onPress={() => notFinished()}
           style={styles.button}>
           <Image
+            activeOpacity={.7}
             style={styles.buttonBackgournd}
             source={require("../../img/instore/FBtnReturn.png")} />
         </TouchableOpacity>
       </View>
       <View style={styles.btnBackyard}>
         <TouchableOpacity
+          activeOpacity={.7}
           onPress={() => notFinished()}
           style={styles.button}>
           <Image
