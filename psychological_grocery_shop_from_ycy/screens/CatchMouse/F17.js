@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Image, Animated, Dimensions } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
-import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
 import { DialogBox } from '../../components/DialogBox';
+import { pageIds } from '../InStore/InStoreConfig';
 
 const MAX_TRY = 10;
 const MOUSE_SIZE = 100;
@@ -32,10 +32,6 @@ class F17 extends React.Component {
     mouseYDegree: new Animated.Value(0),
     mouseLeftPosition: new Animated.Value(0 - MOUSE_SIZE * 2),
     mouseTopPosition: new Animated.Value(getRndTopPosition()),
-  }
-
-  componentDidMount() {
-    this.props.navigation.dismiss();
   }
 
   componentWillUnmount() {
@@ -82,7 +78,7 @@ class F17 extends React.Component {
         if (counter > 0) {
           this.mouseRunningAnimation(!direction, counter - 1);
         } else {
-          this.props.navigation.push('M1');
+          this.props.funcs.redirectTo(pageIds.M1);
         }
       }
     });
@@ -95,7 +91,7 @@ class F17 extends React.Component {
       this.state.mouseTopPosition.stopAnimation();
 
       setTimeout(() => {
-        this.props.navigation.push('F18');
+        this.props.funcs.redirectTo(pageIds.F18);
       }, 1000);
     }
   }
@@ -108,7 +104,10 @@ class F17 extends React.Component {
     });
 
     return (
-      <InStoreView backgroundImage={require("../../img/instore/F17.jpg")}>
+      <ImageBackground
+        resizeMode="stretch"
+        style={styles.fullScreen}
+        source={require("../../img/instore/F17.jpg")}>
         {!this.state.startCatch &&
           <View style={styles.container}>
             <View style={styles.topPlaceHolder}></View>
@@ -139,12 +138,15 @@ class F17 extends React.Component {
             </TouchableOpacity>
           </Animated.View>
         }
-      </InStoreView>
+      </ImageBackground>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  fullScreen: {
+    flex: 1,
+  },
   container: {
     flex: 1,
   },

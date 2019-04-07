@@ -1,23 +1,22 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
 import Video from 'react-native-video';
 
-import { InStoreView } from '../InStoreView';
+import { pageIds } from '../InStore/InStoreConfig';
 
 const f15Video = require('../../img/instore/F15.mp4');
 
 class F15 extends React.Component {
-  componentDidMount() {
-    this.props.navigation.dismiss();
-  }
-
   gotoNextPage() {
-    this.props.navigation.push('F16');
+    this.props.funcs.redirectTo(pageIds.F16);
   };
 
   render() {
     return (
-      <InStoreView backgroundImage={require("../../img/instore/F15.png")}>
+      <ImageBackground
+        resizeMode="stretch"
+        style={styles.fullScreen}
+        source={require("../../img/instore/F15.png")}>
         <Video source={f15Video}
           ref={(ref) => {
             this.player = ref
@@ -25,12 +24,15 @@ class F15 extends React.Component {
           onEnd={() => this.gotoNextPage()}
           resizeMode="stretch"
           style={styles.backgroundVideo} />
-      </InStoreView>
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  fullScreen: {
+    flex: 1,
+  },
   backgroundVideo: {
     flex: 1,
   },

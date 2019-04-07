@@ -1,55 +1,56 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, ImageBackground, Alert } from 'react-native';
+
+import { WawaButton } from '../../components/WawaButton';
+import { pageIds } from '../InStore/InStoreConfig';
 
 
 export const U2 = (props) => {
-  const tryAgainPage = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('MinisMachine');
+  const { redirectTo, getState, modState } = props.funcs;
+
+  const playAgain = () => {
+    const { coins } = getState();
+    if (coins >= 10) {
+      modState(0, -10);
+      redirectTo(pageIds.U1);
+    } else {
+      Alert.alert('你没有足够的金币！');
+    }
   };
 
   const backToHome = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('InStore');
+    props.funcs.redirectTo(pageIds.storeMain);
   };
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        resizeMode="stretch"
-        style={styles.container}
-        source={require("../../img/instore/U2.jpg")}>
-        <View style={styles.container}>
-          <View style={styles.tryAgainButtonArea}>
-            <TouchableOpacity
-              onPress={tryAgainPage}
-              style={styles.button}>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.returnButtonArea}>
-            <TouchableOpacity
-              onPress={backToHome}
-              style={styles.button}>
-            </TouchableOpacity>
-          </View>
+    <ImageBackground
+      resizeMode="stretch"
+      style={styles.fullScreen}
+      source={require("../../img/instore/U2.jpg")}>
+      <WawaButton
+        size={"sm"}
+        style={styles.replayButton}
+        text={"再抽一次"}
+        onPress={playAgain}></WawaButton>
+      <WawaButton
+        size={"sm"}
+        style={styles.backButton}
+        text={"返回"}
+        onPress={backToHome}></WawaButton>
 
-          <View style={styles.topPlaceholder}></View>
-          <View style={styles.midArea}>
-            <View style={styles.leftRightPadding}></View>
-            <View style={styles.picArea}></View>
-            <View style={styles.leftRightPadding}></View>
-          </View>
-          <View style={styles.bottomPlaceholder}></View>
-        </View>
-      </ImageBackground>
-    </View>
+      <View style={styles.topPlaceholder}></View>
+      <View style={styles.midArea}>
+        <View style={styles.leftRightPadding}></View>
+        <View style={styles.picArea}></View>
+        <View style={styles.leftRightPadding}></View>
+      </View>
+      <View style={styles.bottomPlaceholder}></View>
+    </ImageBackground>
   )
 }
 
-const { height, width } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
-  container: {
+  fullScreen: {
     flex: 1,
   },
   topPlaceholder: {
@@ -69,23 +70,19 @@ const styles = StyleSheet.create({
     flex: 577,
     backgroundColor: 'rgba(120, 120, 220, 0.5)',
   },
-  returnButtonArea: {
+  replayButton: {
     position: 'absolute',
-    right: width * 0.05,
-    bottom: height * 0.05,
-    width: width * 0.15,
-    height: height * 0.15,
+    left: 30,
+    bottom: 10,
+    width: 120,
+    height: 50,
   },
-  tryAgainButtonArea: {
+  backButton: {
     position: 'absolute',
-    left: width * 0.05,
-    bottom: height * 0.05,
-    width: width * 0.15,
-    height: height * 0.15,
-  },
-  button: {
-    flex: 1,
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
+    right: 30,
+    bottom: 10,
+    width: 120,
+    height: 50,
   },
 });
 

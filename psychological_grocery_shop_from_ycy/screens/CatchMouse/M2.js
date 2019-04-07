@@ -2,12 +2,10 @@ import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
-import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
+import { pageIds } from '../InStore/InStoreConfig';
 
 export const M2 = (props) => {
-  props.navigation.dismiss();
-
   const saveImage = () => {
     Alert.alert('啊还没做完！');
   };
@@ -17,11 +15,14 @@ export const M2 = (props) => {
   };
 
   const backToHome = () => {
-    props.navigation.navigate('InStore');
+    props.funcs.redirectTo(pageIds.storeMain);
   };
 
   return (
-    <InStoreView backgroundImage={require("../../img/instore/M2.jpg")}>
+    <ImageBackground
+      resizeMode="stretch"
+      style={styles.fullScreen}
+      source={require("../../img/instore/M2.jpg")}>
       <TouchableOpacity
         activeOpacity={.7}
         onPress={saveImage}
@@ -61,11 +62,14 @@ export const M2 = (props) => {
           </WawaText>
         </ImageBackground>
       </TouchableOpacity>
-    </InStoreView>
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
+  fullScreen: {
+    flex: 1,
+  },
   button: {
     position: 'absolute',
     width: 120,

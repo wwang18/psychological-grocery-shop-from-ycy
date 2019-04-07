@@ -1,23 +1,24 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, ImageBackground, TouchableOpacity } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
-import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
+import { pageIds } from '../InStore/InStoreConfig';
 
 export const F16 = (props) => {
-  props.navigation.dismiss();
-
   const gotoNextPage = () => {
-    props.navigation.push('F17');
+    props.funcs.redirectTo(pageIds.F17);
   };
 
   const skipSteps = () => {
-    props.navigation.push("M1");
+    props.funcs.redirectTo(pageIds.M1);
   };
 
   return (
-    <InStoreView backgroundImage={require("../../img/instore/F16.jpg")}>
+    <ImageBackground
+      resizeMode="stretch"
+      style={styles.fullScreen}
+      source={require("../../img/instore/F16.jpg")}>
       <View style={styles.topPlaceholder}></View>
       <TouchableOpacity
         onPress={gotoNextPage}
@@ -47,11 +48,14 @@ export const F16 = (props) => {
         </ImageBackground>
       </TouchableOpacity>
       <View style={styles.bottomPlaceholder}></View>
-    </InStoreView>
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
+  fullScreen: {
+    flex: 1,
+  },
   topPlaceholder: {
     flex: 560,
   },

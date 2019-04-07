@@ -1,48 +1,36 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
+import Video from 'react-native-video';
+import { StyleSheet, ImageBackground } from 'react-native';
+import { pageIds } from '../InStore/InStoreConfig';
 
+const u1Video = require('../../img/instore/U1.mp4');
 
-export const U1 = (props) => {
-  const gotoNextPage = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('U2');
-  };
+export class U1 extends React.Component {
+  afterPlayingWinningVideo = () => {
+    this.props.funcs.redirectTo(pageIds.U2);
+  }
 
-  return (
-    <View style={styles.container}>
+  render() {
+    return (
       <ImageBackground
         resizeMode="stretch"
-        style={styles.container}
-        source={require("../../img/instore/U1.jpg")}>
-        <View style={styles.container}>
-          <View style={styles.buttonArea}>
-            <TouchableOpacity
-              onPress={gotoNextPage}
-              style={styles.button}>
-            </TouchableOpacity>
-          </View>
-        </View>
+        style={styles.fullScreen}
+        source={require("../../img/instore/U.jpg")}>
+        <Video source={u1Video}
+          ref={(ref) => {
+            this.player = ref
+          }}
+          onEnd={this.afterPlayingWinningVideo}
+          resizeMode="stretch"
+          style={styles.fullScreen} />
       </ImageBackground>
-    </View>
-  )
+    )
+  }
 }
 
-const { height, width } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
-  container: {
+  fullScreen: {
     flex: 1,
-  },
-  buttonArea: {
-    position: 'absolute',
-    bottom: height * 0.05,
-    right: width * 0.05,
-    width: width * 0.15,
-    height: height * 0.15,
-  },
-  button: {
-    flex: 1,
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
   },
 });
 
