@@ -3,10 +3,20 @@ import { StyleSheet, View, Alert, TouchableOpacity, ImageBackground, Image } fro
 
 import { pageIds } from './InStoreConfig';
 
+const IMAGE_FOLDER = '../../img/instore';
+
+function getImage(name) {
+  return `${IMAGE_FOLDER}/${name}`;
+}
+
 export const InStore = (props) => {
 
   const gotoPage = (pageName) => {
     props.funcs.redirectTo(pageName);
+  };
+
+  const navigateToPage = (pageName) => {
+    props.funcs.redirectTo(pageName, true);
   };
 
   const notFinished = () => {
@@ -17,7 +27,7 @@ export const InStore = (props) => {
     <ImageBackground
       resizeMode="stretch"
       style={styles.fullScreen}
-      source={require("../../img/instore/F.jpg")}>
+      source={require(`${IMAGE_FOLDER}/F.jpg`)}>
       <View style={styles.catchMouseButtonArea}>
         <TouchableOpacity
           activeOpacity={.7}
@@ -25,7 +35,7 @@ export const InStore = (props) => {
           style={styles.button}>
           <Image
             style={styles.buttonBackgournd}
-            source={require("../../img/instore/FBtnClickme.png")} />
+            source={require(`${IMAGE_FOLDER}/FBtnClickme.png`)} />
         </TouchableOpacity>
       </View>
       <View style={styles.minisMachineButtonArea}>
@@ -35,17 +45,17 @@ export const InStore = (props) => {
           style={styles.button}>
           <Image
             style={styles.buttonBackgournd}
-            source={require("../../img/instore/FBtnMinis.png")} />
+            source={require(`${IMAGE_FOLDER}/FBtnMinis.png`)} />
         </TouchableOpacity>
       </View>
       <View style={styles.mailBoxButtonArea}>
         <TouchableOpacity
           activeOpacity={.7}
-          onPress={() => gotoPage(pageIds.mailBox)}
+          onPress={() => navigateToPage(pageIds.mailBox)}
           style={styles.button}>
           <Image
             style={styles.buttonBackgournd}
-            source={require("../../img/instore/FBtnMailbox.png")} />
+            source={require(`${IMAGE_FOLDER}/FBtnMailbox.png`)} />
         </TouchableOpacity>
       </View>
       <View style={styles.phonographButtonArea}>
@@ -55,7 +65,7 @@ export const InStore = (props) => {
           style={styles.button}>
           <Image
             style={styles.buttonBackgournd}
-            source={require("../../img/instore/FBtnPhonograph.png")} />
+            source={require(`${IMAGE_FOLDER}/FBtnPhonograph.png`)} />
         </TouchableOpacity>
       </View>
       <View style={styles.btnGallery}>
@@ -65,7 +75,7 @@ export const InStore = (props) => {
           style={styles.button}>
           <Image
             style={styles.buttonBackgournd}
-            source={require("../../img/instore/FBtnGallery.png")} />
+            source={require(`${IMAGE_FOLDER}/FBtnGallery.png`)} />
         </TouchableOpacity>
       </View>
       <View style={styles.btnFriends}>
@@ -75,7 +85,7 @@ export const InStore = (props) => {
           style={styles.button}>
           <Image
             style={styles.buttonBackgournd}
-            source={require("../../img/instore/FBtnFriends.png")} />
+            source={require(`${IMAGE_FOLDER}/FBtnFriends.png`)} />
         </TouchableOpacity>
       </View>
       <View style={styles.btnMission}>
@@ -86,7 +96,7 @@ export const InStore = (props) => {
           <Image
             activeOpacity={.7}
             style={styles.buttonBackgournd}
-            source={require("../../img/instore/FBtnMission.png")} />
+            source={require(`${IMAGE_FOLDER}/FBtnMission.png`)} />
         </TouchableOpacity>
       </View>
       <View style={styles.btnReturn}>
@@ -97,7 +107,7 @@ export const InStore = (props) => {
           <Image
             activeOpacity={.7}
             style={styles.buttonBackgournd}
-            source={require("../../img/instore/FBtnReturn.png")} />
+            source={require(`${IMAGE_FOLDER}/FBtnReturn.png`)} />
         </TouchableOpacity>
       </View>
       <View style={styles.btnBackyard}>
@@ -107,7 +117,7 @@ export const InStore = (props) => {
           style={styles.button}>
           <Image
             style={styles.buttonBackgournd}
-            source={require("../../img/instore/FBtnBackyard.png")} />
+            source={require(`${IMAGE_FOLDER}/FBtnBackyard.png`)} />
         </TouchableOpacity>
       </View>
       <View style={styles.debugButtonArea}>

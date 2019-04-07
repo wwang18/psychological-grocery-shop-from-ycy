@@ -71,8 +71,12 @@ export class InStoreView extends React.Component {
     this.setState({ settings: newSettings });
   }
 
-  gotoNextPage = (pageId) => {
-    this.setState({ currentPage: pageId });
+  gotoNextPage = (pageId, useNavigation = false) => {
+    if (useNavigation) {
+      this.props.navigation.push(pageId);
+    } else {
+      this.setState({ currentPage: pageId });
+    }
   }
 
   getLoveAndCoins = () => {
