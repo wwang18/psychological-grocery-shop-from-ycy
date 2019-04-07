@@ -8,9 +8,16 @@ export class WawaText extends React.Component {
       fontFamily: 'DFPWaWaW5-GB',
     };
 
+    let inputStyles = {};
+    if (Array.isArray(this.props.style)) {
+      this.props.style.forEach(s => inputStyles = {...inputStyles, ...s});
+    } else {
+      inputStyles = this.props.style;
+    }
+
     return (
       // Cannot use bold font, otherwise the font will return to default.
-      <Text style={{ ...this.props.style, ...defaultStyle }}>
+      <Text style={{ ...inputStyles, ...defaultStyle }}>
         {this.props.children}
       </Text>
     );

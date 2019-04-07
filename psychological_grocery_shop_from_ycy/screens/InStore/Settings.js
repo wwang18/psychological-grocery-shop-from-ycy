@@ -4,7 +4,6 @@ import { scale } from 'react-native-size-matters';
 
 import { WawaText } from '../../components/WawaText';
 import { WawaButton } from '../../components/WawaButton';
-import { pageIds } from '../InStore/InStoreConfig';
 
 export class Settings extends React.Component {
   state = {

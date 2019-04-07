@@ -24,7 +24,7 @@ export const F16 = (props) => {
         style={styles.button}
         text={"与超越一起抓"}
         onPress={gotoNextPage}></WawaButton>
-      <View style={styles.topPlaceholder}></View>
+      <View style={styles.buttonGap}></View>
       <WawaButton
         size={"lg"}
         style={styles.button}

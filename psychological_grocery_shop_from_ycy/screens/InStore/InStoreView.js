@@ -1,9 +1,9 @@
 import React from 'react';
 import Video from 'react-native-video';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Image, Alert } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
-import { WawaText } from '../../components/WawaText';
+import { AnimatedWawaText } from '../../components/AnimatedWawaText';
 
 import { pageIds } from './InStoreConfig';
 import Settings from './Settings';
@@ -34,7 +34,7 @@ export class InStoreView extends React.Component {
     currentPage: pageIds.storeMain,
     showSettings: false,
     settings: {
-      backgroundMusic: true,
+      backgroundMusic: false,
     }
   }
 
@@ -118,20 +118,16 @@ export class InStoreView extends React.Component {
               source={require("../../img/instore/BtnSettings.png")} />
           </TouchableOpacity>
         </View>
-        <View style={styles.heartButtonArea}>
-          <ImageBackground
-            style={styles.numberContainer}
-            source={require("../../img/instore/Heart.png")}>
-            <WawaText style={styles.numberDisplay}>{this.state.love}</WawaText>
-          </ImageBackground>
-        </View>
-        <View style={styles.coinButtonArea}>
-          <ImageBackground
-            style={styles.numberContainer}
-            source={require("../../img/instore/Coin.png")}>
-            <WawaText style={styles.numberDisplay}>{this.state.coins}</WawaText>
-          </ImageBackground>
-        </View>
+        <AnimatedWawaText
+          style={styles.heartButtonArea}
+          backgroundImage={require("../../img/instore/Heart.png")}
+          value={this.state.love}>
+        </AnimatedWawaText>
+        <AnimatedWawaText
+          style={styles.coinButtonArea}
+          backgroundImage={require("../../img/instore/Coin.png")}
+          value={this.state.coins}>
+        </AnimatedWawaText>
         {this.allPages[this.state.currentPage]}
       </View>
     )
