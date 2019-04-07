@@ -6,6 +6,8 @@ import { scale } from 'react-native-size-matters';
 import { WawaText } from '../../components/WawaText';
 
 import { pageIds } from './InStoreConfig';
+import Settings from './Settings';
+
 import Instore from './InStoreMain';
 import F11 from '../CatchMouse/F11';
 import F12 from '../CatchMouse/F12';
@@ -27,10 +29,13 @@ const backgroundMusic = require('../../audio/ThinkWild.mp3');
 export class InStoreView extends React.Component {
 
   state = {
-    isMuted: false,
     love: 20,
     coins: 20,
     currentPage: pageIds.storeMain,
+    showSettings: false,
+    settings: {
+      backgroundMusic: true,
+    }
   }
 
   componentWillMount() {
@@ -58,6 +63,14 @@ export class InStoreView extends React.Component {
     };
   }
 
+  toggleSettings = () => {
+    this.setState({ showSettings: !this.state.showSettings });
+  }
+
+  updateSettings = (newSettings) => {
+    this.setState({ settings: newSettings });
+  }
+
   gotoNextPage = (pageId) => {
     this.setState({ currentPage: pageId });
   }
@@ -72,7 +85,7 @@ export class InStoreView extends React.Component {
   modLoveAndCoins = (love, coins) => {
     const newLove = this.state.love + love;
     const newCoins = this.state.coins + coins;
-    this.setState({love: newLove, coins: newCoins});
+    this.setState({ love: newLove, coins: newCoins });
   }
 
   render() {
@@ -83,13 +96,22 @@ export class InStoreView extends React.Component {
             this.player = ref
           }}
           audioOnly={true}
-          paused={this.state.isMuted}
+          paused={!this.state.settings.backgroundMusic}
           rate={1}
           repeat={true} />
+        {this.state.showSettings &&
+          <View style={styles.settingsDialog}>
+            <Settings
+              settings={this.state.settings}
+              updateSettings={this.updateSettings}
+              toggle={this.toggleSettings}>
+            </Settings>
+          </View>
+        }
         <View style={styles.gearButtonArea}>
           <TouchableOpacity
             activeOpacity={.7}
-            onPress={() => Alert.alert('这个设置还没做好。。')}
+            onPress={this.toggleSettings}
             style={styles.button}>
             <Image
               style={styles.buttonBackgournd}
@@ -119,6 +141,14 @@ export class InStoreView extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  settingsDialog: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 1000,
   },
   button: {
     flex: 1,
