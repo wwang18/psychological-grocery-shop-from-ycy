@@ -1,86 +1,62 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, ImageBackground, Alert } from 'react-native';
 
+import { WawaButton } from '../../components/WawaButton';
+import { pageIds } from '../InStore/InStoreConfig';
 
 export const MinisMachine = (props) => {
-  const gotoNextPage = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('U1');
+  const { redirectTo, getState, modState } = props.funcs;
+
+  const playMinis = () => {
+    const { coins } = getState();
+    if (coins >= 10) {
+      modState(0, -10);
+      redirectTo(pageIds.U1);
+    } else {
+      Alert.alert('你没有足够的金币！');
+    }
   };
 
   const backToHome = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('InStore');
+    redirectTo(pageIds.storeMain);
   };
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        resizeMode="stretch"
-        style={styles.container}
-        source={require("../../img/instore/U.jpg")}>
-        <View style={styles.container}>
-          <View style={styles.topPlaceholder}>
-          </View>
-          <View style={styles.buttonArea}>
-            <View style={styles.buttonLeftPadding}></View>
-            <View style={styles.nextButtonArea}>
-              <TouchableOpacity
-                onPress={gotoNextPage}
-                style={styles.nextButton}>
-              </TouchableOpacity></View>
-            <View style={styles.buttonGap}></View>
-            <View style={styles.cancelButtonArea}>
-              <TouchableOpacity
-                onPress={backToHome}
-                style={styles.cancelButton}>
-              </TouchableOpacity></View>
-            <View style={styles.buttonRightPadding}></View>
-          </View>
-          <View style={styles.bottomPlaceholder}>
-          </View>
-        </View>
-      </ImageBackground>
-    </View>
+    <ImageBackground
+      resizeMode="stretch"
+      style={styles.fullScreen}
+      source={require("../../img/instore/U.jpg")}>
+      <WawaButton
+        size={"sm"}
+        style={styles.playButton}
+        text={"抽一次"}
+        onPress={playMinis}></WawaButton>
+      <WawaButton
+        size={"sm"}
+        style={styles.backButton}
+        text={"返回"}
+        onPress={backToHome}></WawaButton>
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  fullScreen: {
     flex: 1,
   },
-  topPlaceholder: {
-    flex: 626,
+  playButton: {
+    position: 'absolute',
+    width: 120,
+    height: 50,
+    left: 170,
+    bottom: 10,
   },
-  bottomPlaceholder: {
-    flex: 34,
-  },
-  buttonArea: {
-    flex: 90,
-    flexDirection: 'row',
-  },
-  buttonLeftPadding: {
-    flex: 268,
-  },
-  buttonRightPadding: {
-    flex: 76,
-  },
-  buttonGap: {
-    flex: 445,
-  },
-  nextButtonArea: {
-    flex: 350,
-  },
-  cancelButtonArea: {
-    flex: 195,
-  },
-  nextButton: {
-    flex: 1,
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
-  },
-  cancelButton: {
-    flex: 1,
-    backgroundColor: 'rgba(120, 220, 120, 0.5)',
+  backButton: {
+    position: 'absolute',
+    width: 120,
+    height: 50,
+    right: 50,
+    bottom: 10,
   },
 });
 

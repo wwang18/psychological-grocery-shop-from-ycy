@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
-import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
+import { pageIds } from '../InStore/InStoreConfig';
 
 const MESSAGES = [
   '系统：超越，如果你正在玩我们的游戏，那我们会很高兴哦！偷偷给你安排了一个为上面对话框填词的小任务！',
@@ -15,17 +15,13 @@ export class F14 extends React.Component {
     displayingIndex: 0,
   };
 
-  componentDidMount() {
-    this.props.navigation.dismiss();
-  }
-
   gotoNextPage() {
-    this.props.navigation.push('F15');
+    this.props.funcs.redirectTo(pageIds.F15);
   }
 
   next() {
     const nextMessageIndex = this.state.displayingIndex + 1;
-    this.setState({displayingIndex: nextMessageIndex});
+    this.setState({ displayingIndex: nextMessageIndex });
     if (nextMessageIndex >= MESSAGES.length) {
       this.gotoNextPage();
     }
@@ -33,7 +29,10 @@ export class F14 extends React.Component {
 
   render() {
     return (
-      <InStoreView backgroundImage={require("../../img/instore/F14.jpg")}>
+      <ImageBackground
+        resizeMode="stretch"
+        style={styles.fullScreen}
+        source={require("../../img/instore/F14.jpg")}>
         <View style={styles.topPlaceholder}>
         </View>
         <View style={styles.buttonArea}>
@@ -45,12 +44,15 @@ export class F14 extends React.Component {
             </WawaText>
           </TouchableOpacity>
         </View>
-      </InStoreView>
+      </ImageBackground>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  fullScreen: {
+    flex: 1,
+  },
   topPlaceholder: {
     flex: 500,
   },

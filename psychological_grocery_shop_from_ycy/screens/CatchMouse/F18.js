@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 import Video from 'react-native-video';
 import { scale } from 'react-native-size-matters';
 
-import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
 import { DialogBox } from '../../components/DialogBox';
+import { pageIds } from '../InStore/InStoreConfig';
 
 const f18Video = require('../../img/instore/F18.mp4');
 
@@ -14,24 +14,28 @@ class F18 extends React.Component {
     showVideo: true,
   }
 
-  componentDidMount() {
-    this.props.navigation.dismiss();
+  gotoNextPage() {
+    this.props.funcs.redirectTo(pageIds.M1);
   }
 
-  gotoNextPage() {
-    this.props.navigation.push('M1');
+  afterPlayingWinningVideo = () => {
+    this.setState({ showVideo: false });
+    this.props.funcs.modState(10, 10);
   }
 
   render() {
 
     return (
-      <InStoreView backgroundImage={require("../../img/instore/F17.jpg")}>
+      <ImageBackground
+        resizeMode="stretch"
+        style={styles.fullScreen}
+        source={require("../../img/instore/F17.jpg")}>
         {this.state.showVideo &&
           <Video source={f18Video}
             ref={(ref) => {
               this.player = ref
             }}
-            onEnd={() => this.setState({ showVideo: false })}
+            onEnd={this.afterPlayingWinningVideo}
             resizeMode="stretch"
             style={styles.backgroundVideo} />
         }
@@ -47,14 +51,16 @@ class F18 extends React.Component {
             </View>
           </View>
         }
-      </InStoreView>
+      </ImageBackground>
     );
   }
 }
 
-const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  fullScreen: {
+    flex: 1,
+  },
   container: {
     flex: 1,
   },

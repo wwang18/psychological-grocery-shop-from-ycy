@@ -16,3 +16,5 @@ export class WawaText extends React.Component {
     );
   }
 }
+
+export default WawaText;

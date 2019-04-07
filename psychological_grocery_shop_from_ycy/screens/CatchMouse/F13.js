@@ -3,14 +3,12 @@ import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'reac
 import { scale } from 'react-native-size-matters';
 import RNSoundLevel from 'react-native-sound-level';
 
-import { InStoreView } from '../InStoreView';
 import { WawaText } from '../../components/WawaText';
+import { pageIds } from '../InStore/InStoreConfig';
 
 export const F13 = (props) => {
-  props.navigation.dismiss();
-
   const gotoNextPage = () => {
-    props.navigation.push('F14');
+    props.funcs.redirectTo(pageIds.F14);
   };
 
   const startMeasuring = () => {
@@ -31,7 +29,10 @@ export const F13 = (props) => {
   };
 
   return (
-    <InStoreView backgroundImage={require("../../img/instore/FWithButton.jpg")}>
+    <ImageBackground
+      resizeMode="stretch"
+      style={styles.fullScreen}
+      source={require("../../img/instore/FWithButton.jpg")}>
       <View style={styles.topArea}>
         <View style={styles.roundButtonPlaceHolder}></View>
         <TouchableOpacity
@@ -58,11 +59,14 @@ export const F13 = (props) => {
           style={styles.button}>
         </TouchableOpacity>
       </View>
-    </InStoreView>
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
+  fullScreen: {
+    flex: 1,
+  },
   topArea: {
     flex: 500,
     alignItems: 'center',
