@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
-import { scale } from 'react-native-size-matters';
+import { StyleSheet, View, ImageBackground, Alert } from 'react-native';
 
-import { WawaText } from '../../components/WawaText';
+import { WawaButton } from '../../components/WawaButton';
 import { pageIds } from '../InStore/InStoreConfig';
 
 export const M2 = (props) => {
@@ -23,45 +22,21 @@ export const M2 = (props) => {
       resizeMode="stretch"
       style={styles.fullScreen}
       source={require("../../img/instore/M2.jpg")}>
-      <TouchableOpacity
-        activeOpacity={.7}
-        onPress={saveImage}
-        style={[styles.button, styles.saveButton]}>
-        <ImageBackground
-          resizeMode="stretch"
-          style={styles.buttonBackgournd}
-          source={require("../../img/instore/BtnMdInactive.png")}>
-          <WawaText style={styles.buttonText}>
-            保存
-          </WawaText>
-        </ImageBackground>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={.7}
-        onPress={shareImage}
-        style={[styles.button, styles.shareButton]}>
-        <ImageBackground
-          resizeMode="stretch"
-          style={styles.buttonBackgournd}
-          source={require("../../img/instore/BtnMdInactive.png")}>
-          <WawaText style={styles.buttonText}>
-            分享
-          </WawaText>
-        </ImageBackground>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={.7}
-        onPress={backToHome}
-        style={[styles.button, styles.backButton]}>
-        <ImageBackground
-          resizeMode="stretch"
-          style={styles.buttonBackgournd}
-          source={require("../../img/instore/BtnMdInactive.png")}>
-          <WawaText style={styles.buttonText}>
-            回到店铺
-          </WawaText>
-        </ImageBackground>
-      </TouchableOpacity>
+      <WawaButton
+        size={"sm"}
+        style={[styles.button, styles.saveButton]}
+        text={"保存"}
+        onPress={saveImage}></WawaButton>
+      <WawaButton
+        size={"sm"}
+        style={[styles.button, styles.shareButton]}
+        text={"分享"}
+        onPress={shareImage}></WawaButton>
+      <WawaButton
+        size={"sm"}
+        style={[styles.button, styles.backButton]}
+        text={"回到店铺"}
+        onPress={backToHome}></WawaButton>
     </ImageBackground>
   )
 }
@@ -74,18 +49,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 120,
     height: 50,
-  },
-  buttonText: {
-    width: '100%',
-    height: '100%',
-    color: 'white',
-    fontSize: scale(16),
-    textAlign: 'center',
-    textAlignVertical: 'center',
-  },
-  buttonBackgournd: {
-    width: '100%',
-    height: '100%',
   },
   saveButton: {
     left: 20,

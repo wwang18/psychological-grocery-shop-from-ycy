@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity } from 'react-native';
-import { scale } from 'react-native-size-matters';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 
-import { WawaText } from '../../components/WawaText';
+import { WawaButton } from '../../components/WawaButton';
 import { pageIds } from '../InStore/InStoreConfig';
 
 export const F12 = (props) => {
@@ -21,33 +20,16 @@ export const F12 = (props) => {
       style={styles.fullScreen}
       source={require("../../img/instore/FWithButton.jpg")}>
       <View style={styles.topPlaceholder}></View>
-      <TouchableOpacity
-        onPress={gotoNextPage}
-        activeOpacity={.7}
-        style={[styles.button, styles.mainButton]}>
-        <ImageBackground
-          resizeMode="stretch"
-          style={styles.buttonBackgournd}
-          source={require("../../img/instore/BtnLgInactive.png")}>
-          <WawaText style={styles.buttonText}>
-            大叫“超越，你打工迟到了！”
-          </WawaText>
-        </ImageBackground>
-      </TouchableOpacity>
-      <View style={styles.buttonGap}></View>
-      <TouchableOpacity
-        onPress={backToHome}
-        activeOpacity={.7}
-        style={[styles.button, styles.backButton]}>
-        <ImageBackground
-          resizeMode="stretch"
-          style={styles.buttonBackgournd}
-          source={require("../../img/instore/BtnLgInactive.png")}>
-          <WawaText style={styles.buttonText}>
-            只好离开
-          </WawaText>
-        </ImageBackground>
-      </TouchableOpacity>
+      <WawaButton
+        size={"lg"}
+        style={styles.button}
+        text={"大叫“超越，你打工迟到了！”"}
+        onPress={gotoNextPage}></WawaButton>
+      <WawaButton
+        size={"lg"}
+        style={styles.button}
+        text={"只好离开"}
+        onPress={backToHome}></WawaButton>
       <View style={styles.bottomPlaceholder}></View>
     </ImageBackground>
   )
@@ -69,18 +51,6 @@ const styles = StyleSheet.create({
   button: {
     flex: 80,
     marginHorizontal: '25%',
-  },
-  buttonText: {
-    width: '100%',
-    height: '100%',
-    color: 'white',
-    fontSize: scale(16),
-    textAlign: 'center',
-    textAlignVertical: 'center',
-  },
-  mainButton: {
-  },
-  backButton: {
   },
   buttonBackgournd: {
     width: '100%',

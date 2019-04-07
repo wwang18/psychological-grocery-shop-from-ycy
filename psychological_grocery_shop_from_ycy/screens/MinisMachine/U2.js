@@ -35,7 +35,7 @@ export const U2 = (props) => {
       <WawaButton
         size={"sm"}
         style={styles.backButton}
-        text={"返回"}
+        text={"回到店铺"}
         onPress={backToHome}></WawaButton>
 
       <View style={styles.topPlaceholder}></View>
@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
   },
   replayButton: {
     position: 'absolute',
-    left: 30,
+    left: 20,
     bottom: 10,
     width: 120,
     height: 50,
   },
   backButton: {
     position: 'absolute',
-    right: 30,
+    right: 20,
     bottom: 10,
     width: 120,
     height: 50,
