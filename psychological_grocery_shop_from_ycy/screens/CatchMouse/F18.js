@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 import Video from 'react-native-video';
 import { scale } from 'react-native-size-matters';
 
@@ -20,7 +20,7 @@ class F18 extends React.Component {
 
   afterPlayingWinningVideo = () => {
     this.setState({ showVideo: false });
-    this.props.funcs.funcs.modState(10, 10);
+    this.props.funcs.modState(10, 10);
   }
 
   render() {
@@ -56,7 +56,6 @@ class F18 extends React.Component {
   }
 }
 
-const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   fullScreen: {

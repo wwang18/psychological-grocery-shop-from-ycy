@@ -27,7 +27,7 @@ const backgroundMusic = require('../../audio/ThinkWild.mp3');
 export class InStoreView extends React.Component {
 
   state = {
-    isMuted: true,
+    isMuted: false,
     love: 20,
     coins: 20,
     currentPage: pageIds.storeMain,
