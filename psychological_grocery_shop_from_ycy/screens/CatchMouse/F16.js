@@ -24,11 +24,12 @@ export const F16 = (props) => {
         style={styles.button}
         text={"与超越一起抓"}
         onPress={gotoNextPage}></WawaButton>
-        <WawaButton
-          size={"lg"}
-          style={styles.button}
-          text={"看超越抓"}
-          onPress={skipSteps}></WawaButton>
+      <View style={styles.topPlaceholder}></View>
+      <WawaButton
+        size={"lg"}
+        style={styles.button}
+        text={"看超越抓"}
+        onPress={skipSteps}></WawaButton>
       <View style={styles.bottomPlaceholder}></View>
     </ImageBackground>
   )

@@ -25,6 +25,7 @@ export const F12 = (props) => {
         style={styles.button}
         text={"大叫“超越，你打工迟到了！”"}
         onPress={gotoNextPage}></WawaButton>
+      <View style={styles.buttonGap}></View>
       <WawaButton
         size={"lg"}
         style={styles.button}
