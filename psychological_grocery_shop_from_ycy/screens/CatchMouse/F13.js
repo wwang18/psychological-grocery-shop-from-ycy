@@ -4,6 +4,7 @@ import { scale } from 'react-native-size-matters';
 import RNSoundLevel from 'react-native-sound-level';
 
 import { WawaText } from '../../components/WawaText';
+import { WawaButton } from '../../components/WawaButton';
 import { pageIds } from '../InStore/InStoreConfig';
 
 export const F13 = (props) => {
@@ -38,7 +39,7 @@ export const F13 = (props) => {
         <TouchableOpacity
           onPressIn={startMeasuring}
           onPressOut={stopMeasuring}
-          style={[styles.button, styles.roundButton]}>
+          style={styles.roundButton}>
           <ImageBackground
             resizeMode="stretch"
             style={styles.buttonBackgournd}
@@ -53,12 +54,11 @@ export const F13 = (props) => {
           </WawaText>
         </View>
       </View>
-      <View style={styles.skipButtonArea}>
-        <TouchableOpacity
-          onPress={gotoNextPage}
-          style={styles.button}>
-        </TouchableOpacity>
-      </View>
+      <WawaButton
+        size={"sm"}
+        style={styles.skipButton}
+        text={"跳过"}
+        onPress={gotoNextPage}></WawaButton>
     </ImageBackground>
   )
 }
@@ -82,17 +82,6 @@ const styles = StyleSheet.create({
     width: 200,
     borderRadius: 3000,
   },
-  button: {
-    // Display as circle, touch area is still square.
-    flex: 1,
-  },
-  skipButtonArea: {
-    position: 'absolute',
-    bottom: '5%',
-    right: '5%',
-    width: '15%',
-    height: '15%',
-  },
   buttonBackgournd: {
     width: '100%',
     height: '100%',
@@ -105,6 +94,13 @@ const styles = StyleSheet.create({
   displayText: {
     color: 'white',
     fontSize: scale(18),
+  },
+  skipButton: {
+    position: 'absolute',
+    width: 120,
+    height: 50,
+    right: 30,
+    bottom: 10,
   },
 });
 

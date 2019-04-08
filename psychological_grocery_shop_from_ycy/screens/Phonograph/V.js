@@ -1,48 +1,39 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
 
+import { WawaButton } from '../../components/WawaButton';
+import { pageIds } from '../InStore/InStoreConfig';
 
 export const Phonograph = (props) => {
-  const gotoNextPage = () => {
-    props.navigation.popToTop();
-    props.navigation.navigate('F');
+  const backToHome = () => {
+    props.funcs.redirectTo(pageIds.storeMain);
   };
 
+
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        resizeMode="stretch"
-        style={styles.container}
-        source={require("../../img/instore/V.jpg")}>
-        <View style={styles.container}>
-          <View style={styles.buttonArea}>
-            <TouchableOpacity
-              onPress={gotoNextPage}
-              style={styles.button}>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ImageBackground>
-    </View>
+    <ImageBackground
+      resizeMode="stretch"
+      style={styles.fullScreen}
+      source={require("../../img/instore/V.jpg")}>
+      <WawaButton
+        size={"sm"}
+        style={styles.backButton}
+        text={"返回"}
+        onPress={backToHome}></WawaButton>
+    </ImageBackground>
   )
 }
 
-const { height, width } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
-  container: {
+  fullScreen: {
     flex: 1,
   },
-  buttonArea: {
+  backButton: {
     position: 'absolute',
-    bottom: height * 0.05,
-    right: width * 0.05,
-    width: width * 0.15,
-    height: height * 0.15,
-  },
-  button: {
-    flex: 1,
-    backgroundColor: 'rgba(220, 120, 120, 0.5)',
+    width: 120,
+    height: 50,
+    right: 20,
+    bottom: 10,
   },
 });
 

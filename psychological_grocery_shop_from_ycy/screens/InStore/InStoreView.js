@@ -1,11 +1,13 @@
 import React from 'react';
 import Video from 'react-native-video';
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Image, Alert } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
-import { WawaText } from '../../components/WawaText';
+import { AnimatedWawaText } from '../../components/AnimatedWawaText';
 
 import { pageIds } from './InStoreConfig';
+import Settings from './Settings';
+
 import Instore from './InStoreMain';
 import F11 from '../CatchMouse/F11';
 import F12 from '../CatchMouse/F12';
@@ -20,17 +22,20 @@ import M2 from '../CatchMouse/M2';
 import MinisMachine from '../MinisMachine/U';
 import U1 from '../MinisMachine/U1';
 import U2 from '../MinisMachine/U2';
-// import Phonograph from '../Phonograph/V';
+import Phonograph from '../Phonograph/V';
 
 const backgroundMusic = require('../../audio/ThinkWild.mp3');
 
 export class InStoreView extends React.Component {
 
   state = {
-    isMuted: false,
     love: 20,
     coins: 20,
     currentPage: pageIds.storeMain,
+    showSettings: false,
+    settings: {
+      backgroundMusic: true,
+    }
   }
 
   componentWillMount() {
@@ -55,11 +60,24 @@ export class InStoreView extends React.Component {
       [pageIds.minisMachine]: <MinisMachine funcs={funcs}></MinisMachine>,
       [pageIds.U1]: <U1 funcs={funcs}></U1>,
       [pageIds.U2]: <U2 funcs={funcs}></U2>,
+      [pageIds.phonograph]: <Phonograph funcs={funcs}></Phonograph>
     };
   }
 
-  gotoNextPage = (pageId) => {
-    this.setState({ currentPage: pageId });
+  toggleSettings = () => {
+    this.setState({ showSettings: !this.state.showSettings });
+  }
+
+  updateSettings = (newSettings) => {
+    this.setState({ settings: newSettings });
+  }
+
+  gotoNextPage = (pageId, useNavigation = false) => {
+    if (useNavigation) {
+      this.props.navigation.navigate(pageId);
+    } else {
+      this.setState({ currentPage: pageId });
+    }
   }
 
   getLoveAndCoins = () => {
@@ -72,7 +90,7 @@ export class InStoreView extends React.Component {
   modLoveAndCoins = (love, coins) => {
     const newLove = this.state.love + love;
     const newCoins = this.state.coins + coins;
-    this.setState({love: newLove, coins: newCoins});
+    this.setState({ love: newLove, coins: newCoins });
   }
 
   render() {
@@ -83,32 +101,38 @@ export class InStoreView extends React.Component {
             this.player = ref
           }}
           audioOnly={true}
-          paused={this.state.isMuted}
+          paused={!this.state.settings.backgroundMusic}
           rate={1}
           repeat={true} />
+        {this.state.showSettings &&
+          <View style={styles.settingsDialog}>
+            <Settings
+              settings={this.state.settings}
+              updateSettings={this.updateSettings}
+              toggle={this.toggleSettings}>
+            </Settings>
+          </View>
+        }
         <View style={styles.gearButtonArea}>
           <TouchableOpacity
-            onPress={() => Alert.alert('这个设置还没做好。。')}
+            activeOpacity={.7}
+            onPress={this.toggleSettings}
             style={styles.button}>
             <Image
               style={styles.buttonBackgournd}
               source={require("../../img/instore/BtnSettings.png")} />
           </TouchableOpacity>
         </View>
-        <View style={styles.heartButtonArea}>
-          <ImageBackground
-            style={styles.numberContainer}
-            source={require("../../img/instore/Heart.png")}>
-            <WawaText style={styles.numberDisplay}>{this.state.love}</WawaText>
-          </ImageBackground>
-        </View>
-        <View style={styles.coinButtonArea}>
-          <ImageBackground
-            style={styles.numberContainer}
-            source={require("../../img/instore/Coin.png")}>
-            <WawaText style={styles.numberDisplay}>{this.state.coins}</WawaText>
-          </ImageBackground>
-        </View>
+        <AnimatedWawaText
+          style={styles.heartButtonArea}
+          backgroundImage={require("../../img/instore/Heart.png")}
+          value={this.state.love}>
+        </AnimatedWawaText>
+        <AnimatedWawaText
+          style={styles.coinButtonArea}
+          backgroundImage={require("../../img/instore/Coin.png")}
+          value={this.state.coins}>
+        </AnimatedWawaText>
         {this.allPages[this.state.currentPage]}
       </View>
     )
@@ -118,6 +142,14 @@ export class InStoreView extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  settingsDialog: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 1000,
   },
   button: {
     flex: 1,

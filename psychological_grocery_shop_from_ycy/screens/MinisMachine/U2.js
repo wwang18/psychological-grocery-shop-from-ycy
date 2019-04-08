@@ -3,10 +3,12 @@ import { StyleSheet, View, ImageBackground, Alert } from 'react-native';
 
 import { WawaButton } from '../../components/WawaButton';
 import { pageIds } from '../InStore/InStoreConfig';
-
+import { Giftcard, getRandomGiftcard } from '../../components/Giftcard';
 
 export const U2 = (props) => {
   const { redirectTo, getState, modState } = props.funcs;
+
+  const { rarity, cardId } = getRandomGiftcard();
 
   const playAgain = () => {
     const { coins } = getState();
@@ -41,7 +43,9 @@ export const U2 = (props) => {
       <View style={styles.topPlaceholder}></View>
       <View style={styles.midArea}>
         <View style={styles.leftRightPadding}></View>
-        <View style={styles.picArea}></View>
+        <View style={styles.picArea}>
+          <Giftcard rarity={rarity} cardId={cardId} style={styles.pic}></Giftcard>
+        </View>
         <View style={styles.leftRightPadding}></View>
       </View>
       <View style={styles.bottomPlaceholder}></View>
@@ -69,6 +73,10 @@ const styles = StyleSheet.create({
   picArea: {
     flex: 577,
     backgroundColor: 'rgba(120, 120, 220, 0.5)',
+  },
+  pic: {
+    width: '100%',
+    height: '100%',
   },
   replayButton: {
     position: 'absolute',
