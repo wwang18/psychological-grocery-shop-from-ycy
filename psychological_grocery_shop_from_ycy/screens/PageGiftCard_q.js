@@ -12,7 +12,7 @@ import {
   Image,
   FlatList,
   ScrollView,
-  TouchableHighlight,
+  TouchableWithoutFeedback,
   TouchableOpacity
 } from "react-native";
 
@@ -76,7 +76,7 @@ class PageGiftCard_q extends Component {
                       <View
                         style={{ flex: 1, flexDirection: "column", margin: 10 }}
                       >
-                        <TouchableHighlight
+                        <TouchableWithoutFeedback
                           onPress={(item, index) =>
                             this._handleButtonClick(index)
                           }
@@ -86,7 +86,7 @@ class PageGiftCard_q extends Component {
                           resizeMode="contain"
                           source= {require("./../img/PQS/framework_GiftCard.png")}
                         />
-                        </TouchableHighlight>
+                        </TouchableWithoutFeedback>
                       </View>
                     )}
                     //Setting the number of column
