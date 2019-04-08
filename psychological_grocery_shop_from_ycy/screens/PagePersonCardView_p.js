@@ -17,14 +17,6 @@ class PagePersonCardView_p extends Component {
     this.props.navigation.goBack();
   }
 
-  _onPressButton_mail_box() {
-    Alert.alert("点击邮箱");
-  }
-
-  _onPressButton_mail_to_ChaoYue() {
-    this.props.navigation.push("MailToChaoYue_j");
-  }
-
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -38,9 +30,24 @@ class PagePersonCardView_p extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/P1.png")}
+          source={require("./../img/O/personCard_o1/SR1.png")}
         >
-
+          <View style={{ flex: 1, flexDirection: "row" }}>
+            <View style={{ flex: 1200 }} />
+            <View style={{ flex: 85 }}>
+              <View style={{ flex: 1, flexDirection: "column" }}>
+                <View style={{ flex: 683 }} />
+                <View style={{ flex: 38 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_back()}
+                  />
+                </View>
+                <View style={{ flex: 29 }} />
+              </View>
+            </View>
+            <View style={{ flex: 49 }} />
+          </View>
         </ImageBackground>
       </View>
     );

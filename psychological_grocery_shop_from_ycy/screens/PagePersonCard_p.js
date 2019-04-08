@@ -12,6 +12,7 @@ import {
   Image,
   FlatList,
   ScrollView,
+  TouchableWithoutFeedback,
   TouchableHighlight,
   TouchableOpacity
 } from "react-native";
@@ -24,10 +25,11 @@ class PagePersonCard_p extends Component {
     };
   }
 
-
-  _handleButtonClick(index) {
-    this.props.navigation.push("PersonCardView_p");
-  }
+  _handleButtonClick = item => {
+    if (item.id == 0) {
+      this.props.navigation.push("PersonCardView_p");
+    }
+  };
 
   _onPressButton_back() {
     this.props.navigation.goBack();
@@ -35,9 +37,11 @@ class PagePersonCard_p extends Component {
 
   componentDidMount() {
     var that = this;
-    let first_card = [{ id: 0, src: require("./../img/O/o1_front_small.png")}];
+    let first_card = [
+      { id: 0, src: require("./../img/O/personCard_o1/SR1_small.png") }
+    ];
     let r_items = Array.apply(null, Array(35)).map((v, i) => {
-      return { id: (i + 1), src: require("./../img/PQS/framework_GiftCard.png") };
+      return { id: i + 1, src: require("./../img/PQS/framework_GiftCard.png") };
     });
     let items = first_card.concat(r_items);
     that.setState({
@@ -62,11 +66,11 @@ class PagePersonCard_p extends Component {
         >
           <View style={{ flex: 1, flexDirection: "column" }}>
             <View style={{ flex: 150 }}>
-            <Image
-              style={styles.header}
-              resizeMode="contain"
-              source={require('./../img/PQS/title_PersonalCard.png')}
-            />
+              <Image
+                style={styles.header}
+                resizeMode="contain"
+                source={require("./../img/PQS/title_PersonalCard.png")}
+              />
             </View>
             <View style={{ flex: 30 }} />
             <View style={{ flex: 490 }}>
@@ -79,17 +83,15 @@ class PagePersonCard_p extends Component {
                       <View
                         style={{ flex: 1, flexDirection: "column", margin: 10 }}
                       >
-                        <TouchableHighlight
-                          onPress={(item, index) =>
-                            this._handleButtonClick(index)
-                          }
+                        <TouchableWithoutFeedback
+                          onPress={() => this._handleButtonClick(item)}
                         >
                           <Image
                             style={styles.imageThumbnail}
                             resizeMode="contain"
-                            source= {require("./../img/PQS/framework_GiftCard.png")}
+                            source={item.src}
                           />
-                        </TouchableHighlight>
+                        </TouchableWithoutFeedback>
                       </View>
                     )}
                     //Setting the number of column
@@ -108,11 +110,11 @@ class PagePersonCard_p extends Component {
                     style={{ flex: 1 }}
                     onPress={() => this._onPressButton_back()}
                   >
-                  <Image
-                    style={styles.button}
-                    resizeMode="contain"
-                    source={require("../img/PQS/back.png")}
-                  />
+                    <Image
+                      style={styles.button}
+                      resizeMode="contain"
+                      source={require("../img/PQS/back.png")}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -138,15 +140,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 100
   },
-  header:{
+  header: {
     alignItems: "center",
-    height: '100%',
-    width: '100%',
+    height: "100%",
+    width: "100%"
   },
   button: {
     width: null,
     height: null,
-    flex: 1,
+    flex: 1
   }
 });
 
