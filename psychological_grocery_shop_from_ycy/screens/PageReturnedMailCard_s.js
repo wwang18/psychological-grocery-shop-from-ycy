@@ -12,7 +12,8 @@ import {
   FlatList,
   Alert,
   TouchableOpacity,
-  TouchableHighlight
+  TouchableHighlight,
+  TouchableWithoutFeedback
 } from "react-native";
 
 class PageReturnedMailCard_s extends Component {
@@ -27,15 +28,19 @@ class PageReturnedMailCard_s extends Component {
     this.props.navigation.goBack();
   }
 
-  _handleButtonClick(index) {
-    this.props.navigation.push("ReturnedMailCard_o");
+  _handleButtonClick = item => {
+    if (item.id == 0) {
+      this.props.navigation.push("ReturnedMailCard_o");
+    }
   }
 
   componentDidMount() {
     var that = this;
-    let items = Array.apply(null, Array(36)).map((v, i) => {
-      return { id: i, src: "http://placehold.it/200x200?text=" + (i + 1) };
+    let first_card = [{ id: 0, src: require("./../img/O/o1_front_small.png")}];
+    let r_items = Array.apply(null, Array(35)).map((v, i) => {
+      return { id: (i + 1), src: require("./../img/PQS/framework_GiftCard.png") };
     });
+    let items = first_card.concat(r_items);
     that.setState({
       dataSource: items
     });
@@ -75,17 +80,15 @@ class PageReturnedMailCard_s extends Component {
                       <View
                         style={{ flex: 1, flexDirection: "column", margin: 10 }}
                       >
-                        <TouchableHighlight
-                          onPress={(item, index) =>
-                            this._handleButtonClick(index)
-                          }
+                        <TouchableWithoutFeedback
+                          onPress={() => this._handleButtonClick(item)}
                         >
-                        <Image
-                          style={styles.imageThumbnail}
-                          resizeMode="contain"
-                          source= {require("./../img/PQS/framework_GiftCard.png")}
-                        />
-                        </TouchableHighlight>
+                          <Image
+                            style={styles.imageThumbnail}
+                            resizeMode="contain"
+                            source={item.src}
+                          />
+                        </TouchableWithoutFeedback>
                       </View>
                     )}
                     //Setting the number of column
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
   button: {
     width: null,
     height: null,
-    flex: 1,
+    flex: 1
   }
 });
 

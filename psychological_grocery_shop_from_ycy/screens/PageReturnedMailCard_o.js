@@ -9,13 +9,30 @@ import {
   Button,
   StatusBar,
   Alert,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableHighlight,
+  Image
 } from "react-native";
+
+const images = {
+  o1: {
+    imgName: "o1",
+    uri: require("./../img/O/o1_front.png")
+  },
+  o2: {
+    imgName: "o2",
+    uri: require("./../img/O/o2_front.png")
+  }
+};
 
 class PageReturnedMailCard_o extends Component {
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
+
+  _handleButtonClick = topic => {
+    this.props.navigation.navigate(topic);
+  };
 
   render() {
     return (
@@ -30,9 +47,79 @@ class PageReturnedMailCard_o extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/O.png")}
+          source={images.o1.uri}
         >
-
+          <View style={{ flex: 1, flexDirection: "row" }}>
+            <View style={{ flex: 84 }} />
+            <View style={{ flex: 140 }}>
+              <View style={{ flex: 1, flexDirection: "column" }}>
+                <View style={{ flex: 341 }} />
+                <View style={{ flex: 140 }}>
+                  <TouchableHighlight
+                    underlayColor="transparent"
+                    style={styles.btnWrapper}
+                    onPress={() => this._handleButtonClick("CharacterCard_o1")}
+                  >
+                    <Image
+                      style={styles.button}
+                      resizeMode="contain"
+                      source={require("../img/O/PersonCard.png")}
+                    />
+                  </TouchableHighlight>
+                </View>
+                <View style={{ flex: 48 }} />
+                <View style={{ flex: 140 }}>
+                  <TouchableHighlight
+                    underlayColor="transparent"
+                    style={styles.btnWrapper}
+                    onPress={() => this._handleButtonClick("GiftCard_o2")}
+                  >
+                    <Image
+                      style={styles.button}
+                      resizeMode="contain"
+                      source={require("../img/O/giftCard.png")}
+                    />
+                  </TouchableHighlight>
+                </View>
+                <View style={{ flex: 81 }} />
+              </View>
+            </View>
+            <View style={{ flex: 876 }} />
+            <View style={{ flex: 194 }}>
+              <View style={{ flex: 1, flexDirection: "column" }}>
+                <View style={{ flex: 440 }} />
+                <View style={{ flex: 64 }}>
+                  <TouchableHighlight
+                    underlayColor="transparent"
+                    style={styles.btnWrapper}
+                    onPress={() => this._handleButtonClick("BackPage_o3")}
+                  >
+                    <Image
+                      style={styles.button}
+                      resizeMode="contain"
+                      source={require("../img/O/backpage.png")}
+                    />
+                  </TouchableHighlight>
+                </View>
+                <View style={{ flex: 32 }} />
+                <View style={{ flex: 64 }} >
+                <TouchableHighlight
+                  underlayColor="transparent"
+                  style={styles.btnWrapper}
+                  onPress={() => this._handleButtonClick("StoredLetter_o4")}
+                >
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require("../img/O/myWritten.png")}
+                  />
+                </TouchableHighlight>
+                </View>
+                <View style={{ flex: 150 }} />
+              </View>
+            </View>
+            <View style={{ flex: 40 }} />
+          </View>
         </ImageBackground>
       </View>
     );
@@ -43,6 +130,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 60 : 0
+  },
+  btnWrapper: {
+    flex: 1
+  },
+  button: {
+    width: null,
+    height: null,
+    flex: 1
   }
 });
 
