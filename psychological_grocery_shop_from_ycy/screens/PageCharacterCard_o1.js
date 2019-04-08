@@ -36,11 +36,12 @@ class PageCharacterCard_o1 extends Component {
             <View style={{ flex: 85 }}>
               <View style={{ flex: 1, flexDirection: "column" }}>
                 <View style={{ flex: 683 }} />
-                <View style={{ flex: 38 }} >
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => this._onPressButton_back()}
-                />
+                <View style={{ flex: 38}}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_back()}
+                  />
+                </View>
                 <View style={{ flex: 29 }} />
               </View>
             </View>
