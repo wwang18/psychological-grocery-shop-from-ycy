@@ -5,10 +5,6 @@ import { pageIds } from './InStoreConfig';
 
 const IMAGE_FOLDER = '../../img/instore';
 
-function getImage(name) {
-  return `${IMAGE_FOLDER}/${name}`;
-}
-
 export const InStore = (props) => {
 
   const gotoPage = (pageName) => {
