@@ -1,4 +1,5 @@
 export const pageIds = {
+  home: 'Home',
   storeMain: 'InStoreMain',
   phonograph: 'Phonograph',
   mailBox: 'MailBox_i',

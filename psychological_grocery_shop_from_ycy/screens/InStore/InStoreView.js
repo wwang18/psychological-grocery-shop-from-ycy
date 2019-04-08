@@ -74,7 +74,7 @@ export class InStoreView extends React.Component {
 
   gotoNextPage = (pageId, useNavigation = false) => {
     if (useNavigation) {
-      this.props.navigation.push(pageId);
+      this.props.navigation.navigate(pageId);
     } else {
       this.setState({ currentPage: pageId });
     }
