@@ -102,20 +102,34 @@ class PageReturnedMailCard_o extends Component {
                   </TouchableHighlight>
                 </View>
                 <View style={{ flex: 32 }} />
-                <View style={{ flex: 64 }} >
+                <View style={{ flex: 64 }}>
+                  <TouchableHighlight
+                    underlayColor="transparent"
+                    style={styles.btnWrapper}
+                    onPress={() => this._handleButtonClick("BackPage_o3")}
+                  >
+                    <Image
+                      style={styles.button}
+                      resizeMode="contain"
+                      source={require("../img/O/myWritten.png")}
+                    />
+                  </TouchableHighlight>
+                </View>
+                <View style={{ flex: 90 }} />
+                <View style={{ flex: 45 }} >
                 <TouchableHighlight
                   underlayColor="transparent"
                   style={styles.btnWrapper}
-                  onPress={() => this._handleButtonClick("StoredLetter_o4")}
+                  onPress={() => this._onPressButton_back()}
                 >
                   <Image
-                    style={styles.button}
+                    style={styles.backButton}
                     resizeMode="contain"
-                    source={require("../img/O/myWritten.png")}
+                    source={require("../img/O/goBack.png")}
                   />
                 </TouchableHighlight>
                 </View>
-                <View style={{ flex: 150 }} />
+                <View style={{ flex: 15 }} />
               </View>
             </View>
             <View style={{ flex: 40 }} />
@@ -138,6 +152,13 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     flex: 1
+  },
+  backButton: {
+    width: null,
+    height: null,
+    flex: 1,
+    flexDirection: "row",
+    alignItems:'flex-end'
   }
 });
 

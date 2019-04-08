@@ -26,13 +26,26 @@ class PageCharacterCard_o1 extends Component {
           hidden={true}
           animated={true}
         />
-
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/O1.png")}
+          source={require("./../img/O/personCard_o1/R1.png")}
         >
-
+          <View style={{ flex: 1, flexDirection: "row" }}>
+            <View style={{ flex: 1200 }} />
+            <View style={{ flex: 85 }}>
+              <View style={{ flex: 1, flexDirection: "column" }}>
+                <View style={{ flex: 683 }} />
+                <View style={{ flex: 38 }} >
+                <TouchableOpacity
+                  style={{ flex: 1 }}
+                  onPress={() => this._onPressButton_back()}
+                />
+                <View style={{ flex: 29 }} />
+              </View>
+            </View>
+            <View style={{ flex: 49 }} />
+          </View>
         </ImageBackground>
       </View>
     );
