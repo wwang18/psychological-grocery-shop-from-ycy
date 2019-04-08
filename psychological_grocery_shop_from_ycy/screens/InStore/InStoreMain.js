@@ -122,7 +122,7 @@ export const InStore = (props) => {
       </View>
       <View style={styles.debugButtonArea}>
         <TouchableOpacity
-          onPress={() => gotoPage(pageIds.F18)}
+          onPress={() => gotoPage(pageIds.U2)}
           style={styles.button}>
         </TouchableOpacity>
       </View>
