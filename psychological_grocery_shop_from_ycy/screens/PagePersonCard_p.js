@@ -35,9 +35,11 @@ class PagePersonCard_p extends Component {
 
   componentDidMount() {
     var that = this;
-    let items = Array.apply(null, Array(36)).map((v, i) => {
-      return { id: i, src: "./../img/PQS/framework_PersonalCard.png" };
+    let first_card = [{ id: 0, src: require("./../img/O/o1_front_small.png")}];
+    let r_items = Array.apply(null, Array(35)).map((v, i) => {
+      return { id: (i + 1), src: require("./../img/PQS/framework_GiftCard.png") };
     });
+    let items = first_card.concat(r_items);
     that.setState({
       dataSource: items
     });

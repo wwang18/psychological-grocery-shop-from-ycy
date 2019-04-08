@@ -9,6 +9,7 @@ import {
   Button,
   StatusBar,
   Alert,
+  Image,
   TouchableOpacity
 } from "react-native";
 
