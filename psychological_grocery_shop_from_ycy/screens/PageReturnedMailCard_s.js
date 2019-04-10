@@ -46,6 +46,22 @@ class PageReturnedMailCard_s extends Component {
     });
   }
 
+  _renderItem = ({ item }) => (
+    <View
+      style={{ flex: 1, flexDirection: "column", margin: 10 }}
+    >
+      <TouchableWithoutFeedback
+        onPress={() => this._handleButtonClick(item)}
+      >
+        <Image
+          style={styles.imageThumbnail}
+          resizeMode="contain"
+          source={item.src}
+        />
+      </TouchableWithoutFeedback>
+    </View>
+  );
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -76,21 +92,8 @@ class PageReturnedMailCard_s extends Component {
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
                     data={this.state.dataSource}
-                    renderItem={({ item }) => (
-                      <View
-                        style={{ flex: 1, flexDirection: "column", margin: 10 }}
-                      >
-                        <TouchableWithoutFeedback
-                          onPress={() => this._handleButtonClick(item)}
-                        >
-                          <Image
-                            style={styles.imageThumbnail}
-                            resizeMode="contain"
-                            source={item.src}
-                          />
-                        </TouchableWithoutFeedback>
-                      </View>
-                    )}
+                    renderItem={this._renderItem}
+                    initialNumToRender={9}
                     //Setting the number of column
                     numColumns={3}
                     keyExtractor={(item, index) => index}

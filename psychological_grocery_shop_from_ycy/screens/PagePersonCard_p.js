@@ -26,7 +26,7 @@ class PagePersonCard_p extends Component {
   }
 
   _handleButtonClick = item => {
-    if (item.id == 0) {
+    if (item.key == 0) {
       this.props.navigation.push("PersonCardView_p");
     }
   };
@@ -38,16 +38,33 @@ class PagePersonCard_p extends Component {
   componentDidMount() {
     var that = this;
     let first_card = [
-      { id: 0, src: require("./../img/O/personCard_o1/SR1_small.png") }
+      { key: 0, src: require("./../img/O/personCard_o1/SR1_small.png") }
     ];
     let r_items = Array.apply(null, Array(35)).map((v, i) => {
-      return { id: i + 1, src: require("./../img/PQS/framework_GiftCard.png") };
+      return { key: i + 1, src: require("./../img/PQS/framework_GiftCard.png") };
     });
     let items = first_card.concat(r_items);
     that.setState({
       dataSource: items
     });
   }
+
+
+  _renderItem = ({ item }) => (
+    <View
+      style={{ flex: 1, flexDirection: "column", margin: 10 }}
+    >
+      <TouchableWithoutFeedback
+        onPress={() => this._handleButtonClick(item)}
+      >
+        <Image
+          style={styles.imageThumbnail}
+          resizeMode="contain"
+          source={item.src}
+        />
+      </TouchableWithoutFeedback>
+    </View>
+  );
 
   render() {
     return (
@@ -79,21 +96,8 @@ class PagePersonCard_p extends Component {
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
                     data={this.state.dataSource}
-                    renderItem={({ item }) => (
-                      <View
-                        style={{ flex: 1, flexDirection: "column", margin: 10 }}
-                      >
-                        <TouchableWithoutFeedback
-                          onPress={() => this._handleButtonClick(item)}
-                        >
-                          <Image
-                            style={styles.imageThumbnail}
-                            resizeMode="contain"
-                            source={item.src}
-                          />
-                        </TouchableWithoutFeedback>
-                      </View>
-                    )}
+                    renderItem={this._renderItem}
+                    initialNumToRender={9}
                     //Setting the number of column
                     numColumns={3}
                     keyExtractor={(item, index) => index}
