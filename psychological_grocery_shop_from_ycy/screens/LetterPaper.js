@@ -4,10 +4,12 @@ import {
   TextInput,
   StyleSheet,
   View,
+  Alert,
   Image,
   TouchableHighlight
 } from "react-native";
 import { scale } from 'react-native-size-matters';
+import RNFS from 'react-native-fs';
 
 class LetterPaper extends Component {
   constructor(props) {
@@ -22,7 +24,20 @@ class LetterPaper extends Component {
     // TODO
     this.setState({ replying: true });
     setTimeout(() => {
-      this.props.navigation.navigate("MailBox_i");
+          const path = RNFS.DocumentDirectoryPath + '/test.txt';
+             RNFS.writeFile(path,this.state.text, 'utf8')
+               .then((success) => {
+                   console.log('path',path);
+               })
+               .catch((err) =>{
+                   console.log(err.message);
+                });
+
+        Alert.alert(path);
+//        Alert.alert(this.state.text);
+
+        this.props.navigation.navigate("MailBox_i");
+
     }, 1000);
   }
 

@@ -13,6 +13,7 @@ import {
   TouchableHighlight,
   Image
 } from "react-native";
+import RNFS from 'react-native-fs';
 
 const images = {
   o1: {
@@ -33,6 +34,25 @@ class PageReturnedMailCard_o extends Component {
   _handleButtonClick = topic => {
     this.props.navigation.navigate(topic);
   };
+
+  readLetter() {
+//     Alert.alert(this.state.text);
+     const path = RNFS.DocumentDirectoryPath + '/test.txt';
+        return RNFS.readFile(path)
+          .then((result) => {
+            console.log(result);
+
+            this.setState({
+              readTxtResult: result,
+            })
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+
+     Alert.alert(this.state.readTxtResult);
+     Alert.alert('I am reading!');
+  }
 
   render() {
     return (
@@ -106,7 +126,8 @@ class PageReturnedMailCard_o extends Component {
                   <TouchableHighlight
                     underlayColor="transparent"
                     style={styles.btnWrapper}
-                    onPress={() => this._handleButtonClick("BackPage_o3")}
+                    //TODO:
+                    onPress={() => this._handleButtonClick("StoredLetter_o4")}
                   >
                     <Image
                       style={styles.button}
