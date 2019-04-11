@@ -26,37 +26,48 @@ class PagePersonCard_p extends Component {
   }
 
   _handleButtonClick = item => {
-    if (item.key == 0) {
-      this.props.navigation.push("PersonCardView_p");
-    }
+      this.props.navigation.push("PersonCardView_p", { itemId: item.id });
   };
 
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
 
-  componentDidMount() {
+  componentWillMount() {
     var that = this;
     let first_card = [
-      { key: 0, src: require("./../img/O/personCard_o1/SR1_small.png") }
+      { id: 0, src: require("./../img/O/personalCard_small/Image01.webp") },
+      { id: 1, src: require("./../img/O/personalCard_small/Image02.webp") },
+      { id: 2, src: require("./../img/O/personalCard_small/Image03.webp") },
+      { id: 3, src: require("./../img/O/personalCard_small/Image04.webp") },
+      { id: 4, src: require("./../img/O/personalCard_small/Image05.webp") },
+      { id: 5, src: require("./../img/O/personalCard_small/Image06.webp") },
+      { id: 6, src: require("./../img/O/personalCard_small/Image07.webp") },
+      { id: 7, src: require("./../img/O/personalCard_small/Image08.webp") },
+      { id: 8, src: require("./../img/O/personalCard_small/Image09.webp") },
+      { id: 9, src: require("./../img/O/personalCard_small/Image10.webp") },
+      { id: 10, src: require("./../img/O/personalCard_small/Image11.webp") },
+      { id: 11, src: require("./../img/O/personalCard_small/Image12.webp") },
+      { id: 12, src: require("./../img/O/personalCard_small/Image13.webp") },
+      { id: 13, src: require("./../img/O/personalCard_small/Image14.webp") },
+      { id: 14, src: require("./../img/O/personalCard_small/Image15.webp") },
+      { id: 15, src: require("./../img/O/personalCard_small/Image16.webp") },
+      { id: 16, src: require("./../img/O/personalCard_small/Image17.webp") },
+      { id: 17, src: require("./../img/O/personalCard_small/Image18.webp") },
+      { id: 18, src: require("./../img/O/personalCard_small/Image19.webp") },
+      { id: 19, src: require("./../img/O/personalCard_small/Image20.webp") },
+      { id: 20, src: require("./../img/O/personalCard_small/Image21.webp") },
+      { id: 21, src: require("./../img/O/personalCard_small/Image22.webp") }
     ];
-    let r_items = Array.apply(null, Array(35)).map((v, i) => {
-      return { key: i + 1, src: require("./../img/PQS/framework_GiftCard.png") };
-    });
-    let items = first_card.concat(r_items);
+
     that.setState({
-      dataSource: items
+      dataSource: first_card
     });
   }
 
-
   _renderItem = ({ item }) => (
-    <View
-      style={{ flex: 1, flexDirection: "column", margin: 10 }}
-    >
-      <TouchableWithoutFeedback
-        onPress={() => this._handleButtonClick(item)}
-      >
+    <View style={{ flex: 1, flexDirection: "column", margin: 10 }}>
+      <TouchableWithoutFeedback onPress={() => this._handleButtonClick(item)}>
         <Image
           style={styles.imageThumbnail}
           resizeMode="contain"

@@ -24,7 +24,7 @@ class PageReturnedMailCard_o extends Component {
   };
 
   _handleButtonBackPage = itemId => {
-    this.props.navigation.push("BackPage_o3", { itemId: item.id });
+    this.props.navigation.push("BackPage_o3", { itemId: itemId });
   }
 
   componentWillMount() {

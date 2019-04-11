@@ -34,7 +34,7 @@ class PageReturnedMailCard_s extends Component {
     }
   };
 
-  componentDidMount() {
+  componentWillMount() {
     var that = this;
     let first_card = [
       { id: 0, src: require("./../img/O/returnedMailCard_small/Image03.webp") },
@@ -121,15 +121,8 @@ class PageReturnedMailCard_s extends Component {
       },
       { id: 28, src: require("./../img/O/returnedMailCard_small/Image59.webp") }
     ];
-    let r_items = Array.apply(null, Array(7)).map((v, i) => {
-      return {
-        id: i + 29,
-        src: require("./../img/PQS/framework_GiftCard.png")
-      };
-    });
-    let items = first_card.concat(r_items);
     that.setState({
-      dataSource: items
+      dataSource: first_card
     });
   }
 
