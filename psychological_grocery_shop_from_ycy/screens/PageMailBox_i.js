@@ -25,6 +25,10 @@ class PageMailBox_i extends Component {
     this.props.navigation.push("MailToChaoYue_j");
   }
 
+  componentWillMount() {
+    this.image = require("./../img/i_page.webp");
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -35,9 +39,9 @@ class PageMailBox_i extends Component {
           animated={true}
         />
         <ImageBackground
-          resizeMode="stretch"
+          resizeMode="cover"
           style={styles.container}
-          source={require("./../img/post_office.gif")}
+          source={this.image}
         >
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 184 }} />

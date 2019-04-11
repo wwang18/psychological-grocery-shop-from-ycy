@@ -50,7 +50,7 @@ class LetterPaper extends Component {
     return replying ? (
       <ImageBackground
         style={styles.container}
-        source={require("./../img/replying.gif")}
+        source={require("./../img/replying.webp")}
       />
     ) : (
       <ImageBackground
