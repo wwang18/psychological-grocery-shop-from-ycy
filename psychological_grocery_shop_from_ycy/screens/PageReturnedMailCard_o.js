@@ -24,7 +24,7 @@ class PageReturnedMailCard_o extends Component {
     this.props.navigation.navigate(topic);
   };
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
   readLetter() {
 //     Alert.alert(this.state.text);
      const path = RNFS.DocumentDirectoryPath + '/test.txt';
@@ -42,7 +42,8 @@ class PageReturnedMailCard_o extends Component {
 
      Alert.alert(this.state.readTxtResult);
      Alert.alert('I am reading!');
-=======
+     }
+//=======
   _handleButtonBackPage = itemId => {
     this.props.navigation.push("BackPage_o3", { itemId: itemId });
   }
@@ -82,7 +83,7 @@ class PageReturnedMailCard_o extends Component {
       28: require("./../img/O/returnedMailCard/Image59.webp")
     };
     this.image = mail_cards[this.itemId]
->>>>>>> f9d8e0b40fd05a2ece00a2291455db1956c141ed
+//>>>>>>> f9d8e0b40fd05a2ece00a2291455db1956sc141ed
   }
 
   render() {

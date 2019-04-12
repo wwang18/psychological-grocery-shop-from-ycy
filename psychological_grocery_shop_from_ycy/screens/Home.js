@@ -41,6 +41,9 @@ class Home extends Component {
         return this.props.navigation.push("MailBox_i");
       case 'store':
         return this.props.navigation.push("InStore");
+        //TODO:
+      case 'team':
+        return this.props.navigation.push("TeamIntro");
       case 'exit':
         return RNExitApp.exitApp();
       default:
