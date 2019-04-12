@@ -17,14 +17,6 @@ class PageGiftCardView_q extends Component {
     this.props.navigation.goBack();
   }
 
-  _onPressButton_mail_box() {
-    Alert.alert("点击邮箱");
-  }
-
-  _onPressButton_mail_to_ChaoYue() {
-    this.props.navigation.push("MailToChaoYue_j");
-  }
-
   render() {
     return (
       <View style={{ flex: 1 }}>

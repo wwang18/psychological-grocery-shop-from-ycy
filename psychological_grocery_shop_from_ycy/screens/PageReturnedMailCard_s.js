@@ -37,89 +37,89 @@ class PageReturnedMailCard_s extends Component {
   componentWillMount() {
     var that = this;
     let first_card = [
-      { id: 0, src: require("./../img/O/returnedMailCard_small/Image03.webp") },
-      { id: 1, src: require("./../img/O/returnedMailCard_small/Image05.webp") },
-      { id: 2, src: require("./../img/O/returnedMailCard_small/Image07.webp") },
-      { id: 3, src: require("./../img/O/returnedMailCard_small/Image09.webp") },
-      { id: 4, src: require("./../img/O/returnedMailCard_small/Image11.webp") },
-      { id: 5, src: require("./../img/O/returnedMailCard_small/Image13.webp") },
-      { id: 6, src: require("./../img/O/returnedMailCard_small/Image15.webp") },
-      { id: 7, src: require("./../img/O/returnedMailCard_small/Image17.webp") },
-      { id: 8, src: require("./../img/O/returnedMailCard_small/Image19.webp") },
-      { id: 9, src: require("./../img/O/returnedMailCard_small/Image21.webp") },
+      { id: 0, src: require("./../img/returnedMailCards/returnedMailCard_small/Image03.webp") },
+      { id: 1, src: require("./../img/returnedMailCards/returnedMailCard_small/Image05.webp") },
+      { id: 2, src: require("./../img/returnedMailCards/returnedMailCard_small/Image07.webp") },
+      { id: 3, src: require("./../img/returnedMailCards/returnedMailCard_small/Image09.webp") },
+      { id: 4, src: require("./../img/returnedMailCards/returnedMailCard_small/Image11.webp") },
+      { id: 5, src: require("./../img/returnedMailCards/returnedMailCard_small/Image13.webp") },
+      { id: 6, src: require("./../img/returnedMailCards/returnedMailCard_small/Image15.webp") },
+      { id: 7, src: require("./../img/returnedMailCards/returnedMailCard_small/Image17.webp") },
+      { id: 8, src: require("./../img/returnedMailCards/returnedMailCard_small/Image19.webp") },
+      { id: 9, src: require("./../img/returnedMailCards/returnedMailCard_small/Image21.webp") },
       {
         id: 10,
-        src: require("./../img/O/returnedMailCard_small/Image23.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image23.webp")
       },
       {
         id: 11,
-        src: require("./../img/O/returnedMailCard_small/Image25.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image25.webp")
       },
       {
         id: 12,
-        src: require("./../img/O/returnedMailCard_small/Image27.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image27.webp")
       },
       {
         id: 13,
-        src: require("./../img/O/returnedMailCard_small/Image29.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image29.webp")
       },
       {
         id: 14,
-        src: require("./../img/O/returnedMailCard_small/Image31.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image31.webp")
       },
       {
         id: 15,
-        src: require("./../img/O/returnedMailCard_small/Image33.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image33.webp")
       },
       {
         id: 16,
-        src: require("./../img/O/returnedMailCard_small/Image35.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image35.webp")
       },
       {
         id: 17,
-        src: require("./../img/O/returnedMailCard_small/Image37.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image37.webp")
       },
       {
         id: 18,
-        src: require("./../img/O/returnedMailCard_small/Image39.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image39.webp")
       },
       {
         id: 19,
-        src: require("./../img/O/returnedMailCard_small/Image41.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image41.webp")
       },
       {
         id: 20,
-        src: require("./../img/O/returnedMailCard_small/Image43.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image43.webp")
       },
       {
         id: 21,
-        src: require("./../img/O/returnedMailCard_small/Image45.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image45.webp")
       },
       {
         id: 22,
-        src: require("./../img/O/returnedMailCard_small/Image47.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image47.webp")
       },
       {
         id: 23,
-        src: require("./../img/O/returnedMailCard_small/Image49.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image49.webp")
       },
       {
         id: 24,
-        src: require("./../img/O/returnedMailCard_small/Image51.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image51.webp")
       },
       {
         id: 25,
-        src: require("./../img/O/returnedMailCard_small/Image53.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image53.webp")
       },
       {
         id: 26,
-        src: require("./../img/O/returnedMailCard_small/Image55.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image55.webp")
       },
       {
         id: 27,
-        src: require("./../img/O/returnedMailCard_small/Image57.webp")
+        src: require("./../img/returnedMailCards/returnedMailCard_small/Image57.webp")
       },
-      { id: 28, src: require("./../img/O/returnedMailCard_small/Image59.webp") }
+      { id: 28, src: require("./../img/returnedMailCards/returnedMailCard_small/Image59.webp") }
     ];
     that.setState({
       dataSource: first_card
