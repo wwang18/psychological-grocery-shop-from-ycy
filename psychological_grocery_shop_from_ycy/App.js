@@ -19,6 +19,10 @@ import PageBackPage_o3 from "./screens/PageBackPage_o3";
 import PageStoredLetter_o4 from "./screens/PageStoredLetter_o4";
 import instoreRoutes from './screens/InStore/InStoreRouter';
 
+import dva from './utils/dva';
+import NavigationService from "./utils/navigationService";
+import postbox from './models/postbox'; // 邮箱模块数据
+
 const AppNavigator = createStackNavigator(
   {
     Home: {
@@ -125,7 +129,15 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const Router = createAppContainer(AppNavigator); //所有路由
+
+const app = dva({
+  models: [postbox], // 各个模块数据list
+  onError(e) {
+    if (__DEV__) console.log('onError', e);
+  },
+});
+const AppContainer = app.start(<Router ref={navigatorRef => NavigationService.setTopLevelNavigator(navigatorRef)}/>);
 
 export default class App extends Component {
   componentWillMount() {
@@ -133,6 +145,6 @@ export default class App extends Component {
   }
 
   render() {
-    return <AppContainer />;
+    return <AppContainer/>;
   }
 }
