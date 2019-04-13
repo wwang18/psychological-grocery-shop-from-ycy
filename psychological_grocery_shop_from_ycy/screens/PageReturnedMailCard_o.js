@@ -13,6 +13,7 @@ import {
   TouchableHighlight,
   Image
 } from "react-native";
+import RNFS from 'react-native-fs';
 
 class PageReturnedMailCard_o extends Component {
   _onPressButton_back() {
@@ -22,6 +23,8 @@ class PageReturnedMailCard_o extends Component {
   _handleButtonClick = topic => {
     this.props.navigation.navigate(topic);
   };
+
+
 
   _handleButtonBackPage = itemId => {
     this.props.navigation.push("BackPage_o3", { itemId: itemId });
@@ -62,6 +65,7 @@ class PageReturnedMailCard_o extends Component {
       28: require("./../img/O/returnedMailCard/Image59.webp")
     };
     this.image = mail_cards[this.itemId]
+//>>>>>>> f9d8e0b40fd05a2ece00a2291455db1956sc141ed
   }
 
   render() {
@@ -136,7 +140,8 @@ class PageReturnedMailCard_o extends Component {
                   <TouchableHighlight
                     underlayColor="transparent"
                     style={styles.btnWrapper}
-                    onPress={() => this._handleButtonClick("BackPage_o3")}
+                    //TODO:
+                    onPress={() => this._handleButtonClick("StoredLetter_o4")}
                   >
                     <Image
                       style={styles.button}
@@ -189,7 +194,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "flex-end"
-  }
+  },
 });
 
 export default PageReturnedMailCard_o;

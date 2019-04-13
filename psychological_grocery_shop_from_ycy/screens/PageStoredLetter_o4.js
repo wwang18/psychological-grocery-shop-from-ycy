@@ -9,12 +9,35 @@ import {
   Button,
   StatusBar,
   Alert,
-  TouchableOpacity
+  Image,
+  TouchableOpacity,
+  TouchableHighlight
 } from "react-native";
 
 class PageStoredLetter_o4 extends Component {
   _onPressButton_back() {
     this.props.navigation.goBack();
+  }
+  _onPressButton_LastLetter() {
+
+  }
+  _onPressButton_NextLetter() {
+
+  }
+
+  readLetter() {
+       const path = RNFS.DocumentDirectoryPath + '/test.txt';
+          return RNFS.readFile(path)
+            .then((result) => {
+              console.log(result);
+
+              this.setState({
+                text: result,
+              })
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
   }
 
   render() {
@@ -30,10 +53,42 @@ class PageStoredLetter_o4 extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/O4.png")}
+          source={require("./../img/bg/letter_paper.jpg")}
         >
-
+          <View style={{ flex: 1, flexDirection: "column" }}>
+            <View style={{ flex: 660 }} />
+            <View style={{ flex: 67 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 140 }} />
+                <View style={{ flex: 193 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_LastLetter()}
+                  />
+                    <Image
+                      style={styles.btn}
+                      resizeMode="contain"
+                      source={require("../img/btns/o__LastLetter.png")}
+                    />
+                </View>
+                <View style={{ flex: 678 }} />
+                <View style={{ flex: 193 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_NextLetter()}
+                  />
+                    <Image
+                      style={styles.btn}
+                      resizeMode="contain"
+                      source={require("../img/btns/o_NextLetter.png")}
+                    />
+                </View>
+                <View style={{ flex: 140 }} />
+              </View>
+            </View>
+          </View>
         </ImageBackground>
+
       </View>
     );
   }
@@ -43,6 +98,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 60 : 0
+  },
+  textContainer: {
+    flex: 5,
+    flexDirection: "row"
+  },
+  btnWrapper: {
+    flex: 1,
+    flexDirection: 'column-reverse'
+  },
+  btn: {
+    flex: 1,
+
   }
 });
 
