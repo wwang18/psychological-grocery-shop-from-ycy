@@ -50,38 +50,38 @@ class LetterPaper extends Component {
         source={require("./../img/replying.webp")}
       />
     ) : (
-      <ImageBackground
-        style={styles.container}
-        source={require("./../img/bg/letter_paper.jpg")}
-      >
-        <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
-          onPress={() => this._handleSendOut()}>
-          <Image
-            style={styles.btn}
-            resizeMode="contain"
-            source={require('../img/btns/letterpaper_send.png')}
-          />
-        </TouchableHighlight>
-        <View style={styles.textContainer}>
-          <TextInput
-            style={styles.text}
-            multiline={true}
-            numberOfLines={8}
-            placeholder="超越亲启..."
-            onChangeText={text => this.setState({ text })}
-            value={this.state.text}
-          />
-        </View>
-        <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
-          onPress={() => this._onPressButton_back()}>
-          <Image
-            style={styles.btn}
-            resizeMode="contain"
-            source={require('../img/btns/letterpaper_back.png')}
+        <ImageBackground
+          style={styles.container}
+          source={require("./../img/bg/letter_paper.jpg")}
+        >
+          <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+            onPress={() => this._handleSendOut()}>
+            <Image
+              style={styles.btn}
+              resizeMode="contain"
+              source={require('../img/btns/letterpaper_send.png')}
             />
-        </TouchableHighlight>
-      </ImageBackground>
-    );
+          </TouchableHighlight>
+          <View style={styles.textContainer}>
+            <TextInput
+              style={styles.text}
+              multiline={true}
+              numberOfLines={8}
+              placeholder="超越亲启..."
+              onChangeText={text => this.setState({ text })}
+              value={this.state.text}
+            />
+          </View>
+          <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+            onPress={() => this._onPressButton_back()}>
+            <Image
+              style={styles.btn}
+              resizeMode="contain"
+              source={require('../img/btns/letterpaper_back.png')}
+            />
+          </TouchableHighlight>
+        </ImageBackground>
+      );
   }
 }
 

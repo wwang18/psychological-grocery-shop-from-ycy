@@ -14,33 +14,37 @@ import {
 } from "react-native";
 
 class PageGiftCardView_p extends Component {
+  constructor(props) {
+    super();
+    this.param = props.navigation.getParam("data") || {};
+  }
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
 
-  componentWillMount() {
-    let { navigation } = this.props;
-    this.itemId = navigation.getParam("itemId");
-    let mail_cards = {
-      0: require("./../img/giftcards/giftCards/Image01.webp"),
-      1: require("./../img/giftcards/giftCards/Image02.webp"),
-      2: require("./../img/giftcards/giftCards/Image03.webp"),
-      3: require("./../img/giftcards/giftCards/Image04.webp"),
-      4: require("./../img/giftcards/giftCards/Image05.webp"),
-      5: require("./../img/giftcards/giftCards/Image06.webp"),
-      6: require("./../img/giftcards/giftCards/Image07.webp"),
-      7: require("./../img/giftcards/giftCards/Image08.webp"),
-      8: require("./../img/giftcards/giftCards/Image09.webp"),
-      9: require("./../img/giftcards/giftCards/Image10.webp"),
-      10: require("./../img/giftcards/giftCards/Image11.webp"),
-      11: require("./../img/giftcards/giftCards/Image12.webp"),
-      12: require("./../img/giftcards/giftCards/Image13.webp"),
-      13: require("./../img/giftcards/giftCards/Image14.webp"),
-      14: require("./../img/giftcards/giftCards/Image15.webp"),
-      15: require("./../img/giftcards/giftCards/Image16.webp")
-    };
-    this.image = mail_cards[this.itemId];
-  }
+  // componentWillMount() {
+  //   let { navigation } = this.props;
+  //   this.itemId = navigation.getParam("itemId");
+  //   let mail_cards = {
+  //     0: require("./../img/giftcards/giftCards/Image01.webp"),
+  //     1: require("./../img/giftcards/giftCards/Image02.webp"),
+  //     2: require("./../img/giftcards/giftCards/Image03.webp"),
+  //     3: require("./../img/giftcards/giftCards/Image04.webp"),
+  //     4: require("./../img/giftcards/giftCards/Image05.webp"),
+  //     5: require("./../img/giftcards/giftCards/Image06.webp"),
+  //     6: require("./../img/giftcards/giftCards/Image07.webp"),
+  //     7: require("./../img/giftcards/giftCards/Image08.webp"),
+  //     8: require("./../img/giftcards/giftCards/Image09.webp"),
+  //     9: require("./../img/giftcards/giftCards/Image10.webp"),
+  //     10: require("./../img/giftcards/giftCards/Image11.webp"),
+  //     11: require("./../img/giftcards/giftCards/Image12.webp"),
+  //     12: require("./../img/giftcards/giftCards/Image13.webp"),
+  //     13: require("./../img/giftcards/giftCards/Image14.webp"),
+  //     14: require("./../img/giftcards/giftCards/Image15.webp"),
+  //     15: require("./../img/giftcards/giftCards/Image16.webp")
+  //   };
+  //   this.image = mail_cards[this.itemId];
+  // }
 
   render() {
     return (
@@ -55,7 +59,7 @@ class PageGiftCardView_p extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={this.image}
+          source={this.param.big}
         >
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1200 }} />
@@ -67,11 +71,11 @@ class PageGiftCardView_p extends Component {
                     style={{ flex: 1 }}
                     onPress={() => this._onPressButton_back()}
                   >
-                  <Image
-                    style={styles.button}
-                    resizeMode="contain"
-                    source={require("../img/PQS/back.png")}
-                  />
+                    <Image
+                      style={styles.button}
+                      resizeMode="contain"
+                      source={require("../img/PQS/back.png")}
+                    />
                   </TouchableOpacity>
                 </View>
                 <View style={{ flex: 29 }} />

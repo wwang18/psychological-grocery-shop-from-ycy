@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import RNExitApp from "react-native-exit-app";
 import SplashScreen from "react-native-splash-screen";
+import { initCardStore } from '../components/CardStore';
 
 async function requestCameraPermission() {
   try {
@@ -27,16 +28,17 @@ async function requestCameraPermission() {
   }
 }
 
-type Props = {};
+//type Props = {};
 
 class Home extends Component {
   componentDidMount() {
+    initCardStore();
     SplashScreen.hide();
     requestCameraPermission();
   }
 
   _handleButtonClick = btn => {
-    switch(btn) {
+    switch (btn) {
       case 'letter':
         return this.props.navigation.push("MailBox_i");
       case 'store':

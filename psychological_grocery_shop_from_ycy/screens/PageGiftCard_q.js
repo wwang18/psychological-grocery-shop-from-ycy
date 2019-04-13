@@ -16,54 +16,37 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from "react-native";
+import HOC from './ListHOC';
 
-class PageGiftCard_p extends Component {
-  constructor() {
-    super();
-    this.state = {
-      dataSource: {}
-    };
-  }
-
+class PageGiftCard_q extends Component {
   _handleButtonClick = item => {
-    item.src && this.props.navigation.push("GiftCardView_q", { itemId: item.id });
-  };
-
+    this.props.navigation.push("GiftCardView_q", { data: item });
+  }
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
 
-  componentWillMount() {
-    let first_card = [
-      { id: 0, src: require("./../img/giftcards/giftCardsSmall/Image01.webp") },
-      { id: 1, src: require("./../img/giftcards/giftCardsSmall/Image02.webp") },
-      { id: 2, src: require("./../img/giftcards/giftCardsSmall/Image03.webp") },
-      { id: 3, src: require("./../img/giftcards/giftCardsSmall/Image04.webp") },
-      { id: 4, src: require("./../img/giftcards/giftCardsSmall/Image05.webp") },
-      { id: 5, src: require("./../img/giftcards/giftCardsSmall/Image06.webp") },
-      { id: 6, src: require("./../img/giftcards/giftCardsSmall/Image07.webp") },
-      { id: 7, src: require("./../img/giftcards/giftCardsSmall/Image08.webp") },
-      { id: 8, src: require("./../img/giftcards/giftCardsSmall/Image09.webp") },
-      { id: 9, src: require("./../img/giftcards/giftCardsSmall/Image10.webp") },
-      { id: 10, src: require("./../img/giftcards/giftCardsSmall/Image11.webp") },
-      { id: 11, src: require("./../img/giftcards/giftCardsSmall/Image12.webp") },
-      { id: 12, src: require("./../img/giftcards/giftCardsSmall/Image13.webp") },
-      { id: 13, src: require("./../img/giftcards/giftCardsSmall/Image14.webp") },
-      { id: 14, src: require("./../img/giftcards/giftCardsSmall/Image15.webp") },
-      { id: 15, src: require("./../img/giftcards/giftCardsSmall/Image16.webp") }
-    ];
-    if(first_card.length%3 === 2) first_card.push({ id: first_card.length, src: '' }) //维持最后一排样式
-    this.image = first_card;
-    
-  }
+  // componentDidMount() {
+  //   var that = this;
+  //   let items = Array.apply(null, Array(36)).map((v, i) => {
+  //     return { id: i, src: "http://placehold.it/200x200?text=" + (i + 1) };
+  //   });
+  //   that.setState({
+  //     dataSource: items
+  //   });
+  // }
 
   _renderItem = ({ item }) => (
-    <View style={{ flex: 1, flexDirection: "column", margin: 10 }}>
-      <TouchableWithoutFeedback onPress={() => this._handleButtonClick(item)}>
+    <View
+      style={{ flex: 1, flexDirection: "column", margin: 10 }}
+    >
+      <TouchableWithoutFeedback
+        onPress={item.unlocked ? () => { this._handleButtonClick(item) } : null}
+      >
         <Image
           style={styles.imageThumbnail}
           resizeMode="contain"
-          source={item.src ? item.src : null}
+          source={item.unlocked ? item.small : this.props.lockedImg}
         />
       </TouchableWithoutFeedback>
     </View>
@@ -89,7 +72,7 @@ class PageGiftCard_p extends Component {
               <Image
                 style={styles.header}
                 resizeMode="contain"
-                source={require("./../img/PQS/title_GiftCard.png")}
+                source={require('./../img/PQS/title_GiftCard.png')}
               />
             </View>
             <View style={{ flex: 30 }} />
@@ -98,7 +81,7 @@ class PageGiftCard_p extends Component {
                 <View style={{ flex: 250 }} />
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
-                    data={this.image}
+                    data={this.props.dataSource}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column
@@ -159,4 +142,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PageGiftCard_p;
+export default HOC(PageGiftCard_q, 'gift');
