@@ -23,6 +23,7 @@ import MinisMachine from '../MinisMachine/U';
 import U1 from '../MinisMachine/U1';
 import U2 from '../MinisMachine/U2';
 import Phonograph from '../Phonograph/V';
+import MailBox_i from '../PageMailBox_i.js';
 
 const backgroundMusic = require('../../audio/ThinkWild.mp3');
 
@@ -34,7 +35,7 @@ export class InStoreView extends React.Component {
     currentPage: pageIds.storeMain,
     showSettings: false,
     settings: {
-      backgroundMusic: true,
+      backgroundMusic: false,
     }
   }
 
@@ -60,7 +61,8 @@ export class InStoreView extends React.Component {
       [pageIds.minisMachine]: <MinisMachine funcs={funcs}></MinisMachine>,
       [pageIds.U1]: <U1 funcs={funcs}></U1>,
       [pageIds.U2]: <U2 funcs={funcs}></U2>,
-      [pageIds.phonograph]: <Phonograph funcs={funcs}></Phonograph>
+      [pageIds.phonograph]: <Phonograph funcs={funcs}></Phonograph>,
+      [pageIds.mailBox]: <MailBox_i funcs={funcs}></MailBox_i>
     };
   }
 

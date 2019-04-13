@@ -1,5 +1,5 @@
 export default {
-  namespace: 'postbox', 
+  namespace: 'mailbox', 
   state: {
     letterList: [], // 信件list
   },

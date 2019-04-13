@@ -102,7 +102,7 @@ class F17 extends React.Component {
       inputRange: [0, 1],
       outputRange: ['0deg', '180deg']
     });
-
+    const { redirectTo } = this.props.funcs;
     return (
       <ImageBackground
         resizeMode="stretch"
@@ -138,6 +138,16 @@ class F17 extends React.Component {
             </TouchableOpacity>
           </Animated.View>
         }
+        <TouchableOpacity
+          style={{ position: 'absolute', bottom: 20, right: 50 }}
+          onPress={() => redirectTo(pageIds.storeMain)}
+        >
+          <Image
+            style={styles.button}
+            resizeMode="contain"
+            source={require('../../img/btns/n_Return.png')}
+          />
+        </TouchableOpacity>
       </ImageBackground>
     )
   }

@@ -39,9 +39,9 @@ class PageMailBox_i extends Component {
           animated={true}
         />
         <ImageBackground
-          resizeMode="cover"
+          resizeMode="stretch" // ios下over会使图片部分显示不了
           style={styles.container}
-          source={this.image}
+          source={require("./../img/post_office.gif")}
         >
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 184 }} />

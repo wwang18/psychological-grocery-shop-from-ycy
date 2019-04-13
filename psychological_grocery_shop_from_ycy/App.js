@@ -21,7 +21,7 @@ import instoreRoutes from './screens/InStore/InStoreRouter';
 
 import dva from './utils/dva';
 import NavigationService from "./utils/navigationService";
-import postbox from './models/postbox'; // 邮箱模块数据
+import mailbox from './models/mailBox'; // 邮箱模块数据
 
 const AppNavigator = createStackNavigator(
   {
@@ -132,7 +132,7 @@ const AppNavigator = createStackNavigator(
 const Router = createAppContainer(AppNavigator); //所有路由
 
 const app = dva({
-  models: [postbox], // 各个模块数据list
+  models: [mailbox], // 各个模块数据list
   onError(e) {
     if (__DEV__) console.log('onError', e);
   },

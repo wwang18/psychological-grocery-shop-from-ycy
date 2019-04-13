@@ -119,7 +119,8 @@ class PageReturnedMailCard_s extends Component {
         id: 27,
         src: require("./../img/O/returnedMailCard_small/Image57.webp")
       },
-      { id: 28, src: require("./../img/O/returnedMailCard_small/Image59.webp") }
+      { id: 28, src: require("./../img/O/returnedMailCard_small/Image59.webp") },
+      { id: 29, src: '' } // 保证最后一行的样式
     ];
     that.setState({
       dataSource: first_card
