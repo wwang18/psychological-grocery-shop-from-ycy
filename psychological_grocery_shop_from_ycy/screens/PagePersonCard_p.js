@@ -36,33 +36,33 @@ class PagePersonCard_p extends Component {
   componentWillMount() {
     var that = this;
     let first_card = [
-      { id: 0, src: require("./../img/O/personalCard_small/Image01.webp") },
-      { id: 1, src: require("./../img/O/personalCard_small/Image02.webp") },
-      { id: 2, src: require("./../img/O/personalCard_small/Image03.webp") },
-      { id: 3, src: require("./../img/O/personalCard_small/Image04.webp") },
-      { id: 4, src: require("./../img/O/personalCard_small/Image05.webp") },
-      { id: 5, src: require("./../img/O/personalCard_small/Image06.webp") },
-      { id: 6, src: require("./../img/O/personalCard_small/Image07.webp") },
-      { id: 7, src: require("./../img/O/personalCard_small/Image08.webp") },
-      { id: 8, src: require("./../img/O/personalCard_small/Image09.webp") },
-      { id: 9, src: require("./../img/O/personalCard_small/Image10.webp") },
-      { id: 10, src: require("./../img/O/personalCard_small/Image11.webp") },
-      { id: 11, src: require("./../img/O/personalCard_small/Image12.webp") },
-      { id: 12, src: require("./../img/O/personalCard_small/Image13.webp") },
-      { id: 13, src: require("./../img/O/personalCard_small/Image14.webp") },
-      { id: 14, src: require("./../img/O/personalCard_small/Image15.webp") },
-      { id: 15, src: require("./../img/O/personalCard_small/Image16.webp") },
-      { id: 16, src: require("./../img/O/personalCard_small/Image17.webp") },
-      { id: 17, src: require("./../img/O/personalCard_small/Image18.webp") },
-      { id: 18, src: require("./../img/O/personalCard_small/Image19.webp") },
-      { id: 19, src: require("./../img/O/personalCard_small/Image20.webp") },
-      { id: 20, src: require("./../img/O/personalCard_small/Image21.webp") },
-      { id: 21, src: require("./../img/O/personalCard_small/Image22.webp") }
+      { id: 0, src: require("./../img/personalCards/personalCard_small/Image01.webp") },
+      { id: 1, src: require("./../img/personalCards/personalCard_small/Image02.webp") },
+      { id: 2, src: require("./../img/personalCards/personalCard_small/Image03.webp") },
+      { id: 3, src: require("./../img/personalCards/personalCard_small/Image04.webp") },
+      { id: 4, src: require("./../img/personalCards/personalCard_small/Image05.webp") },
+      { id: 5, src: require("./../img/personalCards/personalCard_small/Image06.webp") },
+      { id: 6, src: require("./../img/personalCards/personalCard_small/Image07.webp") },
+      { id: 7, src: require("./../img/personalCards/personalCard_small/Image08.webp") },
+      { id: 8, src: require("./../img/personalCards/personalCard_small/Image09.webp") },
+      { id: 9, src: require("./../img/personalCards/personalCard_small/Image10.webp") },
+      { id: 10, src: require("./../img/personalCards/personalCard_small/Image11.webp") },
+      { id: 11, src: require("./../img/personalCards/personalCard_small/Image12.webp") },
+      { id: 12, src: require("./../img/personalCards/personalCard_small/Image13.webp") },
+      { id: 13, src: require("./../img/personalCards/personalCard_small/Image14.webp") },
+      { id: 14, src: require("./../img/personalCards/personalCard_small/Image15.webp") },
+      { id: 15, src: require("./../img/personalCards/personalCard_small/Image16.webp") },
+      { id: 16, src: require("./../img/personalCards/personalCard_small/Image17.webp") },
+      { id: 17, src: require("./../img/personalCards/personalCard_small/Image18.webp") },
+      { id: 18, src: require("./../img/personalCards/personalCard_small/Image19.webp") },
+      { id: 19, src: require("./../img/personalCards/personalCard_small/Image20.webp") },
+      { id: 20, src: require("./../img/personalCards/personalCard_small/Image21.webp") },
+      { id: 21, src: require("./../img/personalCards/personalCard_small/Image22.webp") }
     ];
-
-    that.setState({
-      dataSource: first_card
-    });
+    this.image = first_card;
+    // that.setState({
+    //   dataSource: first_card
+    // });
   }
 
   _renderItem = ({ item }) => (
@@ -106,7 +106,7 @@ class PagePersonCard_p extends Component {
                 <View style={{ flex: 250 }} />
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
-                    data={this.state.dataSource}
+                    data={this.image}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column
