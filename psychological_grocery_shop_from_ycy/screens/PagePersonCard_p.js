@@ -57,9 +57,10 @@ class PagePersonCard_p extends Component {
       { id: 18, src: require("./../img/O/personalCard_small/Image19.webp") },
       { id: 19, src: require("./../img/O/personalCard_small/Image20.webp") },
       { id: 20, src: require("./../img/O/personalCard_small/Image21.webp") },
-      { id: 21, src: require("./../img/O/personalCard_small/Image22.webp") }
+      { id: 21, src: require("./../img/O/personalCard_small/Image22.webp") },
+      { id: 22, src: require("./../img/O/personalCard_small/Image22.webp") }
     ];
-
+    if(first_card.length%3 === 2) first_card.push({ id: first_card.length, src: '' }) //维持最后一排样式
     that.setState({
       dataSource: first_card
     });
@@ -71,7 +72,7 @@ class PagePersonCard_p extends Component {
         <Image
           style={styles.imageThumbnail}
           resizeMode="contain"
-          source={item.src}
+          source={item.src ? item.src : null}
         />
       </TouchableWithoutFeedback>
     </View>

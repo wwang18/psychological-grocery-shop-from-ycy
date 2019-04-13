@@ -133,7 +133,7 @@ class PageReturnedMailCard_s extends Component {
         <Image
           style={styles.imageThumbnail}
           resizeMode="contain"
-          source={item.src}
+          source={item.src ? item.src : null} 
         />
       </TouchableWithoutFeedback>
     </View>

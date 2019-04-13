@@ -62,7 +62,7 @@ export class InStoreView extends React.Component {
       [pageIds.U1]: <U1 funcs={funcs}></U1>,
       [pageIds.U2]: <U2 funcs={funcs}></U2>,
       [pageIds.phonograph]: <Phonograph funcs={funcs}></Phonograph>,
-      [pageIds.mailBox]: <MailBox_i funcs={funcs}></MailBox_i>
+      [pageIds.mailBox]: <MailBox_i funcs={funcs}/>
     };
   }
 
