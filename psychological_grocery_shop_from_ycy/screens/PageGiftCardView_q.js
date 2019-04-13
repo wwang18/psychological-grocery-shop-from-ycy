@@ -9,6 +9,7 @@ import {
   Button,
   StatusBar,
   Alert,
+  Image,
   TouchableOpacity
 } from "react-native";
 
@@ -21,30 +22,24 @@ class PageGiftCardView_p extends Component {
     let { navigation } = this.props;
     this.itemId = navigation.getParam("itemId");
     let mail_cards = {
-      0: require("./../img/personalCards/personalCard/Image01.webp"),
-      1: require("./../img/personalCards/personalCard/Image05.webp"),
-      2: require("./../img/personalCards/personalCard/Image09.webp"),
-      3: require("./../img/personalCards/personalCard/Image13.webp"),
-      4: require("./../img/personalCards/personalCard/Image17.webp"),
-      5: require("./../img/personalCards/personalCard/Image21.webp"),
-      6: require("./../img/personalCards/personalCard/Image25.webp"),
-      7: require("./../img/personalCards/personalCard/Image29.webp"),
-      8: require("./../img/personalCards/personalCard/Image33.webp"),
-      9: require("./../img/personalCards/personalCard/Image37.webp"),
-      10: require("./../img/personalCards/personalCard/Image41.webp"),
-      11: require("./../img/personalCards/personalCard/Image45.webp"),
-      12: require("./../img/personalCards/personalCard/Image49.webp"),
-      13: require("./../img/personalCards/personalCard/Image53.webp"),
-      14: require("./../img/personalCards/personalCard/Image57.webp"),
-      15: require("./../img/personalCards/personalCard/Image61.webp"),
-      16: require("./../img/personalCards/personalCard/Image65.webp"),
-      17: require("./../img/personalCards/personalCard/Image69.webp"),
-      18: require("./../img/personalCards/personalCard/Image73.webp"),
-      19: require("./../img/personalCards/personalCard/Image77.webp"),
-      20: require("./../img/personalCards/personalCard/Image81.webp"),
-      21: require("./../img/personalCards/personalCard/Image85.webp")
+      0: require("./../img/giftcards/giftCards/Image01.webp"),
+      1: require("./../img/giftcards/giftCards/Image02.webp"),
+      2: require("./../img/giftcards/giftCards/Image03.webp"),
+      3: require("./../img/giftcards/giftCards/Image04.webp"),
+      4: require("./../img/giftcards/giftCards/Image05.webp"),
+      5: require("./../img/giftcards/giftCards/Image06.webp"),
+      6: require("./../img/giftcards/giftCards/Image07.webp"),
+      7: require("./../img/giftcards/giftCards/Image08.webp"),
+      8: require("./../img/giftcards/giftCards/Image09.webp"),
+      9: require("./../img/giftcards/giftCards/Image10.webp"),
+      10: require("./../img/giftcards/giftCards/Image11.webp"),
+      11: require("./../img/giftcards/giftCards/Image12.webp"),
+      12: require("./../img/giftcards/giftCards/Image13.webp"),
+      13: require("./../img/giftcards/giftCards/Image14.webp"),
+      14: require("./../img/giftcards/giftCards/Image15.webp"),
+      15: require("./../img/giftcards/giftCards/Image16.webp")
     };
-    this.image = mail_cards[this.itemId]
+    this.image = mail_cards[this.itemId];
   }
 
   render() {
@@ -71,7 +66,13 @@ class PageGiftCardView_p extends Component {
                   <TouchableOpacity
                     style={{ flex: 1 }}
                     onPress={() => this._onPressButton_back()}
+                  >
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require("../img/PQS/back.png")}
                   />
+                  </TouchableOpacity>
                 </View>
                 <View style={{ flex: 29 }} />
               </View>
@@ -86,10 +87,15 @@ class PageGiftCardView_p extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 60 : 0
+  },
+  button: {
+    width: null,
+    height: null,
+    flex: 1
   }
 });
 

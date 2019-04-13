@@ -13,10 +13,11 @@ import {
   FlatList,
   ScrollView,
   TouchableWithoutFeedback,
+  TouchableHighlight,
   TouchableOpacity
 } from "react-native";
 
-class PageGiftCard_q extends Component {
+class PageGiftCard_p extends Component {
   constructor() {
     super();
     this.state = {
@@ -33,6 +34,7 @@ class PageGiftCard_q extends Component {
   }
 
   componentWillMount() {
+    var that = this;
     let first_card = [
       { id: 0, src: require("./../img/giftcards/giftCardsSmall/Image01.webp") },
       { id: 1, src: require("./../img/giftcards/giftCardsSmall/Image02.webp") },
@@ -44,29 +46,14 @@ class PageGiftCard_q extends Component {
       { id: 7, src: require("./../img/giftcards/giftCardsSmall/Image08.webp") },
       { id: 8, src: require("./../img/giftcards/giftCardsSmall/Image09.webp") },
       { id: 9, src: require("./../img/giftcards/giftCardsSmall/Image10.webp") },
-      {
-        id: 10,
-        src: require("./../img/giftcards/giftCardsSmall/Image11.webp")
-      },
-      {
-        id: 11,
-        src: require("./../img/giftcards/giftCardsSmall/Image12.webp")
-      },
-      {
-        id: 12,
-        src: require("./../img/giftcards/giftCardsSmall/Image13.webp")
-      },
-      {
-        id: 13,
-        src: require("./../img/giftcards/giftCardsSmall/Image14.webp")
-      },
-      {
-        id: 14,
-        src: require("./../img/giftcards/giftCardsSmall/Image15.webp")
-      },
+      { id: 10, src: require("./../img/giftcards/giftCardsSmall/Image11.webp") },
+      { id: 11, src: require("./../img/giftcards/giftCardsSmall/Image12.webp") },
+      { id: 12, src: require("./../img/giftcards/giftCardsSmall/Image13.webp") },
+      { id: 13, src: require("./../img/giftcards/giftCardsSmall/Image14.webp") },
+      { id: 14, src: require("./../img/giftcards/giftCardsSmall/Image15.webp") },
       { id: 15, src: require("./../img/giftcards/giftCardsSmall/Image16.webp") }
     ];
-    this.images = first_card;
+    this.image = first_card;
     // that.setState({
     //   dataSource: first_card
     // });
@@ -74,9 +61,7 @@ class PageGiftCard_q extends Component {
 
   _renderItem = ({ item }) => (
     <View style={{ flex: 1, flexDirection: "column", margin: 10 }}>
-      <TouchableWithoutFeedback
-        onPress={(item, index) => this._handleButtonClick(item)}
-      >
+      <TouchableWithoutFeedback onPress={() => this._handleButtonClick(item)}>
         <Image
           style={styles.imageThumbnail}
           resizeMode="contain"
@@ -115,7 +100,7 @@ class PageGiftCard_q extends Component {
                 <View style={{ flex: 250 }} />
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
-                    data={this.images}
+                    data={this.image}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column
@@ -123,7 +108,7 @@ class PageGiftCard_q extends Component {
                     keyExtractor={(item, index) => index}
                   />
                 </View>
-                <View style={{ flex: 254 }} />
+                <View style={{ flex: 250 }} />
               </View>
             </View>
             <View style={{ flex: 80 }}>
@@ -176,4 +161,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PageGiftCard_q;
+export default PageGiftCard_p;
