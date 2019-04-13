@@ -18,6 +18,7 @@ import PageGiftCard_o2 from "./screens/PageGiftCard_o2";
 import PageBackPage_o3 from "./screens/PageBackPage_o3";
 import PageStoredLetter_o4 from "./screens/PageStoredLetter_o4";
 import instoreRoutes from './screens/InStore/InStoreRouter';
+import PageTeamIntro from "./screens/PageTeamIntro";
 
 import dva from './utils/dva';
 import NavigationService from "./utils/navigationService";
@@ -121,7 +122,12 @@ const AppNavigator = createStackNavigator(
         header: null
       }
     },
-
+    TeamIntro: {
+      screen: PageTeamIntro,
+      navigationOptions: {
+        header: null
+      }
+    },
     ...instoreRoutes,
   },
   {

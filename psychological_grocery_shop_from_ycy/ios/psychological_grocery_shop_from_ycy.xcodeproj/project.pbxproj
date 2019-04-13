@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -39,6 +38,7 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		3FF025E32261CDBC000B21B9 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF025E22261CDBC000B21B9 /* WebP.framework */; };
 		3FF025E52261CDE0000B21B9 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF025E42261CDE0000B21B9 /* WebP.framework */; };
+		4AB4343A1A4D4428A04E1EFC /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F8585AE14F43EFB54C3BCA /* libRNFS.a */; };
 		6C8C312A8B8045F1B7259A18 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F5119D869D4B5AAF8B33FC /* libRNGestureHandler-tvOS.a */; };
 		7A5E33B1FAD34ACAB0EBAA36 /* libRNSoundLevel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 353E3F7CA39643D8B4D01A62 /* libRNSoundLevel.a */; };
 		7AF61439EAF943B194455B3A /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C824EE36F87641D38291F9F1 /* libRCTOrientation.a */; };
@@ -264,6 +264,20 @@
 			remoteGlobalIDString = 3D3CD9321DE5FBEE00167DC4;
 			remoteInfo = "cxxreact-tvOS";
 		};
+		3F6B8E3822623F0900179BA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 972AD013E9924AF5936AE969 /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
+			remoteInfo = RNFS;
+		};
+		3F6B8E3A22623F0900179BA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 972AD013E9924AF5936AE969 /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6456441F1EB8DA9100672408;
+			remoteInfo = "RNFS-tvOS";
+		};
 		3FF025B12261CCC7000B21B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -431,7 +445,9 @@
 		74A18704E2DA4BA6AC5FC85C /* ReactNativeWebp.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeWebp.xcodeproj; path = "../node_modules/react-native-webp/ReactNativeWebp.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		91F8585AE14F43EFB54C3BCA /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
 		92AAC892C1BE4248802B213C /* libReactNativeWebp.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeWebp.a; sourceTree = "<group>"; };
+		972AD013E9924AF5936AE969 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		C824EE36F87641D38291F9F1 /* libRCTOrientation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOrientation.a; sourceTree = "<group>"; };
 		D7472665B4E3474FBB4C38D8 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
@@ -476,6 +492,7 @@
 				B75AE63C69554FB68C923CB0 /* libRCTVideo.a in Frameworks */,
 				3FF025E52261CDE0000B21B9 /* WebP.framework in Frameworks */,
 				EC2E4E967C20496183658C6C /* libReactNativeWebp.a in Frameworks */,
+				4AB4343A1A4D4428A04E1EFC /* libRNFS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +650,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3F6B8E3422623F0900179BA2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F6B8E3922623F0900179BA2 /* libRNFS.a */,
+				3F6B8E3B22623F0900179BA2 /* libRNFS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3FF0258B2261CCC4000B21B9 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,6 +671,7 @@
 				5AE395F2256B43EAA90AEDBA /* libRCTVideo.a */,
 				92AAC892C1BE4248802B213C /* libReactNativeWebp.a */,
 				38F5119D869D4B5AAF8B33FC /* libRNGestureHandler-tvOS.a */,
+				91F8585AE14F43EFB54C3BCA /* libRNFS.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -755,6 +782,7 @@
 				44CE4C3264C94DE5AF6F5F13 /* RNSoundLevel.xcodeproj */,
 				3D91234A68B7452A84C47D8F /* RCTVideo.xcodeproj */,
 				74A18704E2DA4BA6AC5FC85C /* ReactNativeWebp.xcodeproj */,
+				972AD013E9924AF5936AE969 /* RNFS.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -981,6 +1009,10 @@
 					ProjectRef = 3BE288DFF6E84EFF98931046 /* RNExitApp.xcodeproj */;
 				},
 				{
+					ProductGroup = 3F6B8E3422623F0900179BA2 /* Products */;
+					ProjectRef = 972AD013E9924AF5936AE969 /* RNFS.xcodeproj */;
+				},
+				{
 					ProductGroup = 3FF025BD2261CCCA000B21B9 /* Products */;
 					ProjectRef = 026FBD40F732427EA22BACEC /* RNGestureHandler.xcodeproj */;
 				},
@@ -1198,6 +1230,20 @@
 			fileType = archive.ar;
 			path = libcxxreact.a;
 			remoteRef = 3DAD3EAA1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3F6B8E3922623F0900179BA2 /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = 3F6B8E3822623F0900179BA2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3F6B8E3B22623F0900179BA2 /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = 3F6B8E3A22623F0900179BA2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3FF025B22261CCC7000B21B9 /* libjsi.a */ = {
@@ -1473,6 +1519,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-sound-level/**",
 					"$(SRCROOT)..\node_modules\neact-native-videoios/**",
 					"$(SRCROOT)/../node_modules/react-native-webp/**",
+					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 				);
 				INFOPLIST_FILE = psychological_grocery_shop_from_ycyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1511,6 +1558,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-sound-level/**",
 					"$(SRCROOT)..\node_modules\neact-native-videoios/**",
 					"$(SRCROOT)/../node_modules/react-native-webp/**",
+					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 				);
 				INFOPLIST_FILE = psychological_grocery_shop_from_ycyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1551,6 +1599,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-sound-level/**",
 					"$(SRCROOT)..\node_modules\neact-native-videoios/**",
 					"$(SRCROOT)/../node_modules/react-native-webp/**",
+					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 				);
 				INFOPLIST_FILE = psychological_grocery_shop_from_ycy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1579,6 +1628,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-sound-level/**",
 					"$(SRCROOT)..\node_modules\neact-native-videoios/**",
 					"$(SRCROOT)/../node_modules/react-native-webp/**",
+					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 				);
 				INFOPLIST_FILE = psychological_grocery_shop_from_ycy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1613,6 +1663,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-sound-level/**",
 					"$(SRCROOT)..\node_modules\neact-native-videoios/**",
 					"$(SRCROOT)/../node_modules/react-native-webp/**",
+					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 				);
 				INFOPLIST_FILE = "psychological_grocery_shop_from_ycy-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1659,6 +1710,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-sound-level/**",
 					"$(SRCROOT)..\node_modules\neact-native-videoios/**",
 					"$(SRCROOT)/../node_modules/react-native-webp/**",
+					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 				);
 				INFOPLIST_FILE = "psychological_grocery_shop_from_ycy-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1704,6 +1756,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-sound-level/**",
 					"$(SRCROOT)..\node_modules\neact-native-videoios/**",
 					"$(SRCROOT)/../node_modules/react-native-webp/**",
+					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 				);
 				INFOPLIST_FILE = "psychological_grocery_shop_from_ycy-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1749,6 +1802,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-sound-level/**",
 					"$(SRCROOT)..\node_modules\neact-native-videoios/**",
 					"$(SRCROOT)/../node_modules/react-native-webp/**",
+					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 				);
 				INFOPLIST_FILE = "psychological_grocery_shop_from_ycy-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
