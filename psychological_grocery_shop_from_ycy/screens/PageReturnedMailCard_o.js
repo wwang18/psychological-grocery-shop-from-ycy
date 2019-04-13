@@ -24,26 +24,8 @@ class PageReturnedMailCard_o extends Component {
     this.props.navigation.navigate(topic);
   };
 
-//<<<<<<< HEAD
-  readLetter() {
-//     Alert.alert(this.state.text);
-     const path = RNFS.DocumentDirectoryPath + '/test.txt';
-        return RNFS.readFile(path)
-          .then((result) => {
-            console.log(result);
 
-            this.setState({
-              readTxtResult: result,
-            })
-          })
-          .catch((err) => {
-            console.log(err.message);
-          });
 
-     Alert.alert(this.state.readTxtResult);
-     Alert.alert('I am reading!');
-     }
-//=======
   _handleButtonBackPage = itemId => {
     this.props.navigation.push("BackPage_o3", { itemId: itemId });
   }
@@ -212,7 +194,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "flex-end"
-  }
+  },
 });
 
 export default PageReturnedMailCard_o;

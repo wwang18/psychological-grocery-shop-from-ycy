@@ -24,7 +24,7 @@ class LetterPaper extends Component {
     // TODO
     this.setState({ replying: true });
     setTimeout(() => {
-          const path = RNFS.DocumentDirectoryPath + '/test.txt';
+          const path = RNFS.DocumentDirectoryPath + '/test.txt'; //data/user/0/com.p_g_s/files
              RNFS.writeFile(path,this.state.text, 'utf8')
                .then((success) => {
                    console.log('path',path);
@@ -32,9 +32,6 @@ class LetterPaper extends Component {
                .catch((err) =>{
                    console.log(err.message);
                 });
-
-        Alert.alert(path);
-//        Alert.alert(this.state.text);
 
         this.props.navigation.navigate("MailBox_i");
 
@@ -108,7 +105,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column-reverse'
   },
   btn: {
-    flex: 0.2,
+    flex: 1,
     width: null,
     height: null
   }
