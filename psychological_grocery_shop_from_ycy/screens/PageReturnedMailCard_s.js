@@ -121,9 +121,10 @@ class PageReturnedMailCard_s extends Component {
       },
       { id: 28, src: require("./../img/returnedMailCards/returnedMailCard_small/Image59.webp") }
     ];
-    that.setState({
-      dataSource: first_card
-    });
+    this.image = first_card;
+    // that.setState({
+    //   dataSource: first_card
+    // });
   }
 
   _renderItem = ({ item }) => (
@@ -167,7 +168,7 @@ class PageReturnedMailCard_s extends Component {
                 <View style={{ flex: 250 }} />
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
-                    data={this.state.dataSource}
+                    data={this.image}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column

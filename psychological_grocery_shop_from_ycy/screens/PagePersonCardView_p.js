@@ -20,7 +20,7 @@ class PagePersonCardView_p extends Component {
   componentWillMount() {
     let { navigation } = this.props;
     this.itemId = navigation.getParam("itemId");
-    let mail_cards = {
+    let personal_cards = {
       0: require("./../img/personalCards/personalCard/Image01.webp"),
       1: require("./../img/personalCards/personalCard/Image05.webp"),
       2: require("./../img/personalCards/personalCard/Image09.webp"),
@@ -44,7 +44,7 @@ class PagePersonCardView_p extends Component {
       20: require("./../img/personalCards/personalCard/Image81.webp"),
       21: require("./../img/personalCards/personalCard/Image85.webp")
     };
-    this.image = mail_cards[this.itemId]
+    this.image = personal_cards[this.itemId]
   }
 
   render() {
@@ -86,6 +86,8 @@ class PagePersonCardView_p extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
+    height: '100%',
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 60 : 0
   }

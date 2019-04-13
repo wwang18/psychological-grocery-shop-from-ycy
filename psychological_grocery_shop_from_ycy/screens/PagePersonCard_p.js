@@ -59,10 +59,10 @@ class PagePersonCard_p extends Component {
       { id: 20, src: require("./../img/personalCards/personalCard_small/Image21.webp") },
       { id: 21, src: require("./../img/personalCards/personalCard_small/Image22.webp") }
     ];
-
-    that.setState({
-      dataSource: first_card
-    });
+    this.image = first_card;
+    // that.setState({
+    //   dataSource: first_card
+    // });
   }
 
   _renderItem = ({ item }) => (
@@ -106,7 +106,7 @@ class PagePersonCard_p extends Component {
                 <View style={{ flex: 250 }} />
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
-                    data={this.state.dataSource}
+                    data={this.image}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column
