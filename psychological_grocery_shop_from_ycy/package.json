@@ -32,6 +32,7 @@
     "babel-jest": "24.1.0",
     "jest": "24.1.0",
     "metro-react-native-babel-preset": "0.53.0",
+    "react-devtools": "^3.6.1",
     "react-test-renderer": "16.6.3"
   },
   "jest": {
