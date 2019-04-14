@@ -22,30 +22,6 @@ class PageGiftCardView_p extends Component {
     this.props.navigation.goBack();
   }
 
-  // componentWillMount() {
-  //   let { navigation } = this.props;
-  //   this.itemId = navigation.getParam("itemId");
-  //   let mail_cards = {
-  //     0: require("./../img/giftcards/giftCards/Image01.webp"),
-  //     1: require("./../img/giftcards/giftCards/Image02.webp"),
-  //     2: require("./../img/giftcards/giftCards/Image03.webp"),
-  //     3: require("./../img/giftcards/giftCards/Image04.webp"),
-  //     4: require("./../img/giftcards/giftCards/Image05.webp"),
-  //     5: require("./../img/giftcards/giftCards/Image06.webp"),
-  //     6: require("./../img/giftcards/giftCards/Image07.webp"),
-  //     7: require("./../img/giftcards/giftCards/Image08.webp"),
-  //     8: require("./../img/giftcards/giftCards/Image09.webp"),
-  //     9: require("./../img/giftcards/giftCards/Image10.webp"),
-  //     10: require("./../img/giftcards/giftCards/Image11.webp"),
-  //     11: require("./../img/giftcards/giftCards/Image12.webp"),
-  //     12: require("./../img/giftcards/giftCards/Image13.webp"),
-  //     13: require("./../img/giftcards/giftCards/Image14.webp"),
-  //     14: require("./../img/giftcards/giftCards/Image15.webp"),
-  //     15: require("./../img/giftcards/giftCards/Image16.webp")
-  //   };
-  //   this.image = mail_cards[this.itemId];
-  // }
-
   render() {
     return (
       <View style={{ flex: 1 }}>

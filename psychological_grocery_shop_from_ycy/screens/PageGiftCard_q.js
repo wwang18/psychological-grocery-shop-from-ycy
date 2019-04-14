@@ -26,16 +26,6 @@ class PageGiftCard_q extends Component {
     this.props.navigation.goBack();
   }
 
-  // componentDidMount() {
-  //   var that = this;
-  //   let items = Array.apply(null, Array(36)).map((v, i) => {
-  //     return { id: i, src: "http://placehold.it/200x200?text=" + (i + 1) };
-  //   });
-  //   that.setState({
-  //     dataSource: items
-  //   });
-  // }
-
   _renderItem = ({ item }) => (
     <View
       style={{ flex: 1, flexDirection: "column", margin: 10 }}
