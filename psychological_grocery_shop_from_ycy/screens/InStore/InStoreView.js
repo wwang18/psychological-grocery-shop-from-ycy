@@ -66,7 +66,7 @@ export class InStoreView extends React.Component {
       [pageIds.U2]: <U2 funcs={funcs}></U2>,
       [pageIds.phonograph]: <Phonograph funcs={funcs}></Phonograph>,
       [pageIds.daily]: <Daily funcs={funcs}></Daily>,
-      [pageIds.dailyDetail]: <DailyDetail funcs={funcs} data={{ id: 0, title: "" }}></DailyDetail>
+      [pageIds.dailyDetail]: <DailyDetail funcs={funcs} data={{ id: 0, title: "" }}></DailyDetail>,
       [pageIds.mailBox]: <MailBox_i funcs={funcs}/>
 
     };
