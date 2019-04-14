@@ -13,8 +13,8 @@ import {
   Easing,
   TouchableOpacity
 } from "react-native";
-import RNExitApp from "react-native-exit-app";
 import SplashScreen from "react-native-splash-screen";
+import { initCardStore } from '../components/CardStore';
 
 async function requestCameraPermission() {
   try {
@@ -43,6 +43,7 @@ class Home extends Component {
     this.spinValue2 = new Animated.Value(0)
   }
   componentDidMount() {
+    initCardStore();
     SplashScreen.hide();
     requestCameraPermission();
     this.spin();
@@ -75,13 +76,17 @@ class Home extends Component {
   }
 
   _handleButtonClick = btn => {
-    switch(btn) {
+    switch (btn) {
       case 'letter':
         return this.props.navigation.push("MailBox_i");
       case 'store':
         return this.props.navigation.push("InStore");
+        //TODO:
+      case 'team':
+        return this.props.navigation.push("TeamIntro");
       case 'exit':
-        return RNExitApp.exitApp();
+        return this.props.navigation.push("ExitPage_e");
+        //return RNExitApp.exitApp();
       default:
         return Alert.alert(btn);
     }

@@ -34,7 +34,7 @@ class PageMailBox_n extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/N.png")}
+          source={require("./../img/N.jpg")}
         >
           <View style={{ flex: 1, flexDirection: "column" }}>
             <View style={{ flex: 326 }} />

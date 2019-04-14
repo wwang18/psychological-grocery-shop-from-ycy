@@ -13,6 +13,7 @@ import {
 } from "react-native";
 
 class PageMailBox_i extends Component {
+
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
@@ -25,11 +26,12 @@ class PageMailBox_i extends Component {
     this.props.navigation.push("MailToChaoYue_j");
   }
 
-  componentWillMount() {
-    this.image = require("./../img/i_page.webp");
+  componentDidMount() {
+    // this.image = require("./../img/i_page.webp");
   }
 
   render() {
+
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -39,9 +41,9 @@ class PageMailBox_i extends Component {
           animated={true}
         />
         <ImageBackground
-          resizeMode="cover"
+          resizeMode="stretch" // ios下over会使图片部分显示不了
           style={styles.container}
-          source={this.image}
+          source={require("./../img/i_page.webp")} //require("./../img/post_office.gif")
         >
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 184 }} />

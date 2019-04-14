@@ -3,6 +3,7 @@ package com.psychological_grocery_shop_from_ycy;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.rnfs.RNFSPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.punarinta.RNSoundLevel.RNSoundLevel;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new RNFSPackage(),
             new ReactVideoPackage(),
             new RNSoundLevel(),
                     new SplashScreenReactPackage(),

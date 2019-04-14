@@ -4,10 +4,12 @@ import {
   TextInput,
   StyleSheet,
   View,
+  Alert,
   Image,
   TouchableHighlight
 } from "react-native";
 import { scale } from 'react-native-size-matters';
+import RNFS from 'react-native-fs';
 
 class LetterPaper extends Component {
   constructor(props) {
@@ -22,7 +24,17 @@ class LetterPaper extends Component {
     // TODO
     this.setState({ replying: true });
     setTimeout(() => {
-      this.props.navigation.navigate("MailBox_i");
+          const path = RNFS.DocumentDirectoryPath + '/test.txt'; //data/user/0/com.p_g_s/files
+             RNFS.writeFile(path,this.state.text, 'utf8')
+               .then((success) => {
+                   console.log('path',path);
+               })
+               .catch((err) =>{
+                   console.log(err.message);
+                });
+
+        this.props.navigation.navigate("MailBox_i");
+
     }, 1000);
   }
 
@@ -38,38 +50,38 @@ class LetterPaper extends Component {
         source={require("./../img/replying.webp")}
       />
     ) : (
-      <ImageBackground
-        style={styles.container}
-        source={require("./../img/bg/letter_paper.jpg")}
-      >
-        <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
-          onPress={() => this._handleSendOut()}>
-          <Image
-            style={styles.btn}
-            resizeMode="contain"
-            source={require('../img/btns/letterpaper_send.png')}
-          />
-        </TouchableHighlight>
-        <View style={styles.textContainer}>
-          <TextInput
-            style={styles.text}
-            multiline={true}
-            numberOfLines={8}
-            placeholder="超越亲启..."
-            onChangeText={text => this.setState({ text })}
-            value={this.state.text}
-          />
-        </View>
-        <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
-          onPress={() => this._onPressButton_back()}>
-          <Image
-            style={styles.btn}
-            resizeMode="contain"
-            source={require('../img/btns/letterpaper_back.png')}
+        <ImageBackground
+          style={styles.container}
+          source={require("./../img/bg/letter_paper.jpg")}
+        >
+          <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+            onPress={() => this._handleSendOut()}>
+            <Image
+              style={styles.btn}
+              resizeMode="contain"
+              source={require('../img/btns/letterpaper_send.png')}
             />
-        </TouchableHighlight>
-      </ImageBackground>
-    );
+          </TouchableHighlight>
+          <View style={styles.textContainer}>
+            <TextInput
+              style={styles.text}
+              multiline={true}
+              numberOfLines={8}
+              placeholder="超越亲启..."
+              onChangeText={text => this.setState({ text })}
+              value={this.state.text}
+            />
+          </View>
+          <TouchableHighlight underlayColor='transparent' style={styles.btnWrapper}
+            onPress={() => this._onPressButton_back()}>
+            <Image
+              style={styles.btn}
+              resizeMode="contain"
+              source={require('../img/btns/letterpaper_back.png')}
+            />
+          </TouchableHighlight>
+        </ImageBackground>
+      );
   }
 }
 
@@ -93,7 +105,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column-reverse'
   },
   btn: {
-    flex: 0.2,
+    flex: 1,
     width: null,
     height: null
   }

@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, CheckBox } from 'react-native';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
 import { WawaText } from '../../components/WawaText';
 import { WawaButton } from '../../components/WawaButton';
+import CheckBoxItem from '../../components/CheckBoxItem';
 
 export class Settings extends React.Component {
   state = {
@@ -34,7 +35,7 @@ export class Settings extends React.Component {
               </WawaText>
             </View>
             <View style={styles.checkbox}>
-              <CheckBox
+              <CheckBoxItem
                 value={this.state.backgroundMusic}
                 onChange={() => this.setState({ 'backgroundMusic': !this.state.backgroundMusic })}
               />

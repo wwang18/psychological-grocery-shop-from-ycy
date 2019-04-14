@@ -13,8 +13,13 @@ import {
   TouchableHighlight,
   Image
 } from "react-native";
+import RNFS from 'react-native-fs';
 
 class PageReturnedMailCard_o extends Component {
+  constructor(props) {
+    super(props);
+    this.param = props.navigation.getParam("data") || {};
+  }
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
@@ -23,45 +28,8 @@ class PageReturnedMailCard_o extends Component {
     this.props.navigation.navigate(topic);
   };
 
-  _handleButtonBackPage = itemId => {
-    this.props.navigation.push("BackPage_o3", { itemId: itemId });
-  }
-
-  componentWillMount() {
-    let { navigation } = this.props;
-    this.itemId = navigation.getParam("itemId");
-    let mail_cards = {
-      0: require("./../img/O/returnedMailCard/Image03.webp"),
-      1: require("./../img/O/returnedMailCard/Image05.webp"),
-      2: require("./../img/O/returnedMailCard/Image07.webp"),
-      3: require("./../img/O/returnedMailCard/Image09.webp"),
-      4: require("./../img/O/returnedMailCard/Image11.webp"),
-      5: require("./../img/O/returnedMailCard/Image13.webp"),
-      6: require("./../img/O/returnedMailCard/Image15.webp"),
-      7: require("./../img/O/returnedMailCard/Image17.webp"),
-      8: require("./../img/O/returnedMailCard/Image19.webp"),
-      9: require("./../img/O/returnedMailCard/Image21.webp"),
-      10: require("./../img/O/returnedMailCard/Image23.webp"),
-      11: require("./../img/O/returnedMailCard/Image25.webp"),
-      12: require("./../img/O/returnedMailCard/Image27.webp"),
-      13: require("./../img/O/returnedMailCard/Image29.webp"),
-      14: require("./../img/O/returnedMailCard/Image31.webp"),
-      15: require("./../img/O/returnedMailCard/Image33.webp"),
-      16: require("./../img/O/returnedMailCard/Image35.webp"),
-      17: require("./../img/O/returnedMailCard/Image37.webp"),
-      18: require("./../img/O/returnedMailCard/Image39.webp"),
-      19: require("./../img/O/returnedMailCard/Image41.webp"),
-      20: require("./../img/O/returnedMailCard/Image43.webp"),
-      21: require("./../img/O/returnedMailCard/Image45.webp"),
-      22: require("./../img/O/returnedMailCard/Image47.webp"),
-      23: require("./../img/O/returnedMailCard/Image49.webp"),
-      24: require("./../img/O/returnedMailCard/Image51.webp"),
-      25: require("./../img/O/returnedMailCard/Image53.webp"),
-      26: require("./../img/O/returnedMailCard/Image55.webp"),
-      27: require("./../img/O/returnedMailCard/Image57.webp"),
-      28: require("./../img/O/returnedMailCard/Image59.webp")
-    };
-    this.image = mail_cards[this.itemId]
+  _handleButtonBackPage = () => {
+    this.props.navigation.push("BackPage_o3", { data: this.param });
   }
 
   render() {
@@ -73,11 +41,10 @@ class PageReturnedMailCard_o extends Component {
           hidden={true}
           animated={true}
         />
-
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={this.image}
+          source={this.param.big}
         >
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 84 }} />
@@ -122,7 +89,7 @@ class PageReturnedMailCard_o extends Component {
                   <TouchableHighlight
                     underlayColor="transparent"
                     style={styles.btnWrapper}
-                    onPress={() => this._handleButtonBackPage(this.itemId)}
+                    onPress={this._handleButtonBackPage}
                   >
                     <Image
                       style={styles.button}
@@ -136,7 +103,8 @@ class PageReturnedMailCard_o extends Component {
                   <TouchableHighlight
                     underlayColor="transparent"
                     style={styles.btnWrapper}
-                    onPress={() => this._handleButtonClick("BackPage_o3")}
+                    //TODO:
+                    onPress={() => this._handleButtonClick("StoredLetter_o4")}
                   >
                     <Image
                       style={styles.button}
@@ -189,7 +157,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "flex-end"
-  }
+  },
 });
 
 export default PageReturnedMailCard_o;
