@@ -17,14 +17,15 @@ import PageCharacterCard_o1 from "./screens/PageCharacterCard_o1";
 import PageGiftCard_o2 from "./screens/PageGiftCard_o2";
 import PageBackPage_o3 from "./screens/PageBackPage_o3";
 import PageStoredLetter_o4 from "./screens/PageStoredLetter_o4";
-import instoreRoutes from './screens/InStore/InStoreRouter';
+import instoreRoutes from "./screens/InStore/InStoreRouter";
 import PageTeamIntro from "./screens/PageTeamIntro";
+import PageExitPage_e from "./screens/PageExitPage_e";
 
-import Storage from 'react-native-storage';
-import { AsyncStorage } from 'react-native';
-import dva from './utils/dva';
+import Storage from "react-native-storage";
+import { AsyncStorage } from "react-native";
+import dva from "./utils/dva";
 import NavigationService from "./utils/navigationService";
-import mailbox from './models/mailBox'; // 邮箱模块数据
+import mailbox from "./models/mailBox"; // 邮箱模块数据
 
 const storage = new Storage({
   // 最大容量，默认值1000条数据循环存储
@@ -32,15 +33,14 @@ const storage = new Storage({
   // 存储引擎：对于RN使用AsyncStorage，对于web使用window.localStorage
   // 如果不指定则数据只会保存在内存中，重启后即丢失
   storageBackend: AsyncStorage,
-    
+
   // 数据过期时间，默认一整天（1000 * 3600 * 24 毫秒），设为null则永不过期
   defaultExpires: null,
-    
+
   // 读写时在内存中缓存数据。默认启用。
-  enableCache: true,
-  // sync: require('你可以另外写一个文件专门处理sync')  
-  	
-})  
+  enableCache: true
+  // sync: require('你可以另外写一个文件专门处理sync')
+});
 global.Storage = storage;
 
 const AppNavigator = createStackNavigator(
@@ -141,13 +141,19 @@ const AppNavigator = createStackNavigator(
         header: null
       }
     },
+    ExitPage_e: {
+      screen: PageExitPage_e,
+      navigationOptions: {
+        header: null
+      }
+    },
     TeamIntro: {
       screen: PageTeamIntro,
       navigationOptions: {
         header: null
       }
     },
-    ...instoreRoutes,
+    ...instoreRoutes
   },
   {
     initialRouteName: "Home"
@@ -159,10 +165,14 @@ const Router = createAppContainer(AppNavigator); //所有路由
 const app = dva({
   models: [mailbox], // 各个模块数据list
   onError(e) {
-    if (__DEV__) console.log('onError', e);
-  },
+    if (__DEV__) console.log("onError", e);
+  }
 });
-const AppContainer = app.start(<Router ref={navigatorRef => NavigationService.setTopLevelNavigator(navigatorRef)}/>);
+const AppContainer = app.start(
+  <Router
+    ref={navigatorRef => NavigationService.setTopLevelNavigator(navigatorRef)}
+  />
+);
 
 export default class App extends Component {
   componentWillMount() {
@@ -170,6 +180,6 @@ export default class App extends Component {
   }
 
   render() {
-    return <AppContainer/>;
+    return <AppContainer />;
   }
 }

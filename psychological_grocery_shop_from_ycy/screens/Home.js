@@ -9,7 +9,6 @@ import {
   Alert,
   PermissionsAndroid
 } from "react-native";
-import RNExitApp from "react-native-exit-app";
 import SplashScreen from "react-native-splash-screen";
 import { initCardStore } from '../components/CardStore';
 
@@ -47,7 +46,8 @@ class Home extends Component {
       case 'team':
         return this.props.navigation.push("TeamIntro");
       case 'exit':
-        return RNExitApp.exitApp();
+        return this.props.navigation.push("ExitPage_e");
+        //return RNExitApp.exitApp();
       default:
         return Alert.alert(btn);
     }

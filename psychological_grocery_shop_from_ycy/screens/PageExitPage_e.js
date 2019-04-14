@@ -9,12 +9,20 @@ import {
   Button,
   StatusBar,
   Alert,
-  TouchableOpacity
+  TouchableWithoutFeedback
 } from "react-native";
 
+import RNExitApp from "react-native-exit-app";
+
 class PageExitPage_e extends Component {
-  _onPressButton_back() {
-    this.props.navigation.goBack();
+  _onPressExit() {
+    return RNExitApp.exitApp();
+  }
+
+  componentDidMount() {
+    setTimeout(function() {
+      return RNExitApp.exitApp();
+    }, 4000);
   }
 
   render() {
@@ -26,14 +34,13 @@ class PageExitPage_e extends Component {
           hidden={true}
           animated={true}
         />
-
-        <ImageBackground
-          resizeMode="stretch"
-          style={styles.container}
-          source={require("./../img/O2.png")}
-        >
-
-        </ImageBackground>
+        <TouchableWithoutFeedback onPress={() => this._onPressExit()}>
+          <ImageBackground
+            resizeMode="stretch"
+            style={styles.container}
+            source={require("./../img/e_page.webp")}
+          />
+        </TouchableWithoutFeedback>
       </View>
     );
   }
