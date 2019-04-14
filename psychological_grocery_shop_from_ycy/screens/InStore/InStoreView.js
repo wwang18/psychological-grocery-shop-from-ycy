@@ -23,7 +23,10 @@ import MinisMachine from '../MinisMachine/U';
 import U1 from '../MinisMachine/U1';
 import U2 from '../MinisMachine/U2';
 import Phonograph from '../Phonograph/V';
+import Daily from '../Daily/D';
+import DailyDetail from '../Daily/Daily_detail';
 import MailBox_i from '../PageMailBox_i.js';
+
 
 const backgroundMusic = require('../../audio/ThinkWild.mp3');
 
@@ -62,7 +65,10 @@ export class InStoreView extends React.Component {
       [pageIds.U1]: <U1 funcs={funcs}></U1>,
       [pageIds.U2]: <U2 funcs={funcs}></U2>,
       [pageIds.phonograph]: <Phonograph funcs={funcs}></Phonograph>,
+      [pageIds.daily]: <Daily funcs={funcs}></Daily>,
+      [pageIds.dailyDetail]: <DailyDetail funcs={funcs} data={{ id: 0, title: "" }}></DailyDetail>
       [pageIds.mailBox]: <MailBox_i funcs={funcs}/>
+
     };
   }
 
@@ -74,10 +80,13 @@ export class InStoreView extends React.Component {
     this.setState({ settings: newSettings });
   }
 
-  gotoNextPage = (pageId, useNavigation = false) => {
+  gotoNextPage = (pageId, useNavigation = false, item) => {
     if (useNavigation) {
       this.props.navigation.navigate(pageId);
     } else {
+      if (item) {
+        this.allPages[item.type] = <DailyDetail funcs={{ redirectTo: this.gotoNextPage }} data={item.data}></DailyDetail>
+      }
       this.setState({ currentPage: pageId });
     }
   }
