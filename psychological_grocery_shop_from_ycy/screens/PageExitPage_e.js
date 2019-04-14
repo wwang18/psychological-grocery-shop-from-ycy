@@ -22,7 +22,7 @@ class PageExitPage_e extends Component {
   componentDidMount() {
     setTimeout(function() {
       return RNExitApp.exitApp();
-    }, 4000);
+    }, 11000);
   }
 
   render() {
