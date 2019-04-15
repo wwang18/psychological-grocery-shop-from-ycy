@@ -33,7 +33,7 @@ class PageMailToChaoYue_j extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/j_page.webp")}
+          source={require("./../img/j_page.gif")}
         >
           <View style={{ flex: 1, flexDirection: "column" }}>
             <View style={{ flex: 80 }} />
