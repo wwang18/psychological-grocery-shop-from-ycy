@@ -22,7 +22,7 @@ import PageTeamIntro from "./screens/PageTeamIntro";
 import PageExitPage_e from "./screens/PageExitPage_e";
 
 import Storage from "react-native-storage";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage';
 import dva from "./utils/dva";
 import NavigationService from "./utils/navigationService";
 import mailbox from "./models/mailBox"; // 邮箱模块数据

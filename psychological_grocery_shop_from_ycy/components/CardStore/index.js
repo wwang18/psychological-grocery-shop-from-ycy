@@ -1,4 +1,5 @@
-import { AsyncStorage } from "react-native";
+// import { AsyncStorage } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage';
 import LETTER from './letterConfig';
 import PERSON from './personConfig';
 import GIFT from './giftConfig';

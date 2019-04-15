@@ -51,7 +51,6 @@ class PageGiftCard_q extends Component {
           hidden={true}
           animated={true}
         />
-
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}

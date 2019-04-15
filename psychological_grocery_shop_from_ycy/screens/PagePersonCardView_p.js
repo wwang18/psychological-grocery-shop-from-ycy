@@ -60,8 +60,8 @@ class PagePersonCardView_p extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
+    width: Platform.OS === "ios" ? null : '100%',
+    height: Platform.OS === "ios" ? null : '100%',
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 60 : 0
   }

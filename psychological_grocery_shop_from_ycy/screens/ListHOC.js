@@ -10,6 +10,7 @@ const PPHOC = (WrappedComponent, type) => {
         }
         getValue = async () => {
             const result = await getCardValue(type);
+            console.log(result, 'result')
             this.setState({
                 dataSource: result
             });
