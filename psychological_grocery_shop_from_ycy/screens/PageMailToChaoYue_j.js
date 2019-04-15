@@ -11,6 +11,7 @@ import {
   Alert,
   TouchableOpacity
 } from "react-native";
+import { isAndroid } from '../utils/commonStyle';
 
 class PageMailToChaoYue_j extends Component {
   _onPressButton_back() {
@@ -33,7 +34,7 @@ class PageMailToChaoYue_j extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/j_page.gif")}
+          source={isAndroid() ? require("./../img/j_page.webp") : require("./../img/j_page.gif")}
         >
           <View style={{ flex: 1, flexDirection: "column" }}>
             <View style={{ flex: 80 }} />
@@ -101,8 +102,7 @@ class PageMailToChaoYue_j extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: Platform.OS === "ios" ? 60 : 0
+    flex: 1
   }
 });
 

@@ -9,33 +9,37 @@ import {
   TouchableHighlight
 } from "react-native";
 import { scale } from 'react-native-size-matters';
-import RNFS from 'react-native-fs';
 
 class LetterPaper extends Component {
   constructor(props) {
     super(props);
     this.state = {
       replying: false,
-      text: ""
+      text: "",
     };
   }
 
   _handleSendOut() {
     // TODO
+    const { text } = this.state;
+    const {params} = this.props.navigation.state;
+    const {topic, issueKey} = params; // 烦恼大小类
     this.setState({ replying: true });
-    setTimeout(() => {
-          const path = RNFS.DocumentDirectoryPath + '/test.txt'; //data/user/0/com.p_g_s/files
-             RNFS.writeFile(path,this.state.text, 'utf8')
-               .then((success) => {
-                   console.log('path',path);
-               })
-               .catch((err) =>{
-                   console.log(err.message);
-                });
-
-        this.props.navigation.navigate("MailBox_i");
-
-    }, 1000);
+    Storage.load({
+      key: 'mailBox',
+    }).then(res => {
+      // console.log(res, 'res')
+      let newMailBox = [...res, {topic, issueKey, letter: text}]
+      Storage.save({
+        key: 'mailBox',
+        data: newMailBox
+      })
+    }).catch(err => {
+      Storage.save({
+        key: 'mailBox',
+        data: [{topic, issueKey, letter: text}]
+      })
+    })
   }
 
   _onPressButton_back() {
@@ -45,10 +49,12 @@ class LetterPaper extends Component {
   render() {
     const { replying } = this.state;
     return replying ? (
-      <ImageBackground
-        style={styles.container}
-        source={require("./../img/replying.webp")}
-      />
+      <TouchableHighlight underlayColor='transparent' style={styles.writBack} onPress={() => this.props.navigation.navigate("MailBox_i")}>
+        <ImageBackground
+          style={styles.container}
+          source={require("./../img/replying.webp")}
+        ></ImageBackground>
+      </TouchableHighlight>
     ) : (
         <ImageBackground
           style={styles.container}
@@ -108,6 +114,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null
+  },
+  writBack: {
+    flex: 1
   }
 });
 
