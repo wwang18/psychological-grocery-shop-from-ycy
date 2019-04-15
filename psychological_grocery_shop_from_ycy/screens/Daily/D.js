@@ -184,11 +184,13 @@ const styles = StyleSheet.create({
   },
   title: {
     left: 10,
-    top: 12
+    top: 10,
+    fontSize: 14
   },
   date: {
     right: 0,
-    top: 12
+    top: 10,
+    fontSize: 14
   },
   button: {
     width: null,
