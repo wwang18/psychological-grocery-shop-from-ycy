@@ -12,12 +12,23 @@ import {
   TouchableOpacity
 } from "react-native";
 import { pageIds } from '../InStore/InStoreConfig';
+import WawaText from '../../components/WawaText';
+
+import rowBg1 from "./../../img/daily/row1_2.png";
+import rowBg2 from "./../../img/daily/row3_4.png";
+import rowBg3 from "./../../img/daily/row5_7.png";
 
 class Daily extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: [{ "id": 10064, "title": "超越在厦门拍戏的一天", "image_url": "test", "date": "2019-04-03T16:00:00.000Z", "type": 1001 }, { "id": 10055, "title": "《羽你同行》路透视频", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-04-03T01:27:43.000Z", "type": 1002 }, { "id": 10054, "title": "戴草帽的超越好像幼儿园小朋友", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-04-03T01:26:45.000Z", "type": 1002 }, { "id": 10053, "title": "《羽你同行》探班视频，赶紧预约起来", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-04-03T01:25:32.000Z", "type": 1001 }, { "id": 10052, "title": "【杨超越】锦鲤和她粉丝的真面目（下集）", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-04-02T01:23:54.000Z", "type": 1003 }, { "id": 10051, "title": "哈哈农夫——杨超越养成记上线了", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-04-02T01:19:03.000Z", "type": 1001 }, { "id": 10048, "title": "杨超越超甜美现场live版101个愿望", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-03-31T16:00:00.000Z", "type": 1001 }, { "id": 10049, "title": "超越在将夜2中扮演的昊天一角", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-03-31T16:00:00.000Z", "type": 1001 }, { "id": 10050, "title": "超越101个愿望广州演唱会直拍", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-03-31T16:00:00.000Z", "type": 1002 }, { "id": 10047, "title": "flower演唱会各类资源汇总", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-03-31T11:20:02.000Z", "type": 1002 }, { "id": 10046, "title": "今日超越抵达厦门", "image_url": "https://img3.doubanio.com/view/group_topic/l/public/p165709296.webp", "date": "2019-03-31T11:18:44.000Z", "type": 1001 }]
+      dataSource: [{"id":10056,"title":"超越在美丽的四川稻城亚丁录制《哈哈农夫》","date":"2019-04-14T04:49:36.000Z",row:1},
+      {"id":10057,"title":"恭喜杨超越获得第三名！","date":"2019-04-13T05:34:09.000Z",row:2},
+      {"id":10058,"title":"谢谢你的善良，善良是可以保护自己的武器","date":"2019-04-12T05:39:55.000Z",row:3},
+      {"id":10059,"title":"超越正式成为AHC 全球品牌代言人！","date":"2019-04-11T05:44:44.000Z",row:4},
+      {"id":10060,"title":"超越蛰伏了一周终于又发微博了！","date":"2019-04-10T05:45:46.000Z",row:5},
+      {"id":10061,"title":"越越又发视频了，戴上墨镜你就是全村最靓的仔","date":"2019-04-09T05:46:06.000Z",row:6},
+      {"id":10062,"title":"超越不在的日子是不是很想她，养超越吧！","date":"2019-04-08T05:46:42.000Z",row:7}]
     };
   }
 
@@ -29,7 +40,7 @@ class Daily extends Component {
   }
   _getDate = (date) => {
     date = new Date(date);
-    return date && date.getMonth()+1 +"/" + date.getDate() + "/" + date.getFullYear()
+    return date && date.getMonth() + 1 + "/" + date.getDate()
   }
   _onPressButton_back() {
     this.props.funcs.redirectTo(pageIds.storeMain);
@@ -38,12 +49,22 @@ class Daily extends Component {
     this.props.funcs.redirectTo(pageIds.dailyDetail, false, { type: pageIds.dailyDetail, data: item });
   };
   _renderItem = ({ item }) => (
-    <View style={{ flex: 1, flexDirection: "column", margin: 10 }}>
-      <TouchableWithoutFeedback onPress={() => this._handleButtonClick(item)}>
-        <Text>
-          {item.title}&nbsp;&nbsp;{this._getDate(item.date)}
-        </Text>
-      </TouchableWithoutFeedback>
+    <View style={{ flex: 1, flexDirection: "column", margin: 0 }}>
+      <ImageBackground
+        resizeMode="stretch"
+        style={styles.row}
+        source={item ? (item.row < 3 ? rowBg1 : (item.row > 4 ? rowBg3 : rowBg2)) : rowBg1}>
+        <TouchableWithoutFeedback onPress={() => this._handleButtonClick(item)}>
+          <View style={styles.rowText}>
+            <View style={{ flex: 1140 }}>
+              <WawaText style={styles.title}>{item.title}</WawaText>
+            </View>
+            <View style={{ flex: 140 }}>
+              <WawaText style={styles.date}>{this._getDate(item.date)}</WawaText>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </ImageBackground>
     </View>
   );
 
@@ -60,23 +81,29 @@ class Daily extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../../img/PQS/PQS_background.png")}
+          source={require("./../../img/daily/daily_background.png")}
         >
           <View style={{ flex: 1, flexDirection: "column" }}>
             <View style={{ flex: 150 }}>
               <Image
                 style={styles.header}
                 resizeMode="contain"
-                source={require("./../../img/PQS/title_GiftCard.png")}
+                source={require("./../../img/daily/title_Daily.png")}
               />
             </View>
             <View style={{ flex: 30 }} />
             <View style={{ flex: 490 }}>
               <View style={{ flex: 1, flexDirection: "row" }}>
-                <View style={{ flex: 250 }} />
+                <View style={{ flex: 250 }}>
+                  <Image
+                    style={styles.leftBtn}
+                    resizeMode="contain"
+                    source={require("./../../img/daily/arrow_left.png")}
+                  />
+                </View>
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
-                    data={this.state.dataSource}
+                    data={this.state.dataSource.slice(0, 7)}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column
@@ -84,7 +111,13 @@ class Daily extends Component {
                     keyExtractor={(item, index) => index}
                   />
                 </View>
-                <View style={{ flex: 250 }} />
+                <View style={{ flex: 250 }}>
+                  <Image
+                    style={styles.rightBtn}
+                    resizeMode="contain"
+                    source={require("./../../img/daily/arrow_right.png")}
+                  />
+                </View>
               </View>
             </View>
             <View style={{ flex: 80 }}>
@@ -127,8 +160,41 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    height: "100%",
-    width: "100%"
+    marginTop: 20,
+    marginLeft: 180,
+    height: "60%",
+    width: "60%"
+  },
+  leftBtn: {
+    justifyContent: "center",
+    flex: 300,
+    height: "50%",
+    width: "50%",
+    left: 60,
+  },
+  rightBtn: {
+    justifyContent: "center",
+    flex: 300,
+    height: "50%",
+    width: "50%",
+  },
+  row: {
+    flex: 1,
+  },
+  rowText: {
+    flex: 1, 
+    flexDirection: "row", 
+    height: 36,
+  },
+  title: {
+    left: 10,
+    top: 10,
+    fontSize: 14
+  },
+  date: {
+    right: 0,
+    top: 10,
+    fontSize: 14
   },
   button: {
     width: null,

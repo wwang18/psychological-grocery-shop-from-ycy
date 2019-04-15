@@ -9,7 +9,6 @@ export const Phonograph = (props) => {
     props.funcs.redirectTo(pageIds.storeMain);
   };
 
-
   return (
     <ImageBackground
       resizeMode="stretch"
