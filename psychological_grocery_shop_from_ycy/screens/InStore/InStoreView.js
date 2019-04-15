@@ -28,7 +28,7 @@ import DailyDetail from '../Daily/Daily_detail';
 import MailBox_i from '../PageMailBox_i.js';
 
 
-const backgroundMusic = require('../../audio/ThinkWild.mp3');
+// const backgroundMusic = require('../../audio/ThinkWild.mp3');
 
 export class InStoreView extends React.Component {
 
@@ -37,6 +37,7 @@ export class InStoreView extends React.Component {
     coins: 20,
     currentPage: pageIds.storeMain,
     showSettings: false,
+    backgroundMusic: require('../../audio/ThinkWild.mp3'),
     settings: {
       backgroundMusic: true,
     }
@@ -107,7 +108,7 @@ export class InStoreView extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Video source={backgroundMusic}
+        <Video source={this.state.backgroundMusic}
           ref={(ref) => {
             this.player = ref
           }}
