@@ -6,8 +6,11 @@ import { pageIds } from '../InStore/InStoreConfig';
 
 export const Phonograph = (props) => {
   const backToHome = () => {
+    props.funcs.updateSettings({backgroundMusic: true});
     props.funcs.redirectTo(pageIds.storeMain);
   };
+
+
 
   return (
     <ImageBackground
