@@ -38,7 +38,7 @@ export class InStoreView extends React.Component {
     currentPage: pageIds.storeMain,
     showSettings: false,
     settings: {
-      backgroundMusic: false,
+      backgroundMusic: true,
     }
   }
 
