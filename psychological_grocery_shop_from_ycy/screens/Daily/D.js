@@ -14,6 +14,10 @@ import {
 import { pageIds } from '../InStore/InStoreConfig';
 import WawaText from '../../components/WawaText';
 
+import rowBg1 from "./../../img/daily/row1_2.png";
+import rowBg2 from "./../../img/daily/row3_4.png";
+import rowBg3 from "./../../img/daily/row5_7.png";
+
 class Daily extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +53,7 @@ class Daily extends Component {
       <ImageBackground
         resizeMode="stretch"
         style={styles.row}
-        source={require("./../../img/daily/row1_2.png")}>
+        source={item ? (item.row < 3 ? rowBg1 : (item.row > 4 ? rowBg3 : rowBg2)) : rowBg1}>
         <TouchableWithoutFeedback onPress={() => this._handleButtonClick(item)}>
           <View style={styles.rowText}>
             <View style={{ flex: 1140 }}>
