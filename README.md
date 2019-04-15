@@ -11,6 +11,8 @@
 - [Debug Run](#debug-run)
 - [Package To apk](#package-to-apk)
 - [build for ios](#build-for-ios)
+- [build for windows](#build-for-windows)
+- [build for web](#build-for-web)
 
 <h2 id="react-native-installation"> 📋 Prepare For Development Envirement </h2>
 Windows环境下，杨超越解忧杂货铺的开发需要准备以下开发环境：</br>   
@@ -51,4 +53,10 @@ link 错误，找不到资源。 在Node_Modules 文件夹下找到包：`react-
 <h2 id="build-for-ios"> 📋 build for ios</h2>
 To be added.
 
+<h2 id="build-for-windows"> 📋 build for windows UWP</h2>
+编译基于 react-native-windows 的 UWP 应用，可运行于windows10 及 windows phone.
+
+<h2 id="build-for-web"> 📋 build for web</h2>
+编译基于 react-native-web 的 web 应用，可运行于windows10, linux 及 mac os.
+Currently not in our route map.
 
