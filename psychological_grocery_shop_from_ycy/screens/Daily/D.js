@@ -52,10 +52,10 @@ class Daily extends Component {
         source={require("./../../img/daily/row1_2.png")}>
         <TouchableWithoutFeedback onPress={() => this._handleButtonClick(item)}>
           <View style={styles.rowText}>
-            <View style={{ flex: 1160 }}>
+            <View style={{ flex: 1140 }}>
               <WawaText style={styles.title}>{item.title}</WawaText>
             </View>
-            <View style={{ flex: 120 }}>
+            <View style={{ flex: 140 }}>
               <WawaText style={styles.date}>{this._getDate(item.date)}</WawaText>
             </View>
           </View>
