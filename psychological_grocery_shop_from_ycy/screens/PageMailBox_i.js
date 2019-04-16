@@ -11,7 +11,7 @@ import {
   Alert,
   TouchableOpacity
 } from "react-native";
-import { isAndroid } from '../utils/commonStyle';
+import { connect } from '../utils/dva';
 
 class PageMailBox_i extends Component {
 
@@ -28,7 +28,13 @@ class PageMailBox_i extends Component {
   }
 
   componentDidMount() {
-      
+    // this.props.dispatch({
+    //   type: 'mailbox/initCradsList',
+    //   params: {
+    //     key: 'letterCards',
+    //     data: JSON.stringify(LETTER)
+    //   }
+    // })
   }
 
   render() {

@@ -9,7 +9,7 @@ const PPHOC = (WrappedComponent, type) => {
             this.getValue();
         }
         componentDidUpdate() {
-            // this.getValue();
+            this.getValue();
         }
         getValue = async () => {
             const result = await getCardValue(type);

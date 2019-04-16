@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
 import Orientation from "react-native-orientation";
 import Home from "./screens/Home";
 import SubTopic from "./screens/SubTopic";

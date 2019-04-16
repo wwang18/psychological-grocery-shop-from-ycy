@@ -9,6 +9,9 @@ import {
   TouchableHighlight
 } from "react-native";
 import { scale } from 'react-native-size-matters';
+import letterList from '../components/CardStore/letterConfig';
+import giftList from '../components/CardStore/giftConfig';
+import personList from '../components/CardStore/personConfig';
 
 class LetterPaper extends Component {
   constructor(props) {
@@ -34,9 +37,9 @@ class LetterPaper extends Component {
     Storage.load({
       key: 'mailBox',
     }).then(res => {
-      let giftId = Math.floor(Math.random()*17); 
-      let letterId = Math.floor(Math.random()*30);
-      let personalId = Math.floor(Math.random()*22);
+      let giftId = Math.floor(Math.random()*giftList.length + 1); 
+      let letterId = Math.floor(Math.random()*letterList.length + 1);
+      let personalId = Math.floor(Math.random()*personList.length + 1);
       let newMailBox = [ {topic, issueKey, letter: text, letterId, giftId, personalId}, ...res ]
       Storage.save({
         key: 'mailBox',
@@ -50,6 +53,24 @@ class LetterPaper extends Component {
                   list[letterId].isNew = true;
                   list[letterId].unlocked = true;
                   Storage.save({key: 'letterCards', data: list})
+                }
+              })
+      Storage.load({key: 'personCards'})
+              .then(res => {
+                if(res) {
+                  let list = [...res];
+                  list[personalId].isNew = true;
+                  list[personalId].unlocked = true;
+                  Storage.save({key: 'personCards', data: list})
+                }
+              })
+      Storage.load({key: 'giftCards'})
+              .then(res => {
+                if(res) {
+                  let list = [...res];
+                  list[giftId].isNew = true;
+                  list[giftId].unlocked = true;
+                  Storage.save({key: 'giftCards', data: list})
                 }
               })
     }).catch(err => {

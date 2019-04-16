@@ -31,6 +31,7 @@ export const getCardValue = async (type) => {
         // console.error('getCardValue() Error:', error);
     }
 }
+
 export let initSaveCard = (key, data) => {
     Storage.load({ key })
             .then(res => { if(!res) Storage.save({ key, data }) })

@@ -19,25 +19,37 @@ import {
 import HOC from './ListHOC';
 
 class PageGiftCard_q extends Component {
-  _handleButtonClick = item => {
+  _handleButtonClick = (item, index) => {
     this.props.navigation.push("GiftCardView_q", { data: item });
+    Storage.load({
+      key: 'giftCards'
+    }).then(res => {
+      if(res) {
+        let list = [...res];
+        list[index].isNew = false; // 关闭new提示
+        Storage.save({key: 'giftCards', data: list})
+      }
+    })
   }
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
 
-  _renderItem = ({ item }) => (
+  _renderItem = ({ item, index }) => (
     <View
       style={{ flex: 1, flexDirection: "column", margin: 10 }}
     >
       <TouchableWithoutFeedback
-        onPress={item.unlocked ? () => { this._handleButtonClick(item) } : null}
+        onPress={item.unlocked ? () => { this._handleButtonClick(item, index) } : null}
       >
-        <Image
-          style={styles.imageThumbnail}
-          resizeMode="contain"
-          source={item.unlocked ? item.small : this.props.lockedImg}
-        />
+        <View style={{position: 'relative'}}>
+          <Image
+            style={styles.imageThumbnail}
+            resizeMode="contain"
+            source={item.unlocked ? item.small : this.props.lockedImg}
+          />
+          {item.isNew && <Image style={styles.newSty} source={require('../img/O/NEW.png')}/>}
+        </View>
       </TouchableWithoutFeedback>
     </View>
   );
@@ -116,7 +128,7 @@ const styles = StyleSheet.create({
   },
   imageThumbnail: {
     justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "center",
     height: 100
   },
   header: {
@@ -128,6 +140,13 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     flex: 1
+  },
+  newSty: {
+    width: 50, 
+    height: 30, 
+    position: 'absolute',
+    top: 0,
+    left: 0
   }
 });
 
