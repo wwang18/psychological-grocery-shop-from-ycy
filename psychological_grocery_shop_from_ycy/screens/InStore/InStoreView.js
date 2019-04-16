@@ -85,7 +85,7 @@ export class InStoreView extends React.Component {
   };
 
   updatePhonograph = newSong => {
-    this.setState({ phonograph: newPhonograph });
+    this.setState({ phonograph: newSong });
   };
 
   gotoNextPage = (pageId, useNavigation = false, item) => {
