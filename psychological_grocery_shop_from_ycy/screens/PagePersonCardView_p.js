@@ -9,6 +9,7 @@ import {
   Button,
   StatusBar,
   Alert,
+  Image,
   TouchableOpacity
 } from "react-native";
 
@@ -45,7 +46,13 @@ class PagePersonCardView_p extends Component {
                   <TouchableOpacity
                     style={{ flex: 1 }}
                     onPress={() => this._onPressButton_back()}
+                  >
+                  <Image
+                    style={styles.button}
+                    resizeMode="contain"
+                    source={require('../img/personalCards/btn.png')}
                   />
+                  </TouchableOpacity>
                 </View>
                 <View style={{ flex: 29 }} />
               </View>
@@ -64,6 +71,11 @@ const styles = StyleSheet.create({
     height: Platform.OS === "ios" ? null : '100%',
     flex: 1,
     paddingTop: Platform.OS === "ios" ? 60 : 0
+  },
+  button: {
+    width: null,
+    height: null,
+    flex: 1
   }
 });
 

@@ -29,7 +29,7 @@ class PageCharacterCard_o1 extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/personalCards/personalCard/Image01.webp")}
+          source={require("./../img/personalCards/personalCard/Image01.jpg")}
         >
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1200 }} />
