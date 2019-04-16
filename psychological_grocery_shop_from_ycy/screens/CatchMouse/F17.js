@@ -8,10 +8,15 @@ import { pageIds } from '../InStore/InStoreConfig';
 
 const MAX_TRY = 10;
 const MOUSE_SIZE = 100;
-const MOUSE_SPEED = 3900;
+const MOUSE_SPEED = 1500;
 const MOUSE_REST = 2000;
 
-const { height, width } = Dimensions.get('window');
+function getDimension() {
+  const { height, width } = Dimensions.get('window');
+  return height > width ? { height: width, width: height } : { height, width };
+} 
+
+const { height, width } = getDimension();
 
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -39,7 +44,7 @@ class F17 extends React.Component {
   }
 
   gameStart() {
-    this.setState({startCatch: true});
+    this.setState({ startCatch: true });
 
     setTimeout(() => {
       this.mouseRunningAnimation(true, MAX_TRY);
@@ -102,7 +107,7 @@ class F17 extends React.Component {
       inputRange: [0, 1],
       outputRange: ['0deg', '180deg']
     });
-
+    const { redirectTo } = this.props.funcs;
     return (
       <ImageBackground
         resizeMode="stretch"
@@ -138,6 +143,16 @@ class F17 extends React.Component {
             </TouchableOpacity>
           </Animated.View>
         }
+        <TouchableOpacity
+          style={{ position: 'absolute', bottom: 20, right: 50 }}
+          onPress={() => redirectTo(pageIds.storeMain)}
+        >
+          <Image
+            style={styles.button}
+            resizeMode="contain"
+            source={require('../../img/btns/n_Return.png')}
+          />
+        </TouchableOpacity>
       </ImageBackground>
     )
   }

@@ -1,37 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, Image, View,Alert, TouchableHighlight, TouchableOpacity, ImageBackground } from "react-native";
-
+ 
+import { StyleSheet, Image, View, TouchableHighlight, TouchableOpacity, ImageBackground } from "react-native";
+import { topic } from '../constants'; 
 class SubTopic extends Component {
   // TODO: we can reduce the load by only loading the background and buttons pics
-  _getBtnGroup = (topic) => {
-    switch(topic) {
-      case 'career':
-        return require("./../img/btns/subtopic_career.png");
-      case 'family':
-        return require("./../img/btns/subtopic_family.png");
-      case 'love':
-        return require("./../img/btns/subtopic_love.png");
-      case 'social':
-        return require("./../img/btns/subtopic_social.png");
-      default:
-        return require("./../img/btns/subtopic_idol.png");
-    }
-  }
 
-  _getSubTopics = () => {
-    return [
-      { keyword: "", label: "坚持下去吗" },
-      { keyword: "", label: "想有能力去爱" },
-      { keyword: "", label: "渴望转机" },
-      { keyword: "", label: "我能够吗" },
-      { keyword: "", label: "想被认可" },
-      { keyword: "", label: "我想被爱" },
-      { keyword: "", label: "想被人在意" }
-    ];
-  }
-
-  _handleTopicSelection() {
-    this.props.navigation.push("LetterPaper");
+  _handleTopicSelection(topic, issueKey) {
+    this.props.navigation.push("LetterPaper", {topic, issueKey});
   }
 
   _onPressButton_back() {
@@ -40,7 +15,6 @@ class SubTopic extends Component {
 
   render() {
     const {params} = this.props.navigation.state;
-    const bgGroup = this._getBtnGroup(params);
 
     return (
       <ImageBackground
@@ -51,16 +25,16 @@ class SubTopic extends Component {
         <ImageBackground
           resizeMode="cover"
           style={styles.btnGroupContainer}
-          source={bgGroup}
+          source={topic[params].url}
         >
         <View style={styles.rightSide}>
           <View style={styles.buttonContainer}>
-            {this._getSubTopics().map((topic, key) => {
+            {topic[params].issueList.map((topic, key) => {
               return (
                 <TouchableOpacity
                   style={styles.button}
                   key={key}
-                  onPress={() => this._handleTopicSelection()}
+                  onPress={() => this._handleTopicSelection(params, key)}
                 />
               );
             })}
