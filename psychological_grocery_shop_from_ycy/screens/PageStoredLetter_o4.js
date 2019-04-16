@@ -89,7 +89,7 @@ class PageStoredLetter_o4 extends Component {
                   <Text style={styles.text} >
                     {mailBox.length > 0 ? mailBox[curPage].letter : '没有信件，快去写一封吧'}
                   </Text>
-                </ScrollView>
+                </ScrollView> 
               </View>
               <View style={{flex: 14}}/>
             </View>
@@ -107,7 +107,6 @@ class PageStoredLetter_o4 extends Component {
             </View>
           </View>
         </ImageBackground>
-
       </View>
     );
   }

@@ -20,6 +20,7 @@ class PageMailToChaoYue_j extends Component {
 
   _onPressButton_topic = topic => {
     this.props.navigation.push("SubTopic", topic);
+    global.selectTopic = topic;
   };
 
   render() {
@@ -34,7 +35,7 @@ class PageMailToChaoYue_j extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={isAndroid() ? require("./../img/j_page.webp") : require("./../img/j_page.gif")}
+          source={require("./../img/j_page.gif")}
         >
           <View style={{ flex: 1, flexDirection: "column" }}>
             <View style={{ flex: 80 }} />
