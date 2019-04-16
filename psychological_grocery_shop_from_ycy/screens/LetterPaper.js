@@ -28,8 +28,8 @@ class LetterPaper extends Component {
     Storage.load({
       key: 'mailBox',
     }).then(res => {
-      // console.log(res, 'res')
-      let newMailBox = [...res, {topic, issueKey, letter: text}]
+      // let giftId = Math.floor(Math.random()*17);
+      let newMailBox = [...res, {topic, issueKey, letter: text }]
       Storage.save({
         key: 'mailBox',
         data: newMailBox

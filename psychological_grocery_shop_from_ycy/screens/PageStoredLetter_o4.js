@@ -29,7 +29,7 @@ class PageStoredLetter_o4 extends Component {
     Storage.load({
       key: 'mailBox',
     }).then(res => {
-      // console.log(res, 'res')
+      // console.log(res, 'res---------')
       this.setState({mailBox: [...res]})
     }).catch(err => {
       Storage.save({

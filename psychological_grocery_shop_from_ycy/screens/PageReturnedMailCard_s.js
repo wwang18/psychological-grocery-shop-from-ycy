@@ -22,20 +22,30 @@ class PageReturnedMailCard_s extends Component {
     this.props.navigation.goBack();
   }
 
-  _handleButtonClick = item => {
-    //if (item.id <= 28) {
+  _handleButtonClick = (item, index) => {
     this.props.navigation.push("ReturnedMailCard_o", { data: item });
-    //}
+    Storage.load({
+      key: 'letterCards'
+    }).then(res => {
+      if(res) {
+        let list = [...res];
+        list[index].isNew = false; // 关闭new提示
+        Storage.save({key: 'letterCards', data: list})
+      }
+    })
   };
 
-  _renderItem = ({ item }) => (
-    <View style={{ flex: 1, flexDirection: "column", margin: 10 }}>
-      <TouchableWithoutFeedback onPress={item.unlocked ? () => { this._handleButtonClick(item) } : null}>
-        <Image
-          style={styles.imageThumbnail}
-          resizeMode="contain"
-          source={item.unlocked ? item.small : this.props.lockedImg}
-        />
+  _renderItem = ({ item, index }) => (
+    <View style={{ flex: 1, margin: 10, flexDirection: "column" }}>
+      <TouchableWithoutFeedback onPress={item.unlocked ? () => { this._handleButtonClick(item, index) } : null} >
+        <View style={{position: 'relative'}}>
+          <Image
+            style={styles.imageThumbnail}
+            resizeMode="stretch"
+            source={item.unlocked ? item.small : this.props.lockedImg}
+          />
+          {item.isNew && <Image style={styles.newSty} source={require('../img/O/NEW.png')}/>}
+        </View>
       </TouchableWithoutFeedback>
     </View>
   );
@@ -114,8 +124,8 @@ const styles = StyleSheet.create({
     flex: 810
   },
   imageThumbnail: {
-    justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "center",
+    width: 150,
     height: 80
   },
   header: {
@@ -127,6 +137,13 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     flex: 1
+  },
+  newSty: {
+    width: 50, 
+    height: 30, 
+    position: 'absolute',
+    top: 0,
+    left: 0
   }
 });
 
