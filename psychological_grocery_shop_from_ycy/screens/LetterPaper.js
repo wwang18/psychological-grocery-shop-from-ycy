@@ -21,14 +21,12 @@ class LetterPaper extends Component {
 
   _handleSendOut() {
     // TODO 
-
     this.setState({ replying: true });
     setTimeout(() => {
         Alert.alert(selectTopic);
         this.props.navigation.navigate("MailBox_i");
     }, 1000);
 
- 
     const { text } = this.state;
     const {params} = this.props.navigation.state;
     const {topic, issueKey} = params; // 烦恼大小类
@@ -36,12 +34,24 @@ class LetterPaper extends Component {
     Storage.load({
       key: 'mailBox',
     }).then(res => {
-      // let giftId = Math.floor(Math.random()*17);
-      let newMailBox = [...res, {topic, issueKey, letter: text }]
+      let giftId = Math.floor(Math.random()*17); 
+      let letterId = Math.floor(Math.random()*30);
+      let personalId = Math.floor(Math.random()*22);
+      let newMailBox = [ {topic, issueKey, letter: text, letterId, giftId, personalId}, ...res ]
       Storage.save({
         key: 'mailBox',
         data: newMailBox
       })
+      //random
+      Storage.load({key: 'letterCards'})
+              .then(res => {
+                if(res) {
+                  let list = [...res];
+                  list[letterId].isNew = true;
+                  list[letterId].unlocked = true;
+                  Storage.save({key: 'letterCards', data: list})
+                }
+              })
     }).catch(err => {
       Storage.save({
         key: 'mailBox',

@@ -21,7 +21,7 @@ class PageReturnedMailCard_s extends Component {
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
-
+  
   _handleButtonClick = (item, index) => {
     this.props.navigation.push("ReturnedMailCard_o", { data: item });
     Storage.load({

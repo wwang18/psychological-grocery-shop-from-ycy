@@ -28,7 +28,7 @@ class PageMailBox_i extends Component {
   }
 
   componentDidMount() {
-    // this.image = require("./../img/i_page.webp");
+      
   }
 
   render() {

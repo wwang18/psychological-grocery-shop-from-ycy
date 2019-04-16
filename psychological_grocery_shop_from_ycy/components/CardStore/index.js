@@ -5,7 +5,7 @@ import GIFT from './giftConfig';
 export const lockedImg = require('../../img/PQS/framework_GiftCard.png');
 export const initCardStore = async () => {
     try {
-        // //清楚脏数据
+        // //清除脏数据
         // Storage.remove({key: 'letterCards'})
         // Storage.remove({key: 'personCards'})
         // Storage.remove({key: 'giftCards'})

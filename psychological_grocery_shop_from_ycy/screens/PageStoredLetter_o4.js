@@ -43,12 +43,15 @@ class PageStoredLetter_o4 extends Component {
     this.props.navigation.goBack();
   }
   _onPressButton_LastLetter(page) {
+    const { mailBox } = this.state;
+    if(mailBox.length === 0) return;
     let curPage = page - 1;
     if(curPage < 0 ) return Alert.alert('已经是最新的信件了')
     this.setState({curPage})
   }
   _onPressButton_NextLetter(page) {
     const { mailBox } = this.state;
+    if(mailBox.length === 0) return;
     let curPage = page + 1;
     if(curPage > mailBox.length - 1) return Alert.alert('没有信件了，快去写一份吧')
     this.setState({curPage})
