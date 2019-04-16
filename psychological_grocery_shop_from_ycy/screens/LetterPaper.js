@@ -20,7 +20,15 @@ class LetterPaper extends Component {
   }
 
   _handleSendOut() {
-    // TODO
+    // TODO 
+
+    this.setState({ replying: true });
+    setTimeout(() => {
+        Alert.alert(selectTopic);
+        this.props.navigation.navigate("MailBox_i");
+    }, 1000);
+
+ 
     const { text } = this.state;
     const {params} = this.props.navigation.state;
     const {topic, issueKey} = params; // 烦恼大小类
@@ -39,7 +47,7 @@ class LetterPaper extends Component {
         key: 'mailBox',
         data: [{topic, issueKey, letter: text}]
       })
-    })
+    }) 
   }
 
   _onPressButton_back() {
