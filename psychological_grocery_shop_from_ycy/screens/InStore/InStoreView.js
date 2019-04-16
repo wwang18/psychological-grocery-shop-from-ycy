@@ -26,7 +26,7 @@ import Phonograph from '../Phonograph/V';
 import Daily from '../Daily/D';
 import DailyDetail from '../Daily/Daily_detail';
 import MailBox_i from '../PageMailBox_i.js';
-
+import M11 from '../CatchMouse2/M11';
 
 const backgroundMusic = require('../../audio/ThinkWild.mp3');
 
@@ -67,8 +67,8 @@ export class InStoreView extends React.Component {
       [pageIds.phonograph]: <Phonograph funcs={funcs}></Phonograph>,
       [pageIds.daily]: <Daily funcs={funcs}></Daily>,
       [pageIds.dailyDetail]: <DailyDetail funcs={funcs} data={{ id: 0, title: "" }}></DailyDetail>,
-      [pageIds.mailBox]: <MailBox_i funcs={funcs}/>
-
+      [pageIds.mailBox]: <MailBox_i funcs={funcs}/>,
+      [pageIds.M11]: <M11 funcs={funcs}></M11>
     };
   }
 
