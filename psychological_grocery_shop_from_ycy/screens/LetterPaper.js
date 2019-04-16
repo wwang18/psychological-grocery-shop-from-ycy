@@ -22,6 +22,7 @@ class LetterPaper extends Component {
 
   _handleSendOut() {
     // TODO
+
     this.setState({ replying: true });
     setTimeout(() => {
           const path = RNFS.DocumentDirectoryPath + '/test.txt'; //data/user/0/com.p_g_s/files
@@ -32,10 +33,10 @@ class LetterPaper extends Component {
                .catch((err) =>{
                    console.log(err.message);
                 });
-
+        Alert.alert(selectTopic);
         this.props.navigation.navigate("MailBox_i");
-
     }, 1000);
+
   }
 
   _onPressButton_back() {

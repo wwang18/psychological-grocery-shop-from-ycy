@@ -19,6 +19,7 @@ class PageMailToChaoYue_j extends Component {
 
   _onPressButton_topic = topic => {
     this.props.navigation.push("SubTopic", topic);
+    global.selectTopic = topic;
   };
 
   render() {

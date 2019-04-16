@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Image, View, TouchableHighlight, TouchableOpacity, ImageBackground } from "react-native";
+import { StyleSheet, Image, View,Alert, TouchableHighlight, TouchableOpacity, ImageBackground } from "react-native";
 
 class SubTopic extends Component {
   // TODO: we can reduce the load by only loading the background and buttons pics

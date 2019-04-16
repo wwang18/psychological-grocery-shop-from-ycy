@@ -56,7 +56,7 @@ class PageStoredLetter_o4 extends Component {
           source={require("./../img/bg/letter_paper.jpg")}
         >
           <View style={{ flex: 1, flexDirection: "column" }}>
-            <View style={{ flex: 660 }} />
+            <View style={{ flex: 630 }} />
             <View style={{ flex: 67 }}>
               <View style={{ flex: 1, flexDirection: "row" }}>
                 <View style={{ flex: 140 }} />
@@ -71,7 +71,7 @@ class PageStoredLetter_o4 extends Component {
                       source={require("../img/btns/o__LastLetter.png")}
                     />
                 </View>
-                <View style={{ flex: 678 }} />
+                <View style={{ flex: 578 }} />
                 <View style={{ flex: 193 }}>
                   <TouchableOpacity
                     style={{ flex: 1 }}
@@ -83,12 +83,28 @@ class PageStoredLetter_o4 extends Component {
                       source={require("../img/btns/o_NextLetter.png")}
                     />
                 </View>
-                <View style={{ flex: 140 }} />
+                <View style={{ flex: 240 }} />
+              </View>
+            </View>
+            <View style={{ flex: 53 }}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 1200 }} />
+                <View style={{ flex: 85 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this._onPressButton_back()}
+                  />
+                    <Image
+                      style={styles.btn}
+                      resizeMode="contain"
+                      source={require("../img/btns/n_Return.png")}
+                    />
+                </View>
+                <View style={{ flex: 59 }}/>
               </View>
             </View>
           </View>
         </ImageBackground>
-
       </View>
     );
   }
