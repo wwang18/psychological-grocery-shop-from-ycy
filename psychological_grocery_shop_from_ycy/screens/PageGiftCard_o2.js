@@ -18,7 +18,6 @@ class PageGiftCard_o2 extends Component {
 
   render() {
     const { giftCards } = this.props;
-    console.log(this.param, '111111111111')
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -28,7 +27,7 @@ class PageGiftCard_o2 extends Component {
           animated={true}
         />
         <ImageBackground
-          resizeMode="stretch"
+          resizeMode="contain"
           style={styles.container}
           source={giftCards[this.param.giftId].big}
         />

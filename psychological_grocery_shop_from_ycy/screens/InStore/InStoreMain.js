@@ -92,7 +92,7 @@ export const InStore = (props) => {
       <View style={styles.btnMission}>
         <TouchableOpacity
           activeOpacity={.7}
-          onPress={() => notFinished()}
+          onPress={() => gotoPage(pageIds.Tasks)}
           style={styles.button}>
           <Image
             activeOpacity={.7}

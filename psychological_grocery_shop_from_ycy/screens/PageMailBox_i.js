@@ -2,57 +2,13 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  AppRegistry,
-  Button,
   StatusBar,
-  Alert,
   TouchableOpacity
 } from "react-native";
-import { connect } from 'react-redux';
-import LETTER from '../components/CardStore/letterConfig';
-import PERSON from '../components/CardStore/personConfig';
-import GIFT from '../components/CardStore/giftConfig';
 
 class PageMailBox_i extends Component {
-
-  componentDidMount() {
-    // this.initData();
-  }
-
-  initData = () => {// init数据
-    const { dispatch } = this.props;
-    dispatch({ 
-      type: 'mailBox/initCradsList',
-      params: {
-        key: 'letterCards',
-        data: LETTER
-      }
-    })
-    dispatch({ 
-      type: 'mailBox/initCradsList',
-      params: {
-        key: 'personCards',
-        data: PERSON
-      }
-    })
-    dispatch({ 
-      type: 'mailBox/initCradsList',
-      params: {
-        key: 'giftCards',
-        data: GIFT
-      }
-    })
-    dispatch({ 
-      type: 'mailBox/initCradsList',
-      params: {
-        key: 'mailBox',
-        data: []
-      }
-    })
-  }
 
   _onPressButton_back() {
     this.props.navigation.goBack();
@@ -137,4 +93,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(PageMailBox_i);
+export default PageMailBox_i;

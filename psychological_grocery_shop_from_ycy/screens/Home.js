@@ -13,9 +13,8 @@ import {
   Easing,
   TouchableOpacity
 } from "react-native";
-import { connect } from 'react-redux';
 import SplashScreen from "react-native-splash-screen";
-import { initCardStore, delCardValue } from '../components/CardStore';
+import { delCardValue } from '../components/CardStore';
 
 async function requestCameraPermission() {
   try {
@@ -44,9 +43,7 @@ class Home extends Component {
     this.spinValue2 = new Animated.Value(0)
   }
   componentDidMount() {
-    console.log(this.props, 'this.props')
     // delCardValue(); //清除数据
-    initCardStore(this.props); // 初始化数据
     SplashScreen.hide();
     requestCameraPermission();
     this.spin();
@@ -228,4 +225,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(Home);
+export default Home;

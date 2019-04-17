@@ -18,7 +18,6 @@ class PageCharacterCard_o1 extends Component {
 
   render() {
     const { personCards } = this.props;
-    console.log(this.param, '111111111111')
     return (
       <View style={{ flex: 1 }}>
         <StatusBar

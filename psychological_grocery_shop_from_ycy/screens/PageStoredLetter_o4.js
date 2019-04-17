@@ -23,6 +23,7 @@ class PageStoredLetter_o4 extends Component {
   textHeight = 200;
 
   componentDidMount() {
+    console.log(this.props.mailBox)
     this.setState({mailBox: [...this.props.mailBox]})
   } 
 

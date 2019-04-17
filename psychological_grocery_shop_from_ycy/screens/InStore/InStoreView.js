@@ -26,6 +26,7 @@ import Phonograph from "../Phonograph/V";
 import Daily from "../Daily/D";
 import DailyDetail from "../Daily/Daily_detail";
 import MailBox_i from "../PageMailBox_i.js";
+import Tasks from "./Tasks"
 
 // const backgroundMusic = require('../../audio/ThinkWild.mp3');
 
@@ -72,7 +73,8 @@ export class InStoreView extends React.Component {
       [pageIds.dailyDetail]: (
         <DailyDetail funcs={funcs} data={{ id: 0, title: "" }} />
       ),
-      [pageIds.mailBox]: <MailBox_i funcs={funcs} />
+      [pageIds.mailBox]: <MailBox_i funcs={funcs} />,
+      [pageIds.Tasks]: <Tasks funcs={funcs} />
     };
   }
 

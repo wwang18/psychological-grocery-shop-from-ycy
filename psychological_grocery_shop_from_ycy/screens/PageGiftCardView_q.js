@@ -33,7 +33,7 @@ class PageGiftCardView_p extends Component {
         />
 
         <ImageBackground
-          resizeMode="stretch"
+          resizeMode="contain"
           style={styles.container}
           source={this.param.big}
         >

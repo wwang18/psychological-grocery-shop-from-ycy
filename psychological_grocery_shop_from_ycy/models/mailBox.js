@@ -35,7 +35,7 @@ export default {
         payload: {[params.key]: data}
       })
     },
-    * saveData({params}, {select, call, put}) {
+    * saveData({params}, {select, call, put}) { //存储信卡片数据
       let newMailBox = yield select( state => {
         return state.mailBox.mailBox
       } );
