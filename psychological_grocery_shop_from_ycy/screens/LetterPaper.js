@@ -23,7 +23,7 @@ class LetterPaper extends Component {
   }
 
   _handleSendOut() {
-    // TODO 
+    // TODO
     this.setState({ replying: true });
     setTimeout(() => {
         Alert.alert(selectTopic);
@@ -37,7 +37,7 @@ class LetterPaper extends Component {
     Storage.load({
       key: 'mailBox',
     }).then(res => {
-      let giftId = Math.floor(Math.random()*giftList.length + 1); 
+      let giftId = Math.floor(Math.random()*giftList.length + 1);
       let letterId = Math.floor(Math.random()*letterList.length + 1);
       let personalId = Math.floor(Math.random()*personList.length + 1);
       let newMailBox = [ {topic, issueKey, letter: text, letterId, giftId, personalId}, ...res ]
@@ -78,7 +78,7 @@ class LetterPaper extends Component {
         key: 'mailBox',
         data: [{topic, issueKey, letter: text}]
       })
-    }) 
+    })
   }
 
   _onPressButton_back() {
@@ -91,7 +91,7 @@ class LetterPaper extends Component {
       <TouchableHighlight underlayColor='transparent' style={styles.writBack} onPress={() => this.props.navigation.navigate("MailBox_i")}>
         <ImageBackground
           style={styles.container}
-          source={require("./../img/replying.webp")}
+          source={require("./../img/replying.gif")}
         ></ImageBackground>
       </TouchableHighlight>
     ) : (
