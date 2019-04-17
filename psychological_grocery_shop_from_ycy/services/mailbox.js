@@ -1,21 +1,35 @@
 // import request from "../utils/request";
 // import {stringify} from 'qs';
-import React from 'react';
-
 export function initCards(params) {
-  console.log(Storage, '22222')
   return Storage.load({ key: params.key })
           .then(res => { 
-            console.log(11111)
             if(!res) {
-              // Storage.save({ key: params.key, data: params.data }) 
               return params.data
+            } else {
+              return res
             }
           })
           .catch(err => {
-            // Storage.save({ key: params.key, data: params.data })
             return params.data
           })
+}
+export function saveCards(params) {
+  const { key, id=null, isNew=null, list, giftId=null, personalId=null } = params;
+  let newlist = [...list];
+  if(id !== null && list.length > 0) {
+    if(giftId && personalId) {
+      newlist[id].giftId = giftId;
+      newlist[id].personalId = personalId;
+    }
+    if(isNew === null) {
+      newlist[id].isNew = true;
+      newlist[id].unlocked = true;
+    } else {
+      newlist[id].isNew = isNew;
+    }
+  }
+  Storage.save({ key, data: newlist})
+  return newlist;
 }
 // // 请求 信件list接口
 // export function demo( params ) { 

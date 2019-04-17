@@ -2,22 +2,22 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  AppRegistry,
-  Button,
   StatusBar,
-  Alert,
   TouchableOpacity
 } from "react-native";
+import { connect } from "react-redux";
 
 class PageCharacterCard_o1 extends Component {
+  param = this.props.navigation.getParam("data") || {};
+
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
 
   render() {
+    const { personCards } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -29,7 +29,7 @@ class PageCharacterCard_o1 extends Component {
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
-          source={require("./../img/personalCards/personalCard/Image01.jpg")}
+          source={personCards[this.param.personalId].big}
         >
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View style={{ flex: 1200 }} />
@@ -60,4 +60,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PageCharacterCard_o1;
+export default connect(({mailBox}) => {
+  return {
+    personCards: mailBox.personCards
+  }
+})(PageCharacterCard_o1);

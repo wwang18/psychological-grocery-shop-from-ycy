@@ -2,16 +2,11 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  AppRegistry,
-  Button,
   StatusBar,
-  Alert,
   TouchableOpacity
 } from "react-native";
-import { connect } from '../utils/dva';
 
 class PageMailBox_i extends Component {
 
@@ -27,18 +22,9 @@ class PageMailBox_i extends Component {
     this.props.navigation.push("MailToChaoYue_j");
   }
 
-  componentDidMount() {
-    // this.props.dispatch({
-    //   type: 'mailbox/initCradsList',
-    //   params: {
-    //     key: 'letterCards',
-    //     data: JSON.stringify(LETTER)
-    //   }
-    // })
-  }
+ 
 
   render() {
-
     return (
       <View style={{ flex: 1 }}>
         <StatusBar

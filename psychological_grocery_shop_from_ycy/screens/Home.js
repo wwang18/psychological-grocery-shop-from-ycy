@@ -14,7 +14,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import SplashScreen from "react-native-splash-screen";
-import { initCardStore } from '../components/CardStore';
+import { delCardValue } from '../components/CardStore';
 
 async function requestCameraPermission() {
   try {
@@ -43,7 +43,7 @@ class Home extends Component {
     this.spinValue2 = new Animated.Value(0)
   }
   componentDidMount() {
-    initCardStore();
+    // delCardValue(); //清除数据
     SplashScreen.hide();
     requestCameraPermission();
     this.spin();
@@ -105,8 +105,6 @@ class Home extends Component {
       inputRange: [0, 1],
       outputRange: ['10deg', '-10deg']
     });
-    let screenWidth = Dimensions.get('window').width;
-    let screenHeight = Dimensions.get('window').height;
     return (
       <View style={{ flex: 1}}>
         <TouchableOpacity onPress={this.open}>

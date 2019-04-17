@@ -2,30 +2,23 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  AppRegistry,
-  Button,
   StatusBar,
-  Alert,
-  TouchableOpacity,
   TouchableHighlight,
   Image
 } from "react-native";
-import RNFS from 'react-native-fs';
 
 class PageReturnedMailCard_o extends Component {
-  constructor(props) {
-    super(props);
-    this.param = props.navigation.getParam("data") || {};
-  }
+
+  param = this.props.navigation.getParam("data") || {};
+
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
 
   _handleButtonClick = topic => {
-    this.props.navigation.navigate(topic);
+    this.props.navigation.navigate(topic, { data: this.param });
   };
 
   _handleButtonBackPage = () => {

@@ -2,42 +2,38 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  AppRegistry,
-  Button,
   StatusBar,
   Image,
   FlatList,
-  Alert,
   TouchableOpacity,
-  TouchableHighlight,
   TouchableWithoutFeedback
 } from "react-native";
-import HOC from './ListHOC';
+import { connect } from 'react-redux';
 
 class PageReturnedMailCard_s extends Component {
+  
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
   
   _handleButtonClick = (item, index) => {
-    this.props.navigation.push("ReturnedMailCard_o", { data: item });
-    Storage.load({
-      key: 'letterCards'
-    }).then(res => {
-      if(res) {
-        let list = [...res];
-        list[index].isNew = false; // 关闭new提示
-        Storage.save({key: 'letterCards', data: list})
-      }
-    })
+    const { navigation, dispatch } = this.props;
+    navigation.push("ReturnedMailCard_o", { data: item });
+    if(item.isNew) {
+      dispatch({
+        type: 'mailBox/changeCardsState',
+        params: {key: 'letterCards', id: index, isNew: false}
+      })
+    }
   };
 
   _renderItem = ({ item, index }) => (
     <View style={{ flex: 1, margin: 10, flexDirection: "column" }}>
-      <TouchableWithoutFeedback onPress={item.unlocked ? () => { this._handleButtonClick(item, index) } : null} >
+    {
+      item.isNull == undefined &&
+       <TouchableWithoutFeedback onPress={item.unlocked ? () => { this._handleButtonClick(item, index) } : null} >
         <View style={{position: 'relative'}}>
           <Image
             style={styles.imageThumbnail}
@@ -47,10 +43,15 @@ class PageReturnedMailCard_s extends Component {
           {item.isNew && <Image style={styles.newSty} source={require('../img/O/NEW.png')}/>}
         </View>
       </TouchableWithoutFeedback>
+    }
     </View>
   );
 
   render() {
+    const { letterCards } = this.props;
+    if(letterCards.length > 0 && letterCards.length%3 !== 0) { //维持最后一行的样式
+      for(let i=0; i<letterCards.length%3; i++) letterCards.push({isNull: true})
+    } 
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -59,7 +60,6 @@ class PageReturnedMailCard_s extends Component {
           hidden={true}
           animated={true}
         />
-
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
@@ -79,7 +79,7 @@ class PageReturnedMailCard_s extends Component {
                 <View style={{ flex: 250 }} />
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
-                    data={this.props.dataSource}
+                    data={letterCards}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column
@@ -147,4 +147,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HOC(PageReturnedMailCard_s, 'letter');
+export default connect(({mailBox}) => {
+  return {
+    letterCards: mailBox.letterCards,
+    lockedImg: mailBox.lockedImg,
+  }
+})(PageReturnedMailCard_s);
