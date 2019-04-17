@@ -21,6 +21,52 @@ import Sound from 'react-native-sound';
 Sound.setCategory('Playback');
 
 const IMAGE_FOLDER = '../../img/';
+const AUDIO_FOLDER = '../../audio/';
+
+// 关于将音频文件打包的问题：
+// 打包是由react-native自动完成的，这里的 require 会使音频文件成为 APK 的可以通过 iOS/Android 的资源管理机制引用的一部分。
+//
+// 事项一：
+// 必须写    [./sounds/60.mp3] 
+// 而不能写成 [sounds/60.mp3]。前面的点 和 除号 必须有。不然会和尝试引入ogg文件时一样的错误。
+//
+// 事项二：
+// 打包器默认不支持ogg格式，如果尝试 require 一个 OGG 文件的话，就会引发如下错误：
+// DeltaPatcher.js:77 Uncaught (in promise) TypeError: Cannot read property 'concat' of undefined
+//    at DeltaPatcher.applyDelta (DeltaPatcher.js:77)
+//    at deltaUrlToBlobUrl (deltaUrlToBlobUrl.js:28)
+//    at async getBlobUrl ((index):222)
+//    at async WebSocket.ws.onmessage ((index):185)
+
+// MIDI中，60 = C4
+const notes_mp3 = [
+  require('../../audio/60.mp3'),
+  require('../../audio/61.mp3'),
+  require('../../audio/62.mp3'),
+  require('../../audio/63.mp3'),
+  require('../../audio/64.mp3'),
+  require('../../audio/65.mp3'),
+  require('../../audio/66.mp3'),
+  require('../../audio/67.mp3'),
+  require('../../audio/68.mp3'),
+  require('../../audio/69.mp3'),
+  require('../../audio/70.mp3'),
+  require('../../audio/71.mp3'),
+  require('../../audio/72.mp3'),
+  require('../../audio/73.mp3'),
+  require('../../audio/74.mp3'),
+  require('../../audio/75.mp3'),
+  require('../../audio/76.mp3'),
+  require('../../audio/77.mp3'),
+  require('../../audio/78.mp3'),
+  require('../../audio/79.mp3'),
+  require('../../audio/80.mp3'),
+  require('../../audio/81.mp3'),
+  require('../../audio/82.mp3'),
+  require('../../audio/83.mp3'),
+  require('../../audio/84.mp3'),
+];
+
 
 const STAFF_BEGIN = require(`${IMAGE_FOLDER}/notes/slice_0_1.png`);
 const STAFF_END   = require(`${IMAGE_FOLDER}/notes/slice_0_15.png`);
@@ -119,10 +165,8 @@ export default class M11 extends Component {
   ShouldShowOctave2() { return true; }
   
   playNote(midi_note_id) {
-//    var path = 'https://raw.githubusercontent.com/bubububaoshe/bubububaoshe.github.io/master/mp3/activate.mp3';
-    var path = 'http://192.168.0.22/audio/' + midi_note_id + '.ogg'; // TODO: 怎么播放资源文件中的音频
-    
-    const s = new Sound(path, null, (error) => {
+    const idx = midi_note_id - 60;
+    const s = new Sound(notes_mp3[idx], (error) => {
       if (error) {
         console.log(error);
         return; 
