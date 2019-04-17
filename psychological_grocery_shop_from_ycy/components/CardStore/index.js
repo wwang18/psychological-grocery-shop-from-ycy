@@ -3,19 +3,43 @@ import PERSON from './personConfig';
 import GIFT from './giftConfig';
 
 export const lockedImg = require('../../img/PQS/framework_GiftCard.png');
-export const initCardStore = async () => {
-    try {
-        // //清除脏数据
-        // Storage.remove({key: 'letterCards'})
-        // Storage.remove({key: 'personCards'})
-        // Storage.remove({key: 'giftCards'})
-        // return
-        initSaveCard('letterCards', LETTER);
-        initSaveCard('personCards', PERSON);
-        initSaveCard('giftCards', GIFT);
-    } catch (error) {
-        // console.error('initCardStore() Error:', error);
-    }
+export const delCardValue = async () => {
+    //清除数据
+    Storage.remove({key: 'letterCards'})
+    Storage.remove({key: 'personCards'})
+    Storage.remove({key: 'giftCards'})
+    Storage.remove({key: 'mailBox'})
+};
+export const initCardStore = (props) => {
+    const { dispatch } = props;
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'letterCards',
+        data: LETTER
+      }
+    })
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'personCards',
+        data: PERSON
+      }
+    })
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'giftCards',
+        data: GIFT
+      }
+    })
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'mailBox',
+        data: []
+      }
+    })
 }
 export const getCardValue = async (type) => {
     try {
@@ -32,8 +56,3 @@ export const getCardValue = async (type) => {
     }
 }
 
-export let initSaveCard = (key, data) => {
-    Storage.load({ key })
-            .then(res => { if(!res) Storage.save({ key, data }) })
-            .catch(err => Storage.save({ key, data }) )
-}

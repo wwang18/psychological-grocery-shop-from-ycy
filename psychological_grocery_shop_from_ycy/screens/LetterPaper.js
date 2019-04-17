@@ -12,6 +12,7 @@ import { scale } from 'react-native-size-matters';
 import letterList from '../components/CardStore/letterConfig';
 import giftList from '../components/CardStore/giftConfig';
 import personList from '../components/CardStore/personConfig';
+import { connect } from "react-redux";
 
 class LetterPaper extends Component {
   constructor(props) {
@@ -26,59 +27,20 @@ class LetterPaper extends Component {
     // TODO 
     this.setState({ replying: true });
     setTimeout(() => {
-        Alert.alert(selectTopic);
+        Alert.alert('信已收到，勿念，ID茉莉');
         this.props.navigation.navigate("MailBox_i");
     }, 1000);
-
     const { text } = this.state;
+    const { dispatch } = this.props;
     const {params} = this.props.navigation.state;
     const {topic, issueKey} = params; // 烦恼大小类
-    this.setState({ replying: true });
-    Storage.load({
-      key: 'mailBox',
-    }).then(res => {
-      let giftId = Math.floor(Math.random()*giftList.length + 1); 
-      let letterId = Math.floor(Math.random()*letterList.length + 1);
-      let personalId = Math.floor(Math.random()*personList.length + 1);
-      let newMailBox = [ {topic, issueKey, letter: text, letterId, giftId, personalId}, ...res ]
-      Storage.save({
-        key: 'mailBox',
-        data: newMailBox
-      })
-      //random
-      Storage.load({key: 'letterCards'})
-              .then(res => {
-                if(res) {
-                  let list = [...res];
-                  list[letterId].isNew = true;
-                  list[letterId].unlocked = true;
-                  Storage.save({key: 'letterCards', data: list})
-                }
-              })
-      Storage.load({key: 'personCards'})
-              .then(res => {
-                if(res) {
-                  let list = [...res];
-                  list[personalId].isNew = true;
-                  list[personalId].unlocked = true;
-                  Storage.save({key: 'personCards', data: list})
-                }
-              })
-      Storage.load({key: 'giftCards'})
-              .then(res => {
-                if(res) {
-                  let list = [...res];
-                  list[giftId].isNew = true;
-                  list[giftId].unlocked = true;
-                  Storage.save({key: 'giftCards', data: list})
-                }
-              })
-    }).catch(err => {
-      Storage.save({
-        key: 'mailBox',
-        data: [{topic, issueKey, letter: text}]
-      })
-    }) 
+    let giftId = Math.floor(Math.random()*giftList.length + 1); 
+    let letterId = Math.ceil(Math.random()*letterList.length);
+    let personalId = Math.floor(Math.random()*personList.length + 1);
+    dispatch({
+      type: 'mailBox/saveData',
+      params: {topic, issueKey, letter: text, letterId: !!text ? letterId : 0, giftId, personalId}
+    })
   }
 
   _onPressButton_back() {
@@ -159,4 +121,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LetterPaper;
+export default connect()(LetterPaper);

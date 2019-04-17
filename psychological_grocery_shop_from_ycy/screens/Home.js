@@ -13,8 +13,9 @@ import {
   Easing,
   TouchableOpacity
 } from "react-native";
+import { connect } from 'react-redux';
 import SplashScreen from "react-native-splash-screen";
-import { initCardStore } from '../components/CardStore';
+import { initCardStore, delCardValue } from '../components/CardStore';
 
 async function requestCameraPermission() {
   try {
@@ -43,7 +44,9 @@ class Home extends Component {
     this.spinValue2 = new Animated.Value(0)
   }
   componentDidMount() {
-    initCardStore();
+    console.log(this.props, 'this.props')
+    // delCardValue(); //清除数据
+    initCardStore(this.props); // 初始化数据
     SplashScreen.hide();
     requestCameraPermission();
     this.spin();
@@ -105,8 +108,6 @@ class Home extends Component {
       inputRange: [0, 1],
       outputRange: ['10deg', '-10deg']
     });
-    let screenWidth = Dimensions.get('window').width;
-    let screenHeight = Dimensions.get('window').height;
     return (
       <View style={{ flex: 1}}>
         <TouchableOpacity onPress={this.open}>
@@ -227,4 +228,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home;
+export default connect()(Home);

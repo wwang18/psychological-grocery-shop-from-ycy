@@ -13,6 +13,7 @@ import {
   ScrollView
 } from "react-native";
 import { scale } from 'react-native-size-matters';
+import { connect } from 'react-redux';
 
 class PageStoredLetter_o4 extends Component {
   state = {
@@ -22,22 +23,8 @@ class PageStoredLetter_o4 extends Component {
   textHeight = 200;
 
   componentDidMount() {
-    this.getMailBoxList()
+    this.setState({mailBox: [...this.props.mailBox]})
   } 
-
-  getMailBoxList = () => {
-    Storage.load({
-      key: 'mailBox',
-    }).then(res => {
-      // console.log(res, 'res---------')
-      this.setState({mailBox: [...res]})
-    }).catch(err => {
-      Storage.save({
-        key: 'mailBox',
-        data: []
-      })
-    })
-  }
 
   _onPressButton_back() {
     this.props.navigation.goBack();
@@ -136,4 +123,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PageStoredLetter_o4;
+export default connect(({mailBox}) => {
+  return{
+    mailBox: mailBox.mailBox
+  }
+})(PageStoredLetter_o4) ;

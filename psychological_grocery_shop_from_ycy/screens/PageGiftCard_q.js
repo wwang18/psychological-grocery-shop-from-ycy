@@ -16,29 +16,28 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from "react-native";
-import HOC from './ListHOC';
+import { connect } from "react-redux";
 
 class PageGiftCard_q extends Component {
+
   _handleButtonClick = (item, index) => {
-    this.props.navigation.push("GiftCardView_q", { data: item });
-    Storage.load({
-      key: 'giftCards'
-    }).then(res => {
-      if(res) {
-        let list = [...res];
-        list[index].isNew = false; // 关闭new提示
-        Storage.save({key: 'giftCards', data: list})
-      }
-    })
+    const { navigation, dispatch } = this.props;
+    navigation.push("GiftCardView_q", { data: item });
+    if(item.isNew) {
+      dispatch({
+        type: 'mailBox/changeCardsState',
+        params: {key: 'giftCards', id: index, isNew: false}
+      })
+    }
   }
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
 
   _renderItem = ({ item, index }) => (
-    <View
-      style={{ flex: 1, flexDirection: "column", margin: 10 }}
-    >
+    <View style={{ flex: 1, flexDirection: "column", margin: 10 }}>
+    {
+      item.isNull == undefined &&
       <TouchableWithoutFeedback
         onPress={item.unlocked ? () => { this._handleButtonClick(item, index) } : null}
       >
@@ -51,10 +50,15 @@ class PageGiftCard_q extends Component {
           {item.isNew && <Image style={styles.newSty} source={require('../img/O/NEW.png')}/>}
         </View>
       </TouchableWithoutFeedback>
+    }
     </View>
   );
 
   render() {
+    const { giftCards } = this.props;
+    if(giftCards.length > 0 && giftCards.length%3 !== 0) { //维持最后一行的样式
+      for(let i=0; i<giftCards.length%3; i++) giftCards.push({isNull: true})
+    } 
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -80,9 +84,9 @@ class PageGiftCard_q extends Component {
             <View style={{ flex: 490 }}>
               <View style={{ flex: 1, flexDirection: "row" }}>
                 <View style={{ flex: 250 }} />
-                <View style={{ flex: 830, justifyContent: "center" }}>
+                <View style={{ flex: 830, justifyContent: 'center' }}>
                   <FlatList
-                    data={this.props.dataSource}
+                    data={giftCards}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column
@@ -150,4 +154,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HOC(PageGiftCard_q, 'gift');
+export default connect(({mailBox}) => {
+  return{
+    giftCards: mailBox.giftCards,
+    lockedImg: mailBox.lockedImg,
+  }
+})(PageGiftCard_q);
