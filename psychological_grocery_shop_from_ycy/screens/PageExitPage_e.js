@@ -38,7 +38,7 @@ class PageExitPage_e extends Component {
           <ImageBackground
             resizeMode="stretch"
             style={styles.container}
-            source={require("./../img/e_page.webp")}
+            source={require("./../img/e_page.gif")}
           />
         </TouchableWithoutFeedback>
       </View>
