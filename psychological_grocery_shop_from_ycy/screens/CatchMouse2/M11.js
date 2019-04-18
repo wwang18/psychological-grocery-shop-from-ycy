@@ -17,6 +17,11 @@ import { Alert,
   Animated
 } from 'react-native';
 //import { Audio } from 'expo-av';
+
+import { WawaText } from '../../components/WawaText';
+import { DialogBox } from '../../components/DialogBox';
+import { pageIds } from '../InStore/InStoreConfig';
+
 import Sound from 'react-native-sound';
 Sound.setCategory('Playback');
 
@@ -104,23 +109,31 @@ const NOTE_IMAGES = [
 // 第一排：C4-B4, 60-71
 // 第二排：C5~B5, 72-83
 
+const LINE_BREAK = -1;
 const EMPTY_NOTE = 59;
 const QUESTIONS = [
-  [72,74,76,77,79,77,76,74,72],
+  [72,74,76,77,79,LINE_BREAK,
+   79,77,76,74,72],
 ];
 
 var g_mytest = null;
 var mouse_x = new Animated.Value(20);
 var mouse_y = new Animated.Value(300);
+var mouse_rot_y = new Animated.Value(0);
 var mouse_opacity = new Animated.Value(1);
+var last_mouse_x = -999;
+
+var curr_notes = []; // 当前的题库。可能只有一部分被显示出来。内容为MIDI音符编号，-1为强行换页
+var curr_note_idx = 0;
+var curr_notes_visible_start = 0; // 第一个可见的
 
 export default class M11 extends Component {
   
   constructor(props) {
     super(props);
     this.state = { 
-      curr_notes: QUESTIONS[0], 
-      dummy_notes: Array(QUESTIONS[0].length).fill(59),
+      curr_visible_notes: [],
+      dummy_notes: [],
       difficulty: 0,
       mouse_h: 80,
       mouse_w: 80,
@@ -132,6 +145,7 @@ export default class M11 extends Component {
       key_width:  90,
       note_h:     200,
       note_w:     64,
+      game_state: "not_started",
     }
     this.note_elts = { }; // id to React Node
     g_mytest = this;
@@ -140,6 +154,26 @@ export default class M11 extends Component {
   ShouldShowStaff() {
     return true;
     //return (this.state.difficulty > 1); 
+  }
+  
+  SetNotes(x) {
+    curr_notes = x.splice();
+    curr_note_idx = 0;
+    curr_notes_visible_start = 0;
+  }
+  
+  UpdateVisibleNotes() {
+    var c = [], dummy = [];
+    var i = curr_notes_visible_start;
+    for (; i < curr_notes.length && curr_notes[i] != LINE_BREAK; i++) {
+      if (i < curr_note_idx) c.push(EMPTY_NOTE);
+      else c.push(curr_notes[i]);
+      dummy.push(EMPTY_NOTE);
+    }
+    var s = this.state;
+    s.curr_visible_notes = c;
+    s.dummy_notes = dummy;
+    this.setState(s);
   }
   
   SetDifficulty(d) {
@@ -157,8 +191,32 @@ export default class M11 extends Component {
     this.setState(state);
   }
   
+  GetHintForCurrentLevel() {
+    if (this.state.difficulty == 0) return "[0] 提示：请跟随老鼠的移动按下指定按键。";
+    else if (this.state.difficulty == 1) return "[1] 提示：请跟随老鼠的移动按下指定按键；请注意按键对应谱子的位置";
+    else return "[2]";
+  }
+  
+  StartGame() {
+    var state = this.state;
+    state.game_state = "started";
+    this.setState(state);
+  }
+  
+  EndGame() {
+    var state = this.state;
+    state.game_state = "ended";
+    this.setState(state);
+  }
+  
+  ExitGame() {
+    this.props.funcs.redirectTo(pageIds.storeMain);
+  }
+  
   componentDidMount() {
     this.SetDifficulty(this.state.difficulty);
+    curr_notes = QUESTIONS[0];
+    this.UpdateVisibleNotes();
   }
   
   ShouldShowOctave1() { return (this.state.difficulty > 0); }
@@ -175,27 +233,44 @@ export default class M11 extends Component {
     });
   }
   
-  GetFirstNote() {
-    var i = 0;
-    for (; i<g_mytest.state.curr_notes.length; i++) {
-      if (g_mytest.state.curr_notes[i] != 59) return [ g_mytest.state.curr_notes[i], i ];
+  GetCurrNote() {
+    return curr_notes[curr_note_idx];
+  }
+  
+  GetNextNote() {
+    var ret = -999, idx = curr_note_idx + 1;
+    while (curr_notes[idx] == LINE_BREAK) idx ++;
+    if (idx < curr_notes.length) ret = curr_notes[idx];
+    return ret;
+  }
+  
+  // 该函数会在移至当前谱的最后时终止游戏
+  IncrementCurrNote() {
+    curr_note_idx ++;
+    while (curr_note_idx < curr_notes.length && curr_notes[curr_note_idx] == LINE_BREAK) {
+      curr_note_idx ++;
+      console.log("cni=" + curr_note_idx);
+      curr_notes_visible_start = curr_note_idx;
     }
-    return [-999, -999];
+    
+    // 终止游戏
+    if (curr_note_idx >= curr_notes.length) this.EndGame();
   }
   
   OnNotePressed(note) { // MIDI音符编号
-    var c = g_mytest.state.curr_notes;
-    var x = this.GetFirstNote();
-    var first_note = x[0], idx = x[1];
-    
-    if (c.length > 0 && first_note != -999 && first_note == note) {
-      c[idx] = EMPTY_NOTE;
-      g_mytest.setState({
-        curr_notes: c
-      });
+    var c = g_mytest.state.curr_visible_notes;
+    var x0 = this.GetCurrNote(), x1 = this.GetNextNote();
+    console.log(c.length + " - " + x0 + " - " + x1);
+    if (c.length > 0 && x0 != -999 && x0 == note) {
+      
+      // 更新谱子。
+      this.IncrementCurrNote();
+      this.UpdateVisibleNotes();
+      
+      // 把老鼠移到下一个音符的位置去。
       var next_note = undefined;
-      if (idx + 1 < this.state.curr_notes.length) {
-        var id = 'note' + this.state.curr_notes[idx + 1];
+      if (x1 != -999) {
+        var id = 'note' + x1;
         var elt = g_mytest.note_elts[id];
         elt.measure((x,y,w,h,px,py) => {
           g_mytest.MoveMouseTo(px, py);
@@ -208,6 +283,10 @@ export default class M11 extends Component {
   
   MoveMouseTo(px, py) { // Screen X, Screen Y
     if (1) {
+      var target_y_rot = 0; // 向右移动
+      if (px < last_mouse_x) target_y_rot = 1; // 向左移动
+      last_mouse_x = px;
+      
       Animated.parallel([
         Animated.timing(
           mouse_x,
@@ -216,6 +295,10 @@ export default class M11 extends Component {
         Animated.timing(
           mouse_y,
           { toValue: py, duration: 300 }
+        ),
+        Animated.timing(
+          mouse_rot_y,
+          { toValue: target_y_rot, duration: 100 }
         ),
       ]).start( () => { } )
     } else {
@@ -240,7 +323,7 @@ export default class M11 extends Component {
     console.log("onPressButton");
     if (x == "notes_disp") { // Clear notes
       console.log("clear");
-      g_mytest.setState({ curr_notes: [] });
+      g_mytest.setState({ curr_visible_notes: [] });
     } else { // Add note
       if (x.startsWith('note')) {
         var n = parseInt(x.substr(4));
@@ -252,11 +335,16 @@ export default class M11 extends Component {
   }
   
   VisualizeNotes() {
-    return "";//"length = " + this.state.curr_notes.length;
+    return "";//"length = " + this.state.curr_visible_notes.length;
   }
   
   render() {
-    console.log("render");
+    
+    let mouse_rot_y_interpolated = mouse_rot_y.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '180deg']
+    });
+    
     return (
 
       <ImageBackground
@@ -267,18 +355,7 @@ export default class M11 extends Component {
 
 
         <View style={styles.container}>
-          {/*
-          <Video source={require('audio/note60.mp3')}
-            ref={(ref) => {
-              this.player = ref
-            }}
-            audioOnly={true}
-            paused={true}
-            rate={1}
-            repeat={false}>
-          </Video>
-          */}
-
+          
           <StatusBar hidden />
           <TouchableOpacity id="notes_disp" style={{right:2, top:2, position:'absolute',
             height:80, width:200, backgroundColor:'#33663300'}}
@@ -290,7 +367,7 @@ export default class M11 extends Component {
           { 
             /* 空的谱线背景，先绘制 */
             this.ShouldShowStaff() && 
-            <View style={{flexDirection:'row', left:2, top:2, position:'absolute'}}>
+            <View style={{flexDirection:'row', left:'auto', right:'auto', top:2, position:'absolute'}}>
               <Image source={STAFF_BEGIN}
                      style={{height:this.state.note_h, width:this.state.note_w}}
                      resizeMode='stretch'></Image>
@@ -319,7 +396,7 @@ export default class M11 extends Component {
           {
             /* 有内容的谱线，后绘制，覆盖于空的谱线之上 */
             this.ShouldShowStaff() &&
-            <View style={{flexDirection:'row', left:2, top:2, position:'absolute'}}>
+            <View style={{flexDirection:'row', left:'auto', right:'auto', top:2, position:'absolute'}}>
               <Image source={STAFF_BEGIN}
                      style={{height:this.state.note_h, width:this.state.note_w}}
                      resizeMode='stretch'></Image>
@@ -328,7 +405,7 @@ export default class M11 extends Component {
                 <FlatList
                   horizontal
                   style={{}}
-                  data={this.state.curr_notes}
+                  data={this.state.curr_visible_notes}
                   backgroundImage={STAFF_EMPTY}
                   renderItem={
                     ({item}) => <Image source={NOTE_IMAGES[item-59]}
@@ -475,12 +552,57 @@ export default class M11 extends Component {
             </View>
           }
         </View>
+        
+        {/* 老鼠 */}
+          
         <Animated.View id="theMouse" ref={c => (this.the_mouse = c)} 
-            style={{position:'absolute', top:mouse_y, left:mouse_x, opacity:mouse_opacity}}
+            style={{position:'absolute', 
+                    top:mouse_y, left: mouse_x, opacity: mouse_opacity,
+                    transform: [{rotateY: mouse_rot_y_interpolated}] }}
             pointerEvents="none"
             >
             <Image source={require('../../img/instore/TheMouse.gif')} style={{height:this.state.mouse_h, width:this.state.mouse_w}} resizeMode='stretch'></Image>
         </Animated.View>
+        
+        
+        {/* 游戏还没开始时的样子 */}
+        
+        {
+          (this.state.game_state == "not_started") &&
+          <View style = {styles.blocker}>
+          </View>
+        }
+         
+        {
+          (this.state.game_state == "not_started") && 
+          <View style = {{width: '100%', height:120, position:'absolute',
+                          left: 'auto', right:'auto', top:'60%'}}>
+            <DialogBox onPress={() => this.StartGame()}>
+              <WawaText style={{ color:'white', fontSize: 18 }}>
+                { this.GetHintForCurrentLevel() }
+              </WawaText>
+            </DialogBox>
+          </View>
+        }
+        
+        {/* 完成时的消息 */}
+        {
+          (this.state.game_state == "ended") &&
+            <View style = {styles.blocker}>
+          </View>
+        }
+        {
+          (this.state.game_state == "ended") &&
+          <View style = {{width: '100%', height: 120, position:'absolute',
+                          left: 'auto', right: 'auto', top:'20%' }} >
+            <DialogBox onPress={() => this.ExitGame()}>
+              <WawaText style={{ color:'white', fontSize: 18 }}>
+                任务完成！点此返回。
+              </WawaText>
+            </DialogBox>
+          </View>
+        }
+          
       </ImageBackground>
     );
   }
@@ -533,5 +655,12 @@ const styles = StyleSheet.create({
   buttonText: {
     padding: 3,
     color: 'white'
+  },
+  blocker: {
+    backgroundColor: 'white',
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    opacity: 0.7,
   }
 })
