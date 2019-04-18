@@ -29,7 +29,7 @@ class LetterPaper extends Component {
     setTimeout(() => {
         Alert.alert('信已收到，勿念，ID茉莉');
         this.props.navigation.navigate("MailBox_i");
-    }, 1000);
+    }, 2000);
     const { text } = this.state;
     const { dispatch } = this.props;
     const {params} = this.props.navigation.state;
@@ -50,10 +50,13 @@ class LetterPaper extends Component {
   render() {
     const { replying } = this.state;
     return replying ? (
-      <TouchableHighlight underlayColor='transparent' style={styles.writBack} onPress={() => this.props.navigation.navigate("MailBox_i")}>
+      <TouchableHighlight
+        underlayColor='transparent' 
+        style={styles.writBack} onPress={() => this.props.navigation.navigate("MailBox_i")}
+      >
         <ImageBackground
           style={styles.container}
-          source={require("./../img/replying.webp")}
+          source={require("./../img/replying.gif")}
         ></ImageBackground>
       </TouchableHighlight>
     ) : (
