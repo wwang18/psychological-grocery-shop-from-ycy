@@ -8,6 +8,7 @@ export default {
     giftCards: [], // 礼物卡片list
     personCards: [], // 人物卡片list
     lockedImg: require('../img/PQS/framework_GiftCard.png'),
+    isNew: false
   },
   reducers: {
     //保存
@@ -24,6 +25,13 @@ export default {
           type: 'save',
           payload: params
         })
+    },
+    * changeMailBoxState({params}, {select, call, put}) {
+      let data = yield call(saveCards, {key: params.key, list: params.data})
+      yield put({
+        type: 'save',
+        payload: {[params.key]: data}
+      })
     },
     * changeCardsState({params}, {select, call, put}) {
       let list = yield select( state => {
@@ -74,7 +82,7 @@ export default {
         return state.mailBox[params.key]
       } );
       let data = yield call(initCards, list)
-      console.log(data, 'data')
+      // console.log(data, 'data')
       yield put({
         type: 'save',
         payload: {[params.key]: data}

@@ -40,6 +40,13 @@ export const initCardStore = (props) => {
         data: []
       }
     })
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'isNew',
+        data: false
+      }
+    })
 }
 export const getCardValue = async (type) => {
     try {

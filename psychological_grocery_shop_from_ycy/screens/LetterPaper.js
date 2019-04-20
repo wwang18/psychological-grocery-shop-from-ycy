@@ -41,6 +41,13 @@ class LetterPaper extends Component {
       type: 'mailBox/saveData',
       params: {topic, issueKey, letter: text, letterId: !!text ? letterId : 0, giftId, personalId}
     })
+    dispatch({
+      type: 'mailBox/changeMailBoxState',
+      params: {
+        key: 'isNew',
+        data: true
+      }
+    })
   }
 
   _onPressButton_back() {
