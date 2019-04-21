@@ -36,7 +36,7 @@ export function saveCards(params) {
   Storage.save({ key, data: newlist})
   return newlist;
 }
-export function saveMailBoxState(params) {
+export function saveStorage(params) {
   const { key, data } = params;
   Storage.save({ key, data})
   return data;

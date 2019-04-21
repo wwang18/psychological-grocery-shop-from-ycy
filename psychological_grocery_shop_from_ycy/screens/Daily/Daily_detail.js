@@ -7,10 +7,10 @@ import {
     StatusBar,
     TouchableOpacity,
     Image,
-    WebView
 } from "react-native";
 import { pageIds } from '../InStore/InStoreConfig';
 import { getArticleById } from '../../api/api';
+import { WebView } from "react-native-webview";
 
 class DailyDetail extends Component {
     constructor(props) {
@@ -108,8 +108,8 @@ const styles = StyleSheet.create({
         marginLeft: 60,
         marginRight: 60,
         backgroundColor: "transparent",
-        fontWeight: 'normal',
-        fontFamily: 'DFPWaWaW5-GB'
+        // fontWeight: 'normal',
+        // fontFamily: 'DFPWaWaW5-GB'
     },
     button: {
         width: null,

@@ -14,6 +14,7 @@ import {
 import { pageIds } from '../InStore/InStoreConfig';
 import WawaText from '../../components/WawaText';
 import { getArticleByPage } from '../../api/api';
+import { saveStorage } from '../../services/mailBox';
 
 import rowBg1 from "./../../img/daily/row1_2.png";
 import rowBg2 from "./../../img/daily/row3_4.png";
@@ -32,8 +33,9 @@ class Daily extends Component {
 
   componentDidMount() {
     this._getData();
+    saveStorage({key: 'boughtDaily', data: []});
   }
-  _getData(changeTo) {
+  _getData = (changeTo) => {
     let { pageNo, pageItems } = this.state;
     if (changeTo) {
       pageNo = pageNo + changeTo;
@@ -96,6 +98,8 @@ class Daily extends Component {
           Alert.alert('你没有足够的金币！');
         }
       }
+    }).catch(err => {
+      console.log(err , 'err')
     })
   };
   _renderItem = ({ item }) => (
@@ -160,7 +164,7 @@ class Daily extends Component {
                     initialNumToRender={9}
                     //Setting the number of column
                     numColumns={1}
-                    keyExtractor={(item, index) => index}
+                    keyExtractor={(item, index) => index.toString()}
                   />
                 </View>
                 <View style={{ flex: 250 }}>

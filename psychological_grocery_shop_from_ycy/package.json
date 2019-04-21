@@ -27,6 +27,7 @@
     "react-native-storage": "^1.0.1",
     "react-native-video": "^4.4.1",
     "react-native-webp": "^0.3.1",
+    "react-native-webview": "^5.7.0",
     "react-navigation": "^3.3.2",
     "react-redux": "^5.0.7",
     "shaka-player": "^2.5.0-beta3"
