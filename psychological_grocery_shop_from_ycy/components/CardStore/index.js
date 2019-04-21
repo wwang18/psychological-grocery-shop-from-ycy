@@ -9,10 +9,12 @@ export const initCardStore = async () => {
         // Storage.remove({key: 'letterCards'})
         // Storage.remove({key: 'personCards'})
         // Storage.remove({key: 'giftCards'})
+        // Storage.remove({key: 'boughtDaily'})
         // return
         initSaveCard('letterCards', LETTER);
         initSaveCard('personCards', PERSON);
         initSaveCard('giftCards', GIFT);
+        initSaveCard('boughtDaily', []);//bought daily initial here
     } catch (error) {
         // console.error('initCardStore() Error:', error);
     }

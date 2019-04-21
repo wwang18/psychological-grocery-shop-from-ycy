@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
-  Text,
+  Alert,
   View,
   ImageBackground,
   StatusBar,
@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { pageIds } from '../InStore/InStoreConfig';
 import WawaText from '../../components/WawaText';
+import { getArticleByPage } from '../../api/api';
 
 import rowBg1 from "./../../img/daily/row1_2.png";
 import rowBg2 from "./../../img/daily/row3_4.png";
@@ -22,31 +23,80 @@ class Daily extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: [{"id":10056,"title":"超越在美丽的四川稻城亚丁录制《哈哈农夫》","date":"2019-04-14T04:49:36.000Z",row:1},
-      {"id":10057,"title":"恭喜杨超越获得第三名！","date":"2019-04-13T05:34:09.000Z",row:2},
-      {"id":10058,"title":"谢谢你的善良，善良是可以保护自己的武器","date":"2019-04-12T05:39:55.000Z",row:3},
-      {"id":10059,"title":"超越正式成为AHC 全球品牌代言人！","date":"2019-04-11T05:44:44.000Z",row:4},
-      {"id":10060,"title":"超越蛰伏了一周终于又发微博了！","date":"2019-04-10T05:45:46.000Z",row:5},
-      {"id":10061,"title":"越越又发视频了，戴上墨镜你就是全村最靓的仔","date":"2019-04-09T05:46:06.000Z",row:6},
-      {"id":10062,"title":"超越不在的日子是不是很想她，养超越吧！","date":"2019-04-08T05:46:42.000Z",row:7}]
+      pageNo: 1,
+      pageItems: 7,
+      pageTotal: 1,
+      dataSource: []
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this._getData();
+  }
+  _getData(changeTo) {
+    let { pageNo, pageItems } = this.state;
+    if (changeTo) {
+      pageNo = pageNo + changeTo;
+    }
     // get by api to set data
-    // that.setState({
-    //   dataSource: first_card
-    // });
+    getArticleByPage(pageNo, pageItems).then((response) => {
+      this.setState({
+        pageNo,
+        pageTotal: response.pages,
+        dataSource: response.rows.map(x => { x.row = response.rows.indexOf(x) + 1; return x; })
+      });
+    });
+  }
+  _pageChange = (changeTo) => {
+    this._getData(changeTo);
   }
   _getDate = (date) => {
     date = new Date(date);
-    return date && date.getMonth() + 1 + "/" + date.getDate()
+    // return date && date.getMonth() + 1 + "/" + date.getDate()
+    // As mock data,return day by count some days
+    return date && date.getMonth() + 1 + "/" + (date.getDate() - ((this.state.pageNo - 1) * 7))
   }
   _onPressButton_back() {
     this.props.funcs.redirectTo(pageIds.storeMain);
   }
   _handleButtonClick = item => {
-    this.props.funcs.redirectTo(pageIds.dailyDetail, false, { type: pageIds.dailyDetail, data: item });
+    const { redirectTo, getState, modState } = this.props.funcs;
+
+    Storage.load({
+      key: 'boughtDaily',
+    }).then(res => {
+      let boughtDaily = res ? res : [];
+      let hasBought = boughtDaily.indexOf(item.id) > -1;
+
+      if (hasBought) {
+        redirectTo(pageIds.dailyDetail, false, { type: pageIds.dailyDetail, data: item });
+      }
+      else {
+        const { coins } = getState();
+        if (coins >= 10) {
+          Alert.alert(
+            '',
+            '每份日报售价10元，并会增加超越好感度10点',
+            [
+              { text: 'Cancel', style: 'cancel' },
+              {
+                text: 'OK', onPress: () => {
+                  modState(10, -10);
+                  Storage.save({
+                    key: 'boughtDaily',
+                    data: [...boughtDaily,item.id]
+                  })
+                  redirectTo(pageIds.dailyDetail, false, { type: pageIds.dailyDetail, data: item });
+                }
+              },
+            ],
+          )
+
+        } else {
+          Alert.alert('你没有足够的金币！');
+        }
+      }
+    })
   };
   _renderItem = ({ item }) => (
     <View style={{ flex: 1, flexDirection: "column", margin: 0 }}>
@@ -69,6 +119,8 @@ class Daily extends Component {
   );
 
   render() {
+    const { pageNo, pageTotal } = this.state;
+
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -95,11 +147,11 @@ class Daily extends Component {
             <View style={{ flex: 490 }}>
               <View style={{ flex: 1, flexDirection: "row" }}>
                 <View style={{ flex: 250 }}>
-                  <Image
+                  {pageNo != 1 && <TouchableOpacity style={{ flex: 1 }} onPress={() => this._pageChange(-1)}><Image
                     style={styles.leftBtn}
                     resizeMode="contain"
                     source={require("./../../img/daily/arrow_left.png")}
-                  />
+                  /></TouchableOpacity>}
                 </View>
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
@@ -112,11 +164,11 @@ class Daily extends Component {
                   />
                 </View>
                 <View style={{ flex: 250 }}>
-                  <Image
+                  {pageNo != pageTotal && <TouchableOpacity style={{ flex: 1 }} onPress={() => this._pageChange(1)}><Image
                     style={styles.rightBtn}
                     resizeMode="contain"
                     source={require("./../../img/daily/arrow_right.png")}
-                  />
+                  /></TouchableOpacity>}
                 </View>
               </View>
             </View>
@@ -177,13 +229,14 @@ const styles = StyleSheet.create({
     flex: 300,
     height: "50%",
     width: "50%",
+    left: 0,
   },
   row: {
     flex: 1,
   },
   rowText: {
-    flex: 1, 
-    flexDirection: "row", 
+    flex: 1,
+    flexDirection: "row",
     height: 36,
   },
   title: {
