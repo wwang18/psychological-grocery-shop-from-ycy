@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
 import Orientation from "react-native-orientation";
 import Home from "./screens/Home";
 import SubTopic from "./screens/SubTopic";
@@ -25,7 +25,7 @@ import Storage from "react-native-storage";
 import AsyncStorage from '@react-native-community/async-storage';
 import dva from "./utils/dva";
 import NavigationService from "./utils/navigationService";
-import mailbox from "./models/mailBox"; // 邮箱模块数据
+import mailBox from "./models/mailBox"; // 邮箱模块数据
 
 const storage = new Storage({
   // 最大容量，默认值1000条数据循环存储
@@ -163,7 +163,7 @@ const AppNavigator = createStackNavigator(
 const Router = createAppContainer(AppNavigator); //所有路由
 
 const app = dva({
-  models: [mailbox], // 各个模块数据list
+  models: [mailBox], // 各个模块数据list
   onError(e) {
     if (__DEV__) console.log("onError", e);
   }

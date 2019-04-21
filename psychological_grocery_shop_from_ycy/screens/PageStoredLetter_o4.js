@@ -13,6 +13,7 @@ import {
   ScrollView
 } from "react-native";
 import { scale } from 'react-native-size-matters';
+import { connect } from 'react-redux';
 
 class PageStoredLetter_o4 extends Component {
   state = {
@@ -22,33 +23,23 @@ class PageStoredLetter_o4 extends Component {
   textHeight = 200;
 
   componentDidMount() {
-    this.getMailBoxList()
+    console.log(this.props.mailBox)
+    this.setState({mailBox: [...this.props.mailBox]})
   } 
-
-  getMailBoxList = () => {
-    Storage.load({
-      key: 'mailBox',
-    }).then(res => {
-      // console.log(res, 'res---------')
-      this.setState({mailBox: [...res]})
-    }).catch(err => {
-      Storage.save({
-        key: 'mailBox',
-        data: []
-      })
-    })
-  }
 
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
   _onPressButton_LastLetter(page) {
+    const { mailBox } = this.state;
+    if(mailBox.length === 0) return;
     let curPage = page - 1;
     if(curPage < 0 ) return Alert.alert('已经是最新的信件了')
     this.setState({curPage})
   }
   _onPressButton_NextLetter(page) {
     const { mailBox } = this.state;
+    if(mailBox.length === 0) return;
     let curPage = page + 1;
     if(curPage > mailBox.length - 1) return Alert.alert('没有信件了，快去写一份吧')
     this.setState({curPage})
@@ -133,4 +124,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PageStoredLetter_o4;
+export default connect(({mailBox}) => {
+  return{
+    mailBox: mailBox.mailBox
+  }
+})(PageStoredLetter_o4) ;

@@ -4,7 +4,7 @@ export default [
         small: require("../../img/returnedMailCards/returnedMailCard_small/Image02.jpg"),
         big: require("../../img/returnedMailCards/returnedMailCard/Image02.jpg"),
         back: require("../../img/returnedMailCards/returnedMailCard/Image01.jpg"),
-        unlocked: true,
+        unlocked: false,
         key: ["空白"],
         isNew: false
       }, {

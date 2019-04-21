@@ -9,6 +9,10 @@ import {
   TouchableHighlight
 } from "react-native";
 import { scale } from 'react-native-size-matters';
+import letterList from '../components/CardStore/letterConfig';
+import giftList from '../components/CardStore/giftConfig';
+import personList from '../components/CardStore/personConfig';
+import { connect } from "react-redux";
 
 class LetterPaper extends Component {
   constructor(props) {
@@ -21,33 +25,29 @@ class LetterPaper extends Component {
 
   _handleSendOut() {
     // TODO 
-
     this.setState({ replying: true });
     setTimeout(() => {
-        Alert.alert(selectTopic);
+        Alert.alert('信已收到，勿念，ID茉莉');
         this.props.navigation.navigate("MailBox_i");
-    }, 1000);
-
- 
+    }, 2000);
     const { text } = this.state;
+    const { dispatch } = this.props;
     const {params} = this.props.navigation.state;
     const {topic, issueKey} = params; // 烦恼大小类
-    this.setState({ replying: true });
-    Storage.load({
-      key: 'mailBox',
-    }).then(res => {
-      // let giftId = Math.floor(Math.random()*17);
-      let newMailBox = [...res, {topic, issueKey, letter: text }]
-      Storage.save({
-        key: 'mailBox',
-        data: newMailBox
-      })
-    }).catch(err => {
-      Storage.save({
-        key: 'mailBox',
-        data: [{topic, issueKey, letter: text}]
-      })
-    }) 
+    let giftId = Math.floor(Math.random()*giftList.length + 1); 
+    let letterId = Math.ceil(Math.random()*letterList.length);
+    let personalId = Math.floor(Math.random()*personList.length + 1);
+    dispatch({
+      type: 'mailBox/saveData',
+      params: {topic, issueKey, letter: text, letterId: !!text ? letterId : 0, giftId, personalId}
+    })
+    dispatch({
+      type: 'mailBox/changeMailBoxState',
+      params: {
+        key: 'isNew',
+        data: true
+      }
+    })
   }
 
   _onPressButton_back() {
@@ -57,10 +57,13 @@ class LetterPaper extends Component {
   render() {
     const { replying } = this.state;
     return replying ? (
-      <TouchableHighlight underlayColor='transparent' style={styles.writBack} onPress={() => this.props.navigation.navigate("MailBox_i")}>
+      <TouchableHighlight
+        underlayColor='transparent' 
+        style={styles.writBack} onPress={() => this.props.navigation.navigate("MailBox_i")}
+      >
         <ImageBackground
           style={styles.container}
-          source={require("./../img/replying.webp")}
+          source={require("./../img/replying.gif")}
         ></ImageBackground>
       </TouchableHighlight>
     ) : (
@@ -128,4 +131,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LetterPaper;
+export default connect()(LetterPaper);

@@ -9,6 +9,7 @@ import {
   Button,
   StatusBar,
   Alert,
+  Image,
   TouchableOpacity
 } from "react-native";
 import { isAndroid } from '../utils/commonStyle';
@@ -95,6 +96,18 @@ class PageMailToChaoYue_j extends Component {
             </View>
             <View style={{ flex: 47 }} />
           </View>
+          <View style={styles.backButton}>
+          <TouchableOpacity
+            style={{ flex: 1 }}
+            onPress={() => this._onPressButton_back()}
+          >
+            <Image
+              style={styles.button}
+              resizeMode="contain"
+              source={require("../img/PQS/back.png")}
+            />
+          </TouchableOpacity>
+          </View>
         </ImageBackground>
       </View>
     );
@@ -103,6 +116,18 @@ class PageMailToChaoYue_j extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  backButton: {
+    position: "absolute",
+    width: 120,
+    height: 50,
+    right: 20,
+    bottom: 10
+  },
+  button: {
+    width: null,
+    height: null,
     flex: 1
   }
 });

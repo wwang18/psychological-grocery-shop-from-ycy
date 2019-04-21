@@ -11,10 +11,12 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.3.2",
     "axios": "^0.18.0",
+    "create-react-class": "^15.6.3",
+    "create-react-context": "^0.2.3",
     "dva-core": "^1.4.0",
     "qs": "^6.7.0",
     "react": "16.6.3",
-    "react-native": "^0.59.4",
+    "react-native": "^0.59.5",
     "react-native-exit-app": "^1.0.0",
     "react-native-fs": "^2.13.3",
     "react-native-gesture-handler": "^1.1.0",
@@ -26,7 +28,7 @@
     "react-native-video": "^4.4.1",
     "react-native-webp": "^0.3.1",
     "react-navigation": "^3.3.2",
-    "react-redux": "^7.0.1",
+    "react-redux": "^5.0.7",
     "shaka-player": "^2.5.0-beta3"
   },
   "devDependencies": {
