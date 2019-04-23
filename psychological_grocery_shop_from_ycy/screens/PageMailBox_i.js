@@ -9,8 +9,13 @@ import {
   Image
 } from "react-native";
 import { connect } from 'react-redux';
+import { initCardStore } from '../components/CardStore';
 
 class PageMailBox_i extends Component {
+
+  componentDidMount() {
+    initCardStore(this.props); // 初始化数据
+  }
 
   _onPressButton_back() {
     this.props.navigation.goBack();

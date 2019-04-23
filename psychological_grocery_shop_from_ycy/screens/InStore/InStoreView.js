@@ -4,6 +4,7 @@ import { StyleSheet, View, TouchableOpacity, Image, Alert } from "react-native";
 import { scale } from "react-native-size-matters";
 
 import { AnimatedWawaText } from "../../components/AnimatedWawaText";
+import { initCards, saveStorage } from '../../services/mailBox';
 
 import { pageIds } from "./InStoreConfig";
 import Settings from "./Settings";
@@ -27,7 +28,6 @@ import Daily from "../Daily/D";
 import DailyDetail from "../Daily/Daily_detail";
 import MailBox_i from "../PageMailBox_i.js";
 import Tasks from "./Tasks"
-
 // const backgroundMusic = require('../../audio/ThinkWild.mp3');
 
 export class InStoreView extends React.Component {
@@ -43,8 +43,7 @@ export class InStoreView extends React.Component {
       backgroundMusic: true
     }
   };
-
-  componentWillMount() {
+  async componentWillMount() {
     const funcs = {
       redirectTo: this.gotoNextPage,
       getState: this.getLoveAndCoins,
@@ -76,6 +75,9 @@ export class InStoreView extends React.Component {
       [pageIds.mailBox]: <MailBox_i funcs={funcs} />,
       [pageIds.Tasks]: <Tasks funcs={funcs} />
     };
+
+    let data = await initCards({ key: 'integral', data: { love: 20, coins: 20 }}) //初始化数据，已存在则从存储数据中获取
+    this.setState({ love: data.love, coins: data.coins })
   }
 
   toggleSettings = () => {
@@ -117,6 +119,7 @@ export class InStoreView extends React.Component {
     const newLove = this.state.love + love;
     const newCoins = this.state.coins + coins;
     this.setState({ love: newLove, coins: newCoins });
+    saveStorage({ key: 'integral', data: { love: newLove, coins: newCoins} })
   };
 
   render() {

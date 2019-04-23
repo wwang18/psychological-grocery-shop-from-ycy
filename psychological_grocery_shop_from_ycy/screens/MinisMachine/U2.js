@@ -33,13 +33,14 @@ export const U2 = (props) => {
         size={"sm"}
         style={styles.replayButton}
         text={"再抽一次"}
-        onPress={playAgain}></WawaButton>
+        onPress={playAgain}
+      />
       <WawaButton
         size={"sm"}
         style={styles.backButton}
         text={"回到店铺"}
-        onPress={backToHome}></WawaButton>
-
+        onPress={backToHome}
+      />
       <View style={styles.topPlaceholder}></View>
       <View style={styles.midArea}>
         <View style={styles.leftRightPadding}></View>
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     width: 120,
     height: 50,
+    zIndex: 99
   },
   backButton: {
     position: 'absolute',
@@ -91,6 +93,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     width: 120,
     height: 50,
+    zIndex: 99
   },
 });
 

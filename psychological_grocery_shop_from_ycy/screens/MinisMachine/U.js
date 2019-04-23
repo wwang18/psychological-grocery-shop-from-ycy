@@ -30,12 +30,14 @@ export const MinisMachine = (props) => {
         size={"sm"}
         style={styles.playButton}
         text={"抽一次"}
-        onPress={playMinis}></WawaButton>
+        onPress={playMinis}
+      />
       <WawaButton
         size={"sm"}
         style={styles.backButton}
         text={"返回"}
-        onPress={backToHome}></WawaButton>
+        onPress={backToHome}
+      />
     </ImageBackground>
   )
 }

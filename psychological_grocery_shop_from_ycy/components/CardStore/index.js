@@ -10,6 +10,8 @@ export const delCardValue = async () => {
     Storage.remove({key: 'giftCards'})
     Storage.remove({key: 'mailBox'})
     Storage.remove({key: 'boughtDaily'})
+    Storage.remove({key: 'integral'})
+    Storage.remove({key: 'isNew'})
 };
 export const initCardStore = (props) => {
     const { dispatch } = props;

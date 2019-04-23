@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { scale } from 'react-native-size-matters';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 class PageStoredLetter_o4 extends Component {
   state = {
@@ -23,7 +24,7 @@ class PageStoredLetter_o4 extends Component {
   textHeight = 200;
 
   componentDidMount() {
-    console.log(this.props.mailBox)
+    // console.log(this.props.mailBox)
     this.setState({mailBox: [...this.props.mailBox]})
   } 
 
@@ -61,7 +62,7 @@ class PageStoredLetter_o4 extends Component {
           source={require("./../img/bg/letter_paper.jpg")}
         >
           <View style={{ flex: 1, flexDirection: "row" }}>
-            <View style={{ flex: 140, position: 'relative' }} >
+            <View style={{ flex: 140, position: 'relative' }}>
               <TouchableOpacity
                 style={{ position: 'absolute', bottom: 20, left: 40 }}
                 onPress={() => this._onPressButton_LastLetter(curPage)}
@@ -82,9 +83,13 @@ class PageStoredLetter_o4 extends Component {
                   </Text>
                 </ScrollView> 
               </View>
-              <View style={{flex: 14}}/>
+              <View style={{flex: 14}}>
+                <Text style={styles.timeText} >
+                  { mailBox.length > 0 ? moment(mailBox[curPage].createTime).format('YYYY-MM-DD HH:mm') : null }
+                </Text>
+              </View>
             </View>
-            <View style={{ flex: 140, position: 'relative' }} >
+            <View style={{ flex: 140, position: 'relative' }}>
               <TouchableOpacity
                 style={{ position: 'absolute', bottom: 20, right: 40 }}
                 onPress={() => this._onPressButton_NextLetter(curPage)}
@@ -121,6 +126,12 @@ const styles = StyleSheet.create({
   text: {
     fontSize: scale(22),
     color: '#888',
+  },
+  timeText: {
+    fontSize: scale(16),
+    color: '#888',
+    width: '100%',
+    textAlign: 'right'
   },
 });
 

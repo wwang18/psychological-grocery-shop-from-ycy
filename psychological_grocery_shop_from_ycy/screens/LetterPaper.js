@@ -39,7 +39,7 @@ class LetterPaper extends Component {
     let personalId = Math.floor(Math.random()*personList.length + 1);
     dispatch({
       type: 'mailBox/saveData',
-      params: {topic, issueKey, letter: text, letterId: !!text ? letterId : 0, giftId, personalId}
+      params: { topic, issueKey, letter: text, letterId: !!text ? letterId : 0, giftId, personalId, createTime: new Date().getTime() }
     })
     dispatch({
       type: 'mailBox/changeMailBoxState',
