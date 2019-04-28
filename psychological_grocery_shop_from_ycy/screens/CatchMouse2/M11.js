@@ -22,6 +22,7 @@ import { scale } from 'react-native-size-matters';
 import { WawaText } from '../../components/WawaText';
 import { WawaButton } from '../../components/WawaButton';
 import { DialogBox } from '../../components/DialogBox';
+import CheckBoxItem from '../../components/CheckBoxItem';
 import { pageIds } from '../InStore/InStoreConfig';
 
 import Sound from 'react-native-sound';
@@ -245,6 +246,8 @@ const QUESTIONS = [
 var g_mytest = null;
 var mouse_x = new Animated.Value(20);
 var mouse_y = new Animated.Value(300);
+var mouse_delta_y = new Animated.Value(0);
+var mouse_delta_x = new Animated.Value(0);
 var mouse_rot_y = new Animated.Value(0);
 var mouse_opacity = new Animated.Value(1);
 var last_mouse_x = -999;
@@ -252,6 +255,14 @@ var last_mouse_x = -999;
 var curr_notes = []; // 当前的题库。可能只有一部分被显示出来。内容为MIDI音符编号，-1为强行换页
 var curr_note_idx = 0;
 var curr_notes_visible_start = 0; // 第一个可见的
+
+function doMouseJump() {
+  var delay = parseInt(350 * Math.random()) + 40; 
+  setTimeout(function() {
+    g_mytest.MouseJump(2);
+    doMouseJump();
+  }, delay);
+}
 
 export default class M11 extends Component {
   
@@ -273,12 +284,15 @@ export default class M11 extends Component {
       note_w:     64,
       game_state: "not_started",
       show_note_comments: true,
-      is_setting_visible: false,
+      is_setting_visible: true,
       note_comments: ""
     }
     this.note_elts = { }; // id to React Node
     g_mytest = this;
   }
+  
+  ShowSettings() { var s = g_mytest.state; s.is_setting_visible = true;  g_mytest.setState(s); }
+  HideSettings() { var s = g_mytest.state; s.is_setting_visible = false; g_mytest.setState(s); }
   
   ShouldShowStaff() {
     return true; 
@@ -391,7 +405,7 @@ export default class M11 extends Component {
     } else {
       state.key_height = 80;
       state.key_width  = 45;
-      state.key_row2_x = 320;
+      state.key_row2_x = "50%";
     }
     state.visible_octaves = d;
     this.setState(state);
@@ -438,6 +452,8 @@ export default class M11 extends Component {
     var state = g_mytest.state;
     state.note_comments = "Cm ・ C-minor ・ C小三和弦";
     this.setState(state);
+    
+    doMouseJump();
   }
   
   ShouldShowOctave1() { return (this.state.visible_octaves > 0); }
@@ -504,6 +520,9 @@ export default class M11 extends Component {
       } else {
         g_mytest.MoveMouseTo(-999, -999);
       }
+    } else {
+      // 没按中的话，老鼠就跳一下
+      this.MouseJump();
     }
   }
   
@@ -554,6 +573,31 @@ export default class M11 extends Component {
     }
   }
   
+  MouseJump(num_jumps = 2) {
+    // 拿到Animated.value当前的值的方法：
+    // https://stackoverflow.com/questions/41932345/get-current-value-of-animated-value-react-native
+    var y0 = 0, y1 = -5, x0 = -4, x1 = 0, x2 = 4;
+    var seq = [];
+    var is_y = true;
+    if (Math.random() > 0.5) is_y = false;
+    
+    if (is_y) {
+      for (var i=0; i<num_jumps; i++) {
+        seq.push(Animated.timing(mouse_delta_y, { toValue: y1, duration: 80 }));
+        seq.push(Animated.timing(mouse_delta_y, { toValue: y0, duration: 80 }));
+      }
+    } else {
+      seq.push(Animated.timing(mouse_delta_x, { toValue: x0, duration: 40 }));
+      seq.push(Animated.timing(mouse_delta_x, { toValue: x2, duration: 80 }));
+      for (var i=0; i<num_jumps-1; i++) {
+        seq.push(Animated.timing(mouse_delta_x, { toValue: x0, duration: 80 }));
+        seq.push(Animated.timing(mouse_delta_x, { toValue: x2, duration: 80 }));
+      }
+      seq.push(Animated.timing(mouse_delta_x, { toValue: x1, duration: 40 }));
+    }
+    Animated.sequence(seq).start( ()=>{} );
+  }
+  
   _onPressButton(x) {
     //Alert.alert('You tapped the button!' + this.id)
     var x = this.id;
@@ -576,12 +620,6 @@ export default class M11 extends Component {
   }
   
   render() {
-    
-    let mouse_rot_y_interpolated = mouse_rot_y.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0deg', '180deg']
-    });
-    
     return (
 
       <ImageBackground
@@ -801,9 +839,7 @@ export default class M11 extends Component {
         
         {/* 老鼠 */}  
         <Animated.View id="theMouse" ref={c => (this.the_mouse = c)} 
-            style={{position:'absolute', 
-                    top:mouse_y, left: mouse_x, opacity: mouse_opacity,
-                    transform: [{rotateY: mouse_rot_y_interpolated}] }}
+            style={GetMouseStyle()}
             pointerEvents="none"
             >
             <Image source={require('../../img/instore/TheMouse.gif')} style={{height:this.state.mouse_h, width:this.state.mouse_w}} resizeMode='stretch'></Image>
@@ -860,20 +896,56 @@ export default class M11 extends Component {
           </View>
         }
         
+        {/* 设置开关 */}
+        {
+          (this.state.is_setting_visible == false) &&
+          <View style={{width: 50, height: 30, position:'absolute', left:10, bottom:"50%"}}>
+            <Button title="设置" color='#CBA7F9' onPress={g_mytest.ShowSettings}></Button>
+          </View>
+        }
+        
         {/*设置・・・很多地方抄自Settings*/}
         {
+          ((this.state.is_setting_visible == true) && (this.state.game_state == "started")) &&
+          <View style={ styles.blocker }></View>
+        }
+        {
           (this.state.is_setting_visible == true) &&
-          <View style={
-                        [ styles.blocker, 
-                         {backgroundImage:require("../../img/instore/EmptyDialogBox.png")}]
-                      }>
+          <View style={{flex: 1}}>
+            <ImageBackground
+            resizeMode="stretch"
+            style={{flex:1}}
+            source={require("../../img/instore/EmptyDialogBox.png")}>
+              
             <View style={styles.contentPosition}>
               <View style={styles.headerContainer}>
                 <WawaText style={styles.headerText}>
                   ～～设置～～
                 </WawaText>
               </View>
+              
+              
+              <View style={styles.checkbox}>
+                <CheckBoxItem
+                  value={this.state.show_note_comments}
+                  onChange={() => {
+                    var x = this.state;
+                    x.show_note_comments = !x.show_note_comments;
+                    this.setState(x);
+                  }}
+                />
+                <WawaText style={styles.itemText}>显示音符描述</WawaText>
+              </View>
+            
+              
+              <WawaButton
+                size={"sm"}
+                style={styles.button}
+                text={"完成"}
+                onPress={this.HideSettings}></WawaButton>
+                
             </View>
+            </ImageBackground>
           </View>
         }
           
@@ -906,6 +978,18 @@ export default class M11 extends Component {
       }
     });
   }
+}
+
+function GetMouseStyle() {
+  let mouse_rot_y_interpolated = mouse_rot_y.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '180deg']
+    });
+  return ({position:'absolute', 
+    top:  Animated.add(mouse_y, mouse_delta_y), 
+    left: Animated.add(mouse_x, mouse_delta_x),
+    opacity: mouse_opacity,
+    transform: [{rotateY: mouse_rot_y_interpolated}] });
 }
 
 const styles = StyleSheet.create({
@@ -952,4 +1036,21 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: scale(36),
   },
+  
+  button: {
+    position: 'absolute',
+    bottom: 30,
+    width: 120,
+    height: 50,
+    left: "50%",
+  },
+  itemText: {
+    marginTop: 5,
+    color: 'white',
+    fontSize: scale(18),
+  },
+  checkbox: { 
+    flexDirection: 'row',
+  }
+  
 })
