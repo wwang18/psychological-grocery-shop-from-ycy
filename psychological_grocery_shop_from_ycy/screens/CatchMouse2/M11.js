@@ -14,7 +14,8 @@ import { Alert,
   StatusBar,
   Image,
   FlatList,
-  Animated
+  Animated,
+  Picker,
 } from 'react-native';
 import { scale } from 'react-native-size-matters';
 //import { Audio } from 'expo-av';
@@ -45,6 +46,10 @@ const AUDIO_FOLDER = '../../audio/';
 //    at deltaUrlToBlobUrl (deltaUrlToBlobUrl.js:28)
 //    at async getBlobUrl ((index):222)
 //    at async WebSocket.ws.onmessage ((index):185)
+
+// 碧油唧s
+// CHORD_TYPES[4] == undefined     ---- 因为在 ] 之后少了一个逗号
+// 从店铺界面进入时有几率卡死 ---- 因为
 
 // MIDI中，60 = C4
 const notes_mp3 = [
@@ -93,7 +98,7 @@ const CHORD_TYPES = [
   [ [ 4, 4 ], "aug", "augmented", "增三和弦" ],
   [ [ 3, 3 ], "dim", "diminished", "减三和弦" ],
   
-  [ [ 4, 3, 4 ], "major 7th", "大大七和弦" ]
+  [ [ 4, 3, 4 ], "major 7th", "大大七和弦" ],
   [ [ 4, 3, 3 ], "minor 7th", "大小七和弦" ],
   [ [ 3, 4, 4 ], "minor with major 7th", "小大七和弦" ],
   [ [ 3, 4, 3 ], "minor 7th", "小小七和弦" ],
@@ -250,6 +255,7 @@ var mouse_delta_y = new Animated.Value(0);
 var mouse_delta_x = new Animated.Value(0);
 var mouse_rot_y = new Animated.Value(0);
 var mouse_opacity = new Animated.Value(1);
+var mouse_fade = false;
 var last_mouse_x = -999;
 
 var curr_notes = []; // 当前的题库。可能只有一部分被显示出来。内容为MIDI音符编号，-1为强行换页
@@ -271,7 +277,7 @@ export default class M11 extends Component {
     this.state = { 
       curr_visible_notes: [],
       dummy_notes: [],
-      visible_octaves: 1,
+      visible_octaves: 0,
       mouse_h: 80,
       mouse_w: 80,
       key_row1_x: 0,
@@ -285,7 +291,8 @@ export default class M11 extends Component {
       game_state: "not_started",
       show_note_comments: true,
       is_setting_visible: true,
-      note_comments: ""
+      note_comments: "",
+      difficulty: 0,
     }
     this.note_elts = { }; // id to React Node
     g_mytest = this;
@@ -323,30 +330,53 @@ export default class M11 extends Component {
   do_Gen(type) {
   }
   
-  GenRandom() {
-    // +4, +3
-    var lb = 60, ub = 83;
-    
+  GenRandom() { 
     const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B",
                         "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     
     var n = [];
     
     var last_n0 = -999;
-    for (var i=0; i<3; i++) {
+    
+    for (var ii=0; ii<3; ii++) {
+      
+      // 哪一种谜题？
+      var type_idx, x;
+      do {
+        type_idx = Math.floor(Math.random() * CHORD_TYPES.length);
+        x          = CHORD_TYPES[type_idx];
+        if (x == undefined) {
+          console.log("CHORD_TYPES=" + CHORD_TYPES);
+          console.log("type_idx=" + type_idx);
+          console.log("x=" + x);
+        }
+      } while (false);
+      var deltas     = x[0];
+      var sum_deltas = 0;
+      for (var i=0; i<deltas.length; i++) sum_deltas += deltas[i];
+      var desc = CHORD_TYPES[type_idx][1];
+      
+      var lb = 60, ub = 83;
+      if (g_mytest.state.visible_octaves == 0) { lb = 72; }
+      
       var n0, n1, n2;
       do {
-        n0 = lb + Math.floor(Math.random() * (ub - 7 - lb + 1));
-        n1 = n0 + 4;
-        n2 = n1 + 3;
+        n0 = lb + Math.floor(Math.random() * (ub - sum_deltas - lb + 1));
+        n1 = n0 + sum_deltas;
       } while (n0 == last_n0);
       last_n0 = n0;
       
       n.push(NOTE_COMMENT);
-      n.push(NOTE_NAMES[n0 - lb] + ' maj')
-          
-      n.push(n0); n.push(n1); n.push(n2); n.push(LINE_BREAK);
+      n.push(NOTE_NAMES[n0 - lb] + " " + desc);
+      
+      n.push(n0);
+      for (var i=0; i<deltas.length; i++) {
+        n0 += deltas[i];
+        n.push(n0);
+      }
+      n.push(LINE_BREAK);
     }
+    console.log(n);
     this.SetNotes(n);
   }
   
@@ -396,6 +426,7 @@ export default class M11 extends Component {
     this.setState(s);
   }
   
+  // 这个其实是取决于当前的难度等级的
   SetVisibleOctaves(d) {
     var state = this.state;
     if (d == 0) {
@@ -411,10 +442,44 @@ export default class M11 extends Component {
     this.setState(state);
   }
   
+  // 难度[0]：一排键 老鼠不隐藏
+  // 难度[1]：两排键 老鼠不隐藏
+  // 难度[2]：一排键 老鼠隐藏
+  // 难度[3]：两排键 老鼠隐藏
+  SetDifficulty(d) {
+    
+    var octaves = 0;
+    
+    // 键
+    switch (d) {
+    case 0:
+      octaves = 0; mouse_fade = false; break;
+    case 1:
+      octaves = 1; mouse_fade = false; break;
+    case 2:
+      octaves = 0; mouse_fade = true;  break;
+    case 3:
+      octaves = 1; mouse_fade = true;  break;
+    }
+    
+    // 更新版面
+    var s = this.state;
+    s.difficulty = d;
+    s.visible_octaves = octaves;
+    this.setState(s);
+    this.SetVisibleOctaves(octaves);
+    
+    // 重新生成
+    this.GenRandom();
+  }
+  
   GetHintForCurrentLevel() {
-    if (this.state.visible_octaves == 0) return "[0] 提示：请跟随老鼠的移动按下指定按键。";
-    else if (this.state.visible_octaves == 1) return "[1] 提示：请跟随老鼠的移动按下指定按键；请注意按键对应谱子的位置";
-    else return "[2] 这个难度下范围扩大，有两个八度的键。";
+    switch (this.state.difficulty) {
+      case 0: return "【一级】一个八度的键位、老鼠会跑到需要按的键上。";
+      case 1: return "【二级】两个八度的键位、老鼠会跑到需要按的键上。";
+      case 2: return "【三级】一个八度的键位、老鼠会消失，得要通过谱子确定按键位置。";
+      case 3: return "【四级】两个八度的键位、老鼠会消失，得要通过谱子确定按键位置。";
+    }
   }
   
   // 因为有可能从view中调用，而view中的this指针指向的是那个view，所以得要通过全局引用来取到这个Component
@@ -435,14 +500,16 @@ export default class M11 extends Component {
   
   // 该函数只有通过主界面进入才有效，不然 props 会是 undefined
   ExitGame() {
-    this.props.funcs.redirectTo(pageIds.storeMain);
+    g_mytest.props.funcs.redirectTo(pageIds.storeMain);
   }
   
   componentDidMount() {
     InitSounds();
     this.UpdateVisibleNotes();
+    this.SetVisibleOctaves(0);
     // init level
-    this.SetVisibleOctaves(this.state.visible_octaves);
+    //this.SetDifficulty(g_mytest.state.difficulty); // DATA RACE
+    
     
     // init
     this.GenRandom();
@@ -543,7 +610,14 @@ export default class M11 extends Component {
       px = px - this.state.mouse_w * 0.2;
       py = py - this.state.mouse_h * 0.2;
       
-      Animated.parallel([
+      // 老鼠是否会消失。
+      var rot_duration = 300;
+      if (mouse_fade == true) {
+        mouse_opacity._value = 1; // 似乎这样就能直接赋值
+        rot_duration = 1; // 如果老鼠会消失，那转身就要立刻执行
+      }
+      
+      var seq = [
         Animated.timing(
           mouse_x,
           { toValue: px, duration: 300 }
@@ -554,9 +628,18 @@ export default class M11 extends Component {
         ),
         Animated.timing(
           mouse_rot_y,
-          { toValue: target_y_rot, duration: 100 }
+          { toValue: target_y_rot, duration: rot_duration }
         ),
-      ]).start( () => { } )
+      ];
+      
+      if (mouse_fade == true) {
+        seq.push(Animated.timing(
+          mouse_opacity, 
+          { fromValue: 1, toValue: 0, duration: 233 }
+        ));
+      }
+      
+      Animated.parallel(seq).start( () => { } )
     } else {
       mouse_x = px - this.state.mouse_w * 0.66;
       mouse_y = py - this.state.mouse_h * 0.66;
@@ -854,6 +937,7 @@ export default class M11 extends Component {
          
         {
           (this.state.game_state == "not_started") && 
+          (this.state.is_setting_visible == false) &&
           <View style = {{width: '100%', height:120, position:'absolute',
                           left: 'auto', right:'auto', top:'60%'}}>
             <DialogBox onPress={() => this.StartGame()}>
@@ -936,7 +1020,21 @@ export default class M11 extends Component {
                 />
                 <WawaText style={styles.itemText}>显示音符描述</WawaText>
               </View>
-            
+              
+              <View style={[styles.checkbox, {marginTop:30}]}>
+                <WawaText style={styles.itemText}>难度等级：</WawaText>
+                <CheckBoxItem
+                  value={this.state.difficulty == 0}
+                  onChange={() => { this.SetDifficulty(0); }}
+                />
+                <WawaText style={styles.itemText}>一级  </WawaText>
+                <CheckBoxItem value={this.state.difficulty == 1} onChange={() => { this.SetDifficulty(1); }} />
+                <WawaText style={styles.itemText}>二级  </WawaText>
+                <CheckBoxItem value={this.state.difficulty == 2} onChange={() => { this.SetDifficulty(2); }} />
+                <WawaText style={styles.itemText}>三级  </WawaText>
+                <CheckBoxItem value={this.state.difficulty == 3} onChange={() => { this.SetDifficulty(3); }} />
+                <WawaText style={styles.itemText}>四级</WawaText>
+              </View>
               
               <WawaButton
                 size={"sm"}
