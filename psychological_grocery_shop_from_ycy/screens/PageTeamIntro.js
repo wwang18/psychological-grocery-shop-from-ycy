@@ -39,8 +39,8 @@ class PageTeamIntro extends Component {
             <View style={{ flex: 76 }} />
             <View style={{ flex: 325 }}>
               <View style={{ flex: 1, flexDirection: "column" }}>
-                <View style={{ flex: 590 }} />
-                <View style={{ flex: 105 }}>
+                <View style={{ flex: 610 }} />
+                <View style={{ flex: 85 }}>
                   <TouchableHighlight
                     underlayColor="transparent"
                     style={styles.btnWrapper}

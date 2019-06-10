@@ -74,6 +74,18 @@ class PageStoredLetter_o4 extends Component {
                 />
               </TouchableOpacity>
             </View>
+            <View style={{ flex: 140, position: 'relative' }}>
+              <TouchableOpacity
+                style={{ position: 'absolute', bottom: 20, left: 80 }}
+                onPress={() => this._onPressButton_NextLetter(curPage)}
+              >
+                <Image
+                  style={styles.btn}
+                  resizeMode="contain"
+                  source={require("../img/btns/o_NextLetter.png")}
+                />
+              </TouchableOpacity>
+            </View>
             <View style={styles.textContainer}>
               <View style={{flex: 13}}/>
               <View style={{flex: 30}}>
@@ -92,12 +104,12 @@ class PageStoredLetter_o4 extends Component {
             <View style={{ flex: 140, position: 'relative' }}>
               <TouchableOpacity
                 style={{ position: 'absolute', bottom: 20, right: 40 }}
-                onPress={() => this._onPressButton_NextLetter(curPage)}
+                onPress={() => this._onPressButton_back()}
               >
                 <Image
-                  style={styles.btn}
+                  style={styles.backButton}
                   resizeMode="contain"
-                  source={require("../img/btns/o_NextLetter.png")}
+                  source={require("../img/PQS/back.png")}
                 />
               </TouchableOpacity>
             </View>
@@ -122,6 +134,13 @@ const styles = StyleSheet.create({
   btn: {
     width: 100, 
     height: 40
+  },
+  backButton: {
+    width: 100,
+    height: 40,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-end"
   },
   text: {
     fontSize: scale(22),
