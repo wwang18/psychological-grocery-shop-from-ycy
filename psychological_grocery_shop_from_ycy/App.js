@@ -20,8 +20,6 @@ import PageStoredLetter_o4 from "./screens/PageStoredLetter_o4";
 import instoreRoutes from "./screens/InStore/InStoreRouter";
 import PageTeamIntro from "./screens/PageTeamIntro";
 import PageExitPage_e from "./screens/PageExitPage_e";
-import M11 from "./screens/CatchMouse2/M11";
-import InStoreView from "./screens/InStore/InStoreView";
 
 import Storage from "react-native-storage";
 import AsyncStorage from '@react-native-community/async-storage';
@@ -155,22 +153,10 @@ const AppNavigator = createStackNavigator(
         header: null
       }
     },
-    M11: { // 测试用
-      screen: M11,
-      navigationOptions: {
-        header: null
-      }
-    },
-    InStoreView: { // 测试用
-      screen: InStoreView,
-      navigationOptions: {
-        header: null
-      }
-    },
     ...instoreRoutes
   },
   {
-    initialRouteName: "InStoreView"
+    initialRouteName: "Home"
   }
 );
 

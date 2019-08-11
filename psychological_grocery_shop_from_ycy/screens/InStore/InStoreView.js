@@ -4,6 +4,7 @@ import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
 import { AnimatedWawaText } from '../../components/AnimatedWawaText';
+import { initCards, saveStorage } from '../../services/mailBox';
 
 import { pageIds } from './InStoreConfig';
 import Settings from './Settings';
@@ -23,12 +24,13 @@ import MinisMachine from '../MinisMachine/U';
 import U1 from '../MinisMachine/U1';
 import U2 from '../MinisMachine/U2';
 import Phonograph from '../Phonograph/V';
+import PhonographMV from '../Phonograph/VMV';
 import Daily from '../Daily/D';
 import DailyDetail from '../Daily/Daily_detail';
 import MailBox_i from '../PageMailBox_i.js';
+import Tasks from './Tasks';
 import M11 from '../CatchMouse2/M11';
-
-const backgroundMusic = require('../../audio/ThinkWild.mp3');
+// const backgroundMusic = require('../../audio/ThinkWild.mp3');
 
 export class InStoreView extends React.Component {
   state = {
@@ -53,24 +55,28 @@ export class InStoreView extends React.Component {
     };
 
     this.allPages = {
-      [pageIds.storeMain]: <Instore funcs={funcs}></Instore>,
-      [pageIds.F11]: <F11 funcs={funcs}></F11>,
-      [pageIds.F12]: <F12 funcs={funcs}></F12>,
-      [pageIds.F13]: <F13 funcs={funcs}></F13>,
-      [pageIds.F14]: <F14 funcs={funcs}></F14>,
-      [pageIds.F15]: <F15 funcs={funcs}></F15>,
-      [pageIds.F16]: <F16 funcs={funcs}></F16>,
-      [pageIds.F17]: <F17 funcs={funcs}></F17>,
-      [pageIds.F18]: <F18 funcs={funcs}></F18>,
-      [pageIds.M1]: <M1 funcs={funcs}></M1>,
-      [pageIds.M2]: <M2 funcs={funcs}></M2>,
-      [pageIds.minisMachine]: <MinisMachine funcs={funcs}></MinisMachine>,
-      [pageIds.U1]: <U1 funcs={funcs}></U1>,
-      [pageIds.U2]: <U2 funcs={funcs}></U2>,
-      [pageIds.phonograph]: <Phonograph funcs={funcs}></Phonograph>,
-      [pageIds.daily]: <Daily funcs={funcs}></Daily>,
-      [pageIds.dailyDetail]: <DailyDetail funcs={funcs} data={{ id: 0, title: "" }}></DailyDetail>,
-      [pageIds.mailBox]: <MailBox_i funcs={funcs}/>,
+      [pageIds.storeMain]: <Instore funcs={funcs} />,
+      [pageIds.F11]: <F11 funcs={funcs} />,
+      [pageIds.F12]: <F12 funcs={funcs} />,
+      [pageIds.F13]: <F13 funcs={funcs} />,
+      [pageIds.F14]: <F14 funcs={funcs} />,
+      [pageIds.F15]: <F15 funcs={funcs} />,
+      [pageIds.F16]: <F16 funcs={funcs} />,
+      [pageIds.F17]: <F17 funcs={funcs} />,
+      [pageIds.F18]: <F18 funcs={funcs} />,
+      [pageIds.M1]: <M1 funcs={funcs} />,
+      [pageIds.M2]: <M2 funcs={funcs} />,
+      [pageIds.minisMachine]: <MinisMachine funcs={funcs} />,
+      [pageIds.U1]: <U1 funcs={funcs} />,
+      [pageIds.U2]: <U2 funcs={funcs} />,
+      [pageIds.phonograph]: <Phonograph funcs={funcs} />,
+      [pageIds.phonographMV]: <PhonographMV funcs={funcs} data={{ id: 0}}/>,
+      [pageIds.daily]: <Daily funcs={funcs} />,
+      [pageIds.dailyDetail]: (
+        <DailyDetail funcs={funcs} data={{ id: 0, title: "" }} />
+      ),
+      [pageIds.mailBox]: <MailBox_i funcs={funcs} />,
+      [pageIds.Tasks]: <Tasks funcs={funcs} />,
       [pageIds.M11]: <M11 funcs={funcs}></M11>
     };
 

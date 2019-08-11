@@ -10,7 +10,6 @@ import { Alert,
   TouchableWithoutFeedback,
   View,
   ImageBackground,
-  Button,
   StatusBar,
   Image,
   FlatList,
@@ -968,15 +967,15 @@ export default class M11 extends Component {
         {
           (this.state.game_state == "ended") &&
           <View style={{width:150, height:30, position:'absolute', left:40, right:'auto', top:'50%'}}>
-            <Button title="再来一回" color='#CBA7F9' onPress={this.StartGame}>
-            </Button>
+            <WawaButton size={"sm"} text="再来一回" onPress={this.StartGame}>
+            </WawaButton>
           </View>
         }
         {
           (this.state.game_state == "ended") &&
           <View style={{width:150, height:30, position:'absolute', right:40, left:'auto', top:'50%'}}>
-            <Button title="回到店铺" color='#CBA7F9' onPress={this.ExitGame}>
-            </Button>
+            <WawaButton size={"sm"} text="回到店铺" onPress={this.ExitGame}>
+            </WawaButton>
           </View>
         }
         
@@ -984,7 +983,7 @@ export default class M11 extends Component {
         {
           (this.state.is_setting_visible == false) &&
           <View style={{width: 50, height: 30, position:'absolute', left:10, bottom:"50%"}}>
-            <Button title="设置" color='#CBA7F9' onPress={g_mytest.ShowSettings}></Button>
+            <WawaButton size="sm" text={"设置"} onPress={g_mytest.ShowSettings}></WawaButton>
           </View>
         }
         
