@@ -3,48 +3,81 @@ import {
     Platform,
     StyleSheet,
     View,
-    Text,
+    ImageBackground,
     StatusBar,
-    WebView
+    TouchableOpacity,
+    Image,
 } from "react-native";
 import { pageIds } from '../InStore/InStoreConfig';
+import { getArticleById } from '../../api/api';
+import { WebView } from "react-native-webview";
 
 class DailyDetail extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            content: "",
+        };
     }
     _onPressButton_back() {
         this.props.funcs.redirectTo(pageIds.daily);
     }
 
-    componentWillMount() {
-        // let { navigation } = this.props;
-        // this.itemId = navigation.getParam("itemId");
+    componentDidMount() {
+        this._getData();
+    }
 
-        console.log(this.itemId);
+    _getData() {
+        const { data } = this.props;
+        // get by api to set data
+        getArticleById(data.id).then((response) => {
+            this.setState({
+                content: response.content
+            });
+        });
     }
 
     render() {
-        const { data } = this.props;
+        const { content } = this.state;
         return (
-            <View style={styles.page}>
+            <View style={{ flex: 1 }}>
                 <StatusBar
                     backgroundColor="#ff0000"
                     translucent={true}
                     hidden={true}
                     animated={true}
                 />
-                <Text style={styles.back} onPress={() => { this._onPressButton_back() }}>
-                    返回日报列表
-                </Text>
-                <Text style={styles.title}>
-                    {data.title}
-                </Text>
-                <WebView
+
+                <ImageBackground
+                    resizeMode="stretch"
                     style={styles.container}
-                    originWhitelist={['*']}
-                    source={{ uri: `http://129.211.141.160/#/pages/community/detail?id=${data.id}` }}
-                />
+                    source={require("./../../img/daily/dailyDetail_background.png")}
+                >
+                    <View style={{ flex: 1, flexDirection: "column" }}>
+                        <View style={{ flex: 30 }} />
+                        <View style={{ flex: 490 }}>
+                            <View style={{ flex: 1, flexDirection: "row" }}>
+                                <WebView
+                                    style={styles.webview}
+                                    originWhitelist={['*']}
+                                    source={{html: content}}
+                                />
+                            </View>
+                        </View>
+                        <View style={{ flex: 80 }}>
+                            <View style={{ flex: 1, flexDirection: "row" }}>
+                                <View style={{ flex: 1210 }} />
+                                <View style={{ flex: 124 }}>
+                                    <TouchableOpacity
+                                        style={{ flex: 1 }}
+                                        onPress={() => this._onPressButton_back()}
+                                    >
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </ImageBackground>
             </View>
         );
     }
@@ -69,6 +102,21 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 30,
         paddingTop: Platform.OS === "ios" ? 60 : 0
+    },
+    webview: {
+        marginTop: 50,
+        marginLeft: 60,
+        marginRight: 60,
+        backgroundColor: "transparent",
+        // fontWeight: 'normal',
+        // fontFamily: 'DFPWaWaW5-GB'
+    },
+    button: {
+        width: null,
+        height: null,
+        flex: 1,
+        marginTop: -10,
+        marginLeft: -30
     }
 });
 

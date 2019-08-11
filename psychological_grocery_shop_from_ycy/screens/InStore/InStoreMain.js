@@ -19,6 +19,11 @@ export const InStore = (props) => {
     Alert.alert('还没做完，敬请期待！');
   };
 
+  const gotoPhonograph = () => {
+    props.funcs.updateSettings({backgroundMusic: false});
+    gotoPage(pageIds.phonograph);
+  }
+
   return (
     <ImageBackground
       resizeMode="stretch"
@@ -57,7 +62,7 @@ export const InStore = (props) => {
       <View style={styles.phonographButtonArea}>
         <TouchableOpacity
           activeOpacity={.7}
-          onPress={() => gotoPage(pageIds.phonograph)}
+          onPress={() => gotoPhonograph() }     //() => gotoPage(pageIds.phonograph)
           style={styles.button}>
           <Image
             style={styles.buttonBackgournd}
@@ -87,7 +92,7 @@ export const InStore = (props) => {
       <View style={styles.btnMission}>
         <TouchableOpacity
           activeOpacity={.7}
-          onPress={() => notFinished()}
+          onPress={() => gotoPage(pageIds.Tasks)}
           style={styles.button}>
           <Image
             activeOpacity={.7}

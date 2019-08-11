@@ -2,6 +2,7 @@ export const pageIds = {
   home: 'Home',
   storeMain: 'InStoreMain',
   phonograph: 'Phonograph',
+  phonographMV: 'PhonographMV',
   mailBox: 'MailBox_i',
   main: 'StoreMain',
   F11: 'F11',
@@ -18,5 +19,6 @@ export const pageIds = {
   U1: 'U1',
   U2: 'U2',
   daily: 'Daily',
-  dailyDetail: 'DailyDetail'
+  dailyDetail: 'DailyDetail',
+  Tasks: 'Tasks'
 };

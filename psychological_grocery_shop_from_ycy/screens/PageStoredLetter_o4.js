@@ -2,45 +2,52 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  AppRegistry,
-  Button,
   StatusBar,
   Alert,
   Image,
   TouchableOpacity,
-  TouchableHighlight
+  TextInput,
+  Text,
+  ScrollView
 } from "react-native";
+import { scale } from 'react-native-size-matters';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
 class PageStoredLetter_o4 extends Component {
+  state = {
+    mailBox: [],
+    curPage: 0,
+  }
+  textHeight = 200;
+
+  componentDidMount() {
+    // console.log(this.props.mailBox)
+    this.setState({mailBox: [...this.props.mailBox]})
+  } 
+
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
-  _onPressButton_LastLetter() {
-
+  _onPressButton_LastLetter(page) {
+    const { mailBox } = this.state;
+    if(mailBox.length === 0) return;
+    let curPage = page - 1;
+    if(curPage < 0 ) return Alert.alert('已经是最新的信件了')
+    this.setState({curPage})
   }
-  _onPressButton_NextLetter() {
-
-  }
-
-  readLetter() {
-       const path = RNFS.DocumentDirectoryPath + '/test.txt';
-          return RNFS.readFile(path)
-            .then((result) => {
-              console.log(result);
-
-              this.setState({
-                text: result,
-              })
-            })
-            .catch((err) => {
-              console.log(err.message);
-            });
+  _onPressButton_NextLetter(page) {
+    const { mailBox } = this.state;
+    if(mailBox.length === 0) return;
+    let curPage = page + 1;
+    if(curPage > mailBox.length - 1) return Alert.alert('没有信件了，快去写一份吧')
+    this.setState({curPage})
   }
 
   render() {
+    const { mailBox, curPage } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -49,46 +56,65 @@ class PageStoredLetter_o4 extends Component {
           hidden={true}
           animated={true}
         />
-
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
           source={require("./../img/bg/letter_paper.jpg")}
         >
-          <View style={{ flex: 1, flexDirection: "column" }}>
-            <View style={{ flex: 660 }} />
-            <View style={{ flex: 67 }}>
-              <View style={{ flex: 1, flexDirection: "row" }}>
-                <View style={{ flex: 140 }} />
-                <View style={{ flex: 193 }}>
-                  <TouchableOpacity
-                    style={{ flex: 1 }}
-                    onPress={() => this._onPressButton_LastLetter()}
-                  />
-                    <Image
-                      style={styles.btn}
-                      resizeMode="contain"
-                      source={require("../img/btns/o__LastLetter.png")}
-                    />
-                </View>
-                <View style={{ flex: 678 }} />
-                <View style={{ flex: 193 }}>
-                  <TouchableOpacity
-                    style={{ flex: 1 }}
-                    onPress={() => this._onPressButton_NextLetter()}
-                  />
-                    <Image
-                      style={styles.btn}
-                      resizeMode="contain"
-                      source={require("../img/btns/o_NextLetter.png")}
-                    />
-                </View>
-                <View style={{ flex: 140 }} />
+          <View style={{ flex: 1, flexDirection: "row" }}>
+            <View style={{ flex: 140, position: 'relative' }}>
+              <TouchableOpacity
+                style={{ position: 'absolute', bottom: 20, left: 40 }}
+                onPress={() => this._onPressButton_LastLetter(curPage)}
+              >
+                <Image
+                  style={styles.btn}
+                  resizeMode="contain"
+                  source={require("../img/btns/o__LastLetter.png")}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={{ flex: 140, position: 'relative' }}>
+              <TouchableOpacity
+                style={{ position: 'absolute', bottom: 20, left: 80 }}
+                onPress={() => this._onPressButton_NextLetter(curPage)}
+              >
+                <Image
+                  style={styles.btn}
+                  resizeMode="contain"
+                  source={require("../img/btns/o_NextLetter.png")}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.textContainer}>
+              <View style={{flex: 13}}/>
+              <View style={{flex: 30}}>
+                <ScrollView style={{flex: 1}}>
+                  <Text style={styles.text} >
+                    {mailBox.length > 0 ? mailBox[curPage].letter : '没有信件，快去写一封吧'}
+                  </Text>
+                </ScrollView> 
               </View>
+              <View style={{flex: 14}}>
+                <Text style={styles.timeText} >
+                  { mailBox.length > 0 ? moment(mailBox[curPage].createTime).format('YYYY-MM-DD HH:mm') : null }
+                </Text>
+              </View>
+            </View>
+            <View style={{ flex: 140, position: 'relative' }}>
+              <TouchableOpacity
+                style={{ position: 'absolute', bottom: 20, right: 40 }}
+                onPress={() => this._onPressButton_back()}
+              >
+                <Image
+                  style={styles.backButton}
+                  resizeMode="contain"
+                  source={require("../img/PQS/back.png")}
+                />
+              </TouchableOpacity>
             </View>
           </View>
         </ImageBackground>
-
       </View>
     );
   }
@@ -96,21 +122,40 @@ class PageStoredLetter_o4 extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: Platform.OS === "ios" ? 60 : 0
+    flex: 1
   },
   textContainer: {
-    flex: 5,
-    flexDirection: "row"
+    flex: 678
   },
   btnWrapper: {
     flex: 1,
     flexDirection: 'column-reverse'
   },
   btn: {
+    width: 100, 
+    height: 40
+  },
+  backButton: {
+    width: 100,
+    height: 40,
     flex: 1,
-
-  }
+    flexDirection: "row",
+    alignItems: "flex-end"
+  },
+  text: {
+    fontSize: scale(22),
+    color: '#888',
+  },
+  timeText: {
+    fontSize: scale(16),
+    color: '#888',
+    width: '100%',
+    textAlign: 'right'
+  },
 });
 
-export default PageStoredLetter_o4;
+export default connect(({mailBox}) => {
+  return{
+    mailBox: mailBox.mailBox
+  }
+})(PageStoredLetter_o4) ;

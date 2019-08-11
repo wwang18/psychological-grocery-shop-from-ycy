@@ -2,45 +2,56 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  AppRegistry,
-  Button,
   StatusBar,
   Image,
   FlatList,
-  Alert,
   TouchableOpacity,
-  TouchableHighlight,
   TouchableWithoutFeedback
 } from "react-native";
-import HOC from './ListHOC';
+import { connect } from 'react-redux';
 
 class PageReturnedMailCard_s extends Component {
+  
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
-
-  _handleButtonClick = item => {
-    //if (item.id <= 28) {
-    this.props.navigation.push("ReturnedMailCard_o", { data: item });
-    //}
+  
+  _handleButtonClick = (item, index) => {
+    const { navigation, dispatch } = this.props;
+    navigation.push("ReturnedMailCard_o", { data: item });
+    if(item.isNew) {
+      dispatch({
+        type: 'mailBox/changeCardsState',
+        params: {key: 'letterCards', id: index, isNew: false}
+      })
+    }
   };
 
-  _renderItem = ({ item }) => (
-    <View style={{ flex: 1, flexDirection: "column", margin: 10 }}>
-      <TouchableWithoutFeedback onPress={item.unlocked ? () => { this._handleButtonClick(item) } : null}>
-        <Image
-          style={styles.imageThumbnail}
-          resizeMode="contain"
-          source={item.unlocked ? item.small : this.props.lockedImg}
-        />
+  _renderItem = ({ item, index }) => (
+    <View style={{ flex: 1, margin: 10, flexDirection: "column" }}>
+    {
+      item.isNull == undefined &&
+       <TouchableWithoutFeedback onPress={item.unlocked ? () => { this._handleButtonClick(item, index) } : null} >
+        <View style={{position: 'relative'}}>
+          <Image
+            style={styles.imageThumbnail}
+            resizeMode="stretch"
+            source={item.unlocked ? item.small : this.props.lockedImg}
+          />
+          {item.isNew && <Image style={styles.newSty} source={require('../img/O/NEW.png')}/>}
+        </View>
       </TouchableWithoutFeedback>
+    }
     </View>
   );
 
   render() {
+    const { letterCards } = this.props;
+    if(letterCards.length > 0 && letterCards.length%3 !== 0) { //维持最后一行的样式
+      for(let i=0; i<letterCards.length%3; i++) letterCards.push({isNull: true})
+    } 
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -49,7 +60,6 @@ class PageReturnedMailCard_s extends Component {
           hidden={true}
           animated={true}
         />
-
         <ImageBackground
           resizeMode="stretch"
           style={styles.container}
@@ -69,7 +79,7 @@ class PageReturnedMailCard_s extends Component {
                 <View style={{ flex: 250 }} />
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
-                    data={this.props.dataSource}
+                    data={letterCards}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column
@@ -114,8 +124,8 @@ const styles = StyleSheet.create({
     flex: 810
   },
   imageThumbnail: {
-    justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "center",
+    width: 150,
     height: 80
   },
   header: {
@@ -127,7 +137,19 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     flex: 1
+  },
+  newSty: {
+    width: 50, 
+    height: 30, 
+    position: 'absolute',
+    top: 0,
+    left: 0
   }
 });
 
-export default HOC(PageReturnedMailCard_s, 'letter');
+export default connect(({mailBox}) => {
+  return {
+    letterCards: mailBox.letterCards,
+    lockedImg: mailBox.lockedImg,
+  }
+})(PageReturnedMailCard_s);

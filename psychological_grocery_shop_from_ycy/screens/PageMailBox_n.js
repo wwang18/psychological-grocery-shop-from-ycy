@@ -2,18 +2,21 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  AppRegistry,
-  Button,
   StatusBar,
-  Alert,
   Image,
   TouchableOpacity
 } from "react-native";
+import { connect } from 'react-redux';
+import { initCardStore } from '../components/CardStore';
 
 class PageMailBox_n extends Component {
+
+  componentDidMount() {
+    initCardStore(this.props); // 初始化数据
+  }
+
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
@@ -135,4 +138,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PageMailBox_n;
+export default connect()(PageMailBox_n);

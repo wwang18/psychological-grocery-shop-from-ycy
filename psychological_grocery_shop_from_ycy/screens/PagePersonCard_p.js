@@ -16,31 +16,47 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from "react-native";
-import HOC from './ListHOC';
+import { connect } from "react-redux";
 
 class PagePersonCard_p extends Component {
-  _handleButtonClick = item => {
-    this.props.navigation.push("PersonCardView_p", { data: item });
+  _handleButtonClick = (item, index) => {
+    const { navigation, dispatch } = this.props;
+    navigation.push("PersonCardView_p", { data: item });
+    if(item.isNew) { 
+      dispatch({
+        type: 'mailBox/changeCardsState',
+        params: {key: 'personCards', id: index, isNew: false}
+      })
+    }
   };
 
   _onPressButton_back() {
     this.props.navigation.goBack();
   }
 
-  _renderItem = ({ item }) => (
+  _renderItem = ({ item, index }) => (
     <View style={{ flex: 1, flexDirection: "column", margin: 10 }}>
-      <TouchableWithoutFeedback onPress={item.unlocked ? () => { this._handleButtonClick(item) } : null}>
-        <Image
-          style={styles.imageThumbnail}
-          resizeMode="contain"
-          source={item.unlocked ? item.small : this.props.lockedImg}
-        />
+    {
+      item.isNull == undefined &&
+      <TouchableWithoutFeedback onPress={item.unlocked ? () => { this._handleButtonClick(item, index) } : null}>
+        <View style={{position: 'relative'}}>
+          <Image
+            style={styles.imageThumbnail}
+            resizeMode="contain"
+            source={item.unlocked ? item.small : this.props.lockedImg}
+          />
+          {item.isNew && <Image style={styles.newSty} source={require('../img/O/NEW.png')}/>}
+        </View>
       </TouchableWithoutFeedback>
+    }
     </View>
   );
 
   render() {
-    console.log('111', this.props.dataSource)
+    const { personCards } = this.props;
+    if(personCards.length > 0 && personCards.length%3 !== 0) { //维持最后一行的样式
+      for(let i=0; i<personCards.length%3; i++) personCards.push({isNull: true})
+    } 
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -69,7 +85,7 @@ class PagePersonCard_p extends Component {
                 <View style={{ flex: 250 }} />
                 <View style={{ flex: 830, justifyContent: "center" }}>
                   <FlatList
-                    data={this.props.dataSource}
+                    data={personCards}
                     renderItem={this._renderItem}
                     initialNumToRender={9}
                     //Setting the number of column
@@ -115,8 +131,8 @@ const styles = StyleSheet.create({
   },
   imageThumbnail: {
     justifyContent: "center",
-    alignItems: "center",
-    height: 100
+    alignSelf: "center",
+    height: 100,
   },
   header: {
     alignItems: "center",
@@ -127,7 +143,19 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     flex: 1
+  },
+  newSty: {
+    width: 50, 
+    height: 30, 
+    position: 'absolute',
+    top: 0,
+    left: 0
   }
 });
 
-export default HOC(PagePersonCard_p, 'person');
+export default connect(({mailBox}) => {
+  return{
+    personCards: mailBox.personCards,
+    lockedImg: mailBox.lockedImg,
+  }
+})(PagePersonCard_p);

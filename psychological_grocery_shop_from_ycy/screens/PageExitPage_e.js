@@ -22,7 +22,7 @@ class PageExitPage_e extends Component {
   componentDidMount() {
     setTimeout(function() {
       return RNExitApp.exitApp();
-    }, 11000);
+    }, 12300);
   }
 
   render() {
@@ -38,7 +38,7 @@ class PageExitPage_e extends Component {
           <ImageBackground
             resizeMode="stretch"
             style={styles.container}
-            source={require("./../img/e_page.webp")}
+            source={require("./../img/e_page.gif")}
           />
         </TouchableWithoutFeedback>
       </View>

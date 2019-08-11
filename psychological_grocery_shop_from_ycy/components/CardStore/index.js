@@ -1,31 +1,75 @@
-import { AsyncStorage } from "react-native";
 import LETTER from './letterConfig';
 import PERSON from './personConfig';
 import GIFT from './giftConfig';
 
 export const lockedImg = require('../../img/PQS/framework_GiftCard.png');
-export const initCardStore = async () => {
-    try {
-        //const letter = await AsyncStorage.getItem('letter_cards');
-        let str = '';
-        //if (letter === null) {
-        str = JSON.stringify(LETTER);
-        await AsyncStorage.setItem('letter_cards', str);
-        //}
-        str = JSON.stringify(PERSON);
-        await AsyncStorage.setItem('person_cards', str);
-        str = JSON.stringify(GIFT);
-        await AsyncStorage.setItem('gift_cards', str);
-    } catch (error) {
-        console.error('initCardStore() Error:', error);
-    }
+export const delCardValue = async () => {
+    //清除数据
+    Storage.remove({key: 'letterCards'})
+    Storage.remove({key: 'personCards'})
+    Storage.remove({key: 'giftCards'})
+    Storage.remove({key: 'mailBox'})
+    Storage.remove({key: 'boughtDaily'})
+    Storage.remove({key: 'integral'})
+    Storage.remove({key: 'isNew'})
+};
+export const initCardStore = (props) => {
+    const { dispatch } = props;
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'letterCards',
+        data: LETTER
+      }
+    })
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'personCards',
+        data: PERSON
+      }
+    })
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'giftCards',
+        data: GIFT
+      }
+    })
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'mailBox',
+        data: []
+      }
+    })
+    dispatch({ 
+      type: 'mailBox/initCradsList',
+      params: {
+        key: 'isNew',
+        data: false
+      }
+    })
+    // dispatch({ 
+    //   type: 'mailBox/initCradsList',
+    //   params: {
+    //     key: 'boughtDaily',
+    //     data: []
+    //   }
+    // })
 }
 export const getCardValue = async (type) => {
     try {
-        let result = await AsyncStorage.getItem(`${type}_cards`);
-        console.log('-------------11', type, result)
-        return JSON.parse(result) || [];
+        return Storage.load({ key: `${type}Cards` })
+                .then(res => {
+                    console.log(res, 'res')
+                    return res || [];
+                })
+                .catch(err => {
+                    return []
+                })
     } catch (error) {
-        console.error('getCardValue() Error:', error);
+        // console.error('getCardValue() Error:', error);
     }
 }
+

@@ -1,156 +1,170 @@
 export default [
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image01.webp"),
-    big: require("../../img/personalCards/personalCard/Image01.webp"),
-    unlocked: true,
+    id: 1,
+    small: require("../../img/personalCards/personalCard_small/Image02.jpg"),
+    big: require("../../img/personalCards/personalCard/Image01.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image02.webp"),
-    big: require("../../img/personalCards/personalCard/Image05.webp"),
-    unlocked: true,
+    id: 2,
+    small: require("../../img/personalCards/personalCard_small/Image04.jpg"),
+    big: require("../../img/personalCards/personalCard/Image03.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image03.webp"),
-    big: require("../../img/personalCards/personalCard/Image09.webp"),
-    unlocked: true,
+    id: 3,
+    small: require("../../img/personalCards/personalCard_small/Image06.jpg"),
+    big: require("../../img/personalCards/personalCard/Image05.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image04.webp"),
-    big: require("../../img/personalCards/personalCard/Image13.webp"),
-    unlocked: true,
+    id: 4,
+    small: require("../../img/personalCards/personalCard_small/Image08.jpg"),
+    big: require("../../img/personalCards/personalCard/Image07.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image05.webp"),
-    big: require("../../img/personalCards/personalCard/Image17.webp"),
-    unlocked: true,
+    id: 5,
+    small: require("../../img/personalCards/personalCard_small/Image10.jpg"),
+    big: require("../../img/personalCards/personalCard/Image09.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image06.webp"),
-    big: require("../../img/personalCards/personalCard/Image21.webp"),
-    unlocked: true,
+    id: 6,
+    small: require("../../img/personalCards/personalCard_small/Image12.jpg"),
+    big: require("../../img/personalCards/personalCard/Image11.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image07.webp"),
-    big: require("../../img/personalCards/personalCard/Image25.webp"),
-    unlocked: true,
+    id: 7,
+    small: require("../../img/personalCards/personalCard_small/Image14.jpg"),
+    big: require("../../img/personalCards/personalCard/Image13.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image08.webp"),
-    big: require("../../img/personalCards/personalCard/Image29.webp"),
-    unlocked: true,
+    id: 8,
+    small: require("../../img/personalCards/personalCard_small/Image16.jpg"),
+    big: require("../../img/personalCards/personalCard/Image15.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image09.webp"),
-    big: require("../../img/personalCards/personalCard/Image33.webp"),
-    unlocked: true,
+    id: 9,
+    small: require("../../img/personalCards/personalCard_small/Image18.jpg"),
+    big: require("../../img/personalCards/personalCard/Image17.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image10.webp"),
-    big: require("../../img/personalCards/personalCard/Image37.webp"),
-    unlocked: true,
+    id: 10,
+    small: require("../../img/personalCards/personalCard_small/Image20.jpg"),
+    big: require("../../img/personalCards/personalCard/Image19.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image11.webp"),
-    big: require("../../img/personalCards/personalCard/Image41.webp"),
-    unlocked: true,
+    id: 11,
+    small: require("../../img/personalCards/personalCard_small/Image22.jpg"),
+    big: require("../../img/personalCards/personalCard/Image21.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image12.webp"),
-    big: require("../../img/personalCards/personalCard/Image45.webp"),
-    unlocked: true,
+    id: 12,
+    small: require("../../img/personalCards/personalCard_small/Image24.jpg"),
+    big: require("../../img/personalCards/personalCard/Image23.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image13.webp"),
-    big: require("../../img/personalCards/personalCard/Image49.webp"),
-    unlocked: true,
+    id: 13,
+    small: require("../../img/personalCards/personalCard_small/Image26.jpg"),
+    big: require("../../img/personalCards/personalCard/Image25.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image14.webp"),
-    big: require("../../img/personalCards/personalCard/Image53.webp"),
-    unlocked: true,
+    id: 14,
+    small: require("../../img/personalCards/personalCard_small/Image28.jpg"),
+    big: require("../../img/personalCards/personalCard/Image27.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image15.webp"),
-    big: require("../../img/personalCards/personalCard/Image57.webp"),
-    unlocked: true,
+    id: 15,
+    small: require("../../img/personalCards/personalCard_small/Image30.jpg"),
+    big: require("../../img/personalCards/personalCard/Image29.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image16.webp"),
-    big: require("../../img/personalCards/personalCard/Image61.webp"),
-    unlocked: true,
+    id: 16,
+    small: require("../../img/personalCards/personalCard_small/Image32.jpg"),
+    big: require("../../img/personalCards/personalCard/Image31.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image17.webp"),
-    big: require("../../img/personalCards/personalCard/Image65.webp"),
-    unlocked: true,
+    id: 17,
+    small: require("../../img/personalCards/personalCard_small/Image34.jpg"),
+    big: require("../../img/personalCards/personalCard/Image33.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image18.webp"),
-    big: require("../../img/personalCards/personalCard/Image69.webp"),
-    unlocked: true,
+    id: 18,
+    small: require("../../img/personalCards/personalCard_small/Image36.jpg"),
+    big: require("../../img/personalCards/personalCard/Image35.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image19.webp"),
-    big: require("../../img/personalCards/personalCard/Image73.webp"),
-    unlocked: true,
+    id: 19,
+    small: require("../../img/personalCards/personalCard_small/Image38.jpg"),
+    big: require("../../img/personalCards/personalCard/Image37.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image20.webp"),
-    big: require("../../img/personalCards/personalCard/Image77.webp"),
-    unlocked: true,
+    id: 20,
+    small: require("../../img/personalCards/personalCard_small/Image40.jpg"),
+    big: require("../../img/personalCards/personalCard/Image39.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image21.webp"),
-    big: require("../../img/personalCards/personalCard/Image81.webp"),
-    unlocked: true,
+    id: 21,
+    small: require("../../img/personalCards/personalCard_small/Image42.jpg"),
+    big: require("../../img/personalCards/personalCard/Image41.jpg"),
+    unlocked: false,
     key: []
   },
   {
-    id: 0,
-    small: require("../../img/personalCards/personalCard_small/Image22.webp"),
-    big: require("../../img/personalCards/personalCard/Image85.webp"),
-    unlocked: true,
+    id: 22,
+    small: require("../../img/personalCards/personalCard_small/Image44.jpg"),
+    big: require("../../img/personalCards/personalCard/Image43.jpg"),
+    unlocked: false,
+    key: []
+  },
+  {
+    id: 23,
+    small: require("../../img/personalCards/personalCard_small/Image46.jpg"),
+    big: require("../../img/personalCards/personalCard/Image45.jpg"),
+    unlocked: false,
+    key: []
+  },
+  {
+    id: 24,
+    small: require("../../img/personalCards/personalCard_small/Image48.jpg"),
+    big: require("../../img/personalCards/personalCard/Image47.jpg"),
+    unlocked: false,
     key: []
   }
 ];
