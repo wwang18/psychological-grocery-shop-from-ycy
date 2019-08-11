@@ -24,6 +24,7 @@ import MinisMachine from "../MinisMachine/U";
 import U1 from "../MinisMachine/U1";
 import U2 from "../MinisMachine/U2";
 import Phonograph from "../Phonograph/V";
+import PhonographMV from "../Phonograph/VMV";
 import Daily from "../Daily/D";
 import DailyDetail from "../Daily/Daily_detail";
 import MailBox_i from "../PageMailBox_i.js";
@@ -68,6 +69,7 @@ export class InStoreView extends React.Component {
       [pageIds.U1]: <U1 funcs={funcs} />,
       [pageIds.U2]: <U2 funcs={funcs} />,
       [pageIds.phonograph]: <Phonograph funcs={funcs} />,
+      [pageIds.phonographMV]: <PhonographMV funcs={funcs} data={{ id: 0}}/>,
       [pageIds.daily]: <Daily funcs={funcs} />,
       [pageIds.dailyDetail]: (
         <DailyDetail funcs={funcs} data={{ id: 0, title: "" }} />
@@ -97,12 +99,22 @@ export class InStoreView extends React.Component {
       this.props.navigation.navigate(pageId);
     } else {
       if (item) {
-        this.allPages[item.type] = (
-          <DailyDetail
-            funcs={{ redirectTo: this.gotoNextPage }}
-            data={item.data}
-          />
-        );
+        if(item.type === pageIds.dailyDetail){
+          this.allPages[item.type] = (
+            <DailyDetail
+              funcs={{ redirectTo: this.gotoNextPage }}
+              data={item.data}
+            />
+          );
+        }
+        else{
+          this.allPages[item.type] = (
+            <PhonographMV
+              funcs={{ redirectTo: this.gotoNextPage }}
+              data={item.data}
+            />
+          );
+        }    
       }
       this.setState({ currentPage: pageId });
     }

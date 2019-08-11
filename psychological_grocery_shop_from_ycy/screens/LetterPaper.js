@@ -22,6 +22,16 @@ class LetterPaper extends Component {
       text: "",
     };
   }
+  _getNewLetter(letters) {
+    let letter = letters[Math.floor(Math.random()*letters.length)];
+    if(letter.unlocked){
+      this._getNewLetter(letters);
+    }
+    else
+    {
+      return letter;
+    }
+  }
 
   _handleSendOut() {
     // TODO 
@@ -36,7 +46,7 @@ class LetterPaper extends Component {
     const { topic, issueKey } = params; // 烦恼大小类
     
     let letters = letterList.filter(x=>{return x.topic.indexOf(topic) > -1 && x.key.indexOf(issueKey) > -1 });
-    let letter = letters[Math.floor(Math.random()*letters.length)];
+    let letter = this._getNewLetter(letters);
     let letterId = letter.id - 1;
     let giftId = Math.floor(Math.random() * giftList.length + 1);   
     let personalId = Math.floor(Math.random() * personList.length + 1);

@@ -15,9 +15,12 @@ export const Phonograph = props => {
     props.funcs.redirectTo(pageIds.storeMain);
   };
 
-  const chooseMusic = music => {
+  const chooseMusic = (music,id) => {
     props.funcs.updatePhonograph(music);
     props.funcs.updateSettings({ backgroundMusic: true });
+
+    const { redirectTo} = props.funcs;
+    redirectTo(pageIds.phonographMV, false, { type: pageIds.phonographMV, data: {id} });
   };
 
   return (
@@ -37,19 +40,19 @@ export const Phonograph = props => {
                 onPress={() =>
                   chooseMusic({
                     backgroundMusicFile: require("../../audio/ThinkWild_complete.mp3")
-                  })
+                  },0)
                 }
               />
             </View>
             <View style={{ flex: 181 }}>
               <TouchableOpacity
-                style={{ flex: 1 }}
-                onPress={() =>
-                  chooseMusic({
-                    backgroundMusicFile: require("../../audio/MyMom.mp3")
-                  })
-                }
-              />
+                  style={{ flex: 1 }}
+                  onPress={() =>
+                    chooseMusic({
+                      backgroundMusicFile: require("../../audio/MyMom.mp3")
+                    },1)
+                  }
+                />
             </View>
             <View style={{ flex: 211 }} />
           </View>
