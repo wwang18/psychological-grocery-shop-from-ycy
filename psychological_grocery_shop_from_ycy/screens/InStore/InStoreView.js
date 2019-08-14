@@ -112,7 +112,7 @@ export class InStoreView extends React.Component {
         else{
           this.allPages[item.type] = (
             <PhonographMV
-              funcs={{ redirectTo: this.gotoNextPage }}
+              funcs={{ redirectTo: this.gotoNextPage, updateSettings:this.updateSettings }}
               data={item.data}
             />
           );

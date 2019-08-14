@@ -4,17 +4,25 @@ import Video from 'react-native-video';
 import { WawaButton } from "../../components/WawaButton";
 import { pageIds } from '../InStore/InStoreConfig';
 
-const f15Video = require('../../img/instore/F15.mp4');
-const f18Video = require('../../img/instore/F18.mp4');
+const qsmxVideo = require('../../img/instore/qsmx.mp4');
+const wdmmVideo = require('../../img/instore/wdmm.mp4');
 
 class VMV extends React.Component {
   _onPressButton_back() {
     this.props.funcs.redirectTo(pageIds.phonograph);
   }
 
+  componentWillMount(){
+    this.props.funcs.updateSettings({ backgroundMusic: false });
+  }
+
+  componentWillUnmount(){
+    this.props.funcs.updateSettings({ backgroundMusic: true });
+  }
+
   render() {
     const { data } = this.props;
-    let video = data.id === 0 ? f15Video : f18Video;
+    let video = data.id === 0 ? qsmxVideo : wdmmVideo;
 
     return (
       <ImageBackground
@@ -22,7 +30,6 @@ class VMV extends React.Component {
         style={styles.fullScreen}
         >
         <View style={{ flex: 1, flexDirection: "column" }}>
-          <View style={{ flex: 30 }} />
           <View style={{ flex: 490 }}>
             <View style={{ flex: 1, flexDirection: "row" }}>
               <Video source={video}
@@ -34,19 +41,12 @@ class VMV extends React.Component {
                 style={styles.backgroundVideo} />
             </View>
           </View>
-          <View style={{ flex: 80 }}>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <View style={{ flex: 1210 }} />
-              <View style={{ flex: 124 }}>
-                <WawaButton
+          <WawaButton
                   size={"sm"}
                   style={styles.backButton}
                   text={"返回"}
                   onPress={()=>{this._onPressButton_back()}}
                 />
-              </View>
-            </View>
-          </View>
         </View>
       </ImageBackground>
     );
