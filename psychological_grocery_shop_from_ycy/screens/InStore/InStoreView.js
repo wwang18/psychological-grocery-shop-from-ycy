@@ -1,34 +1,35 @@
-import React from "react";
-import Video from "react-native-video";
-import { StyleSheet, View, TouchableOpacity, Image, Alert } from "react-native";
-import { scale } from "react-native-size-matters";
+import React from 'react';
+import Video from 'react-native-video';
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import { scale } from 'react-native-size-matters';
 
-import { AnimatedWawaText } from "../../components/AnimatedWawaText";
+import { AnimatedWawaText } from '../../components/AnimatedWawaText';
 import { initCards, saveStorage } from '../../services/mailBox';
 
-import { pageIds } from "./InStoreConfig";
-import Settings from "./Settings";
+import { pageIds } from './InStoreConfig';
+import Settings from './Settings';
 
-import Instore from "./InStoreMain";
-import F11 from "../CatchMouse/F11";
-import F12 from "../CatchMouse/F12";
-import F13 from "../CatchMouse/F13";
-import F14 from "../CatchMouse/F14";
-import F15 from "../CatchMouse/F15";
-import F16 from "../CatchMouse/F16";
-import F17 from "../CatchMouse/F17";
-import F18 from "../CatchMouse/F18";
-import M1 from "../CatchMouse/M1";
-import M2 from "../CatchMouse/M2";
-import MinisMachine from "../MinisMachine/U";
-import U1 from "../MinisMachine/U1";
-import U2 from "../MinisMachine/U2";
-import Phonograph from "../Phonograph/V";
-import PhonographMV from "../Phonograph/VMV";
-import Daily from "../Daily/D";
-import DailyDetail from "../Daily/Daily_detail";
-import MailBox_i from "../PageMailBox_i.js";
-import Tasks from "./Tasks"
+import Instore from './InStoreMain';
+import F11 from '../CatchMouse/F11';
+import F12 from '../CatchMouse/F12';
+import F13 from '../CatchMouse/F13';
+import F14 from '../CatchMouse/F14';
+import F15 from '../CatchMouse/F15';
+import F16 from '../CatchMouse/F16';
+import F17 from '../CatchMouse/F17';
+import F18 from '../CatchMouse/F18';
+import M1 from '../CatchMouse/M1';
+import M2 from '../CatchMouse/M2';
+import MinisMachine from '../MinisMachine/U';
+import U1 from '../MinisMachine/U1';
+import U2 from '../MinisMachine/U2';
+import Phonograph from '../Phonograph/V';
+import PhonographMV from '../Phonograph/VMV';
+import Daily from '../Daily/D';
+import DailyDetail from '../Daily/Daily_detail';
+import MailBox_i from '../PageMailBox_i.js';
+import Tasks from './Tasks';
+import M11 from '../CatchMouse2/M11';
 // const backgroundMusic = require('../../audio/ThinkWild.mp3');
 
 export class InStoreView extends React.Component {
@@ -75,7 +76,8 @@ export class InStoreView extends React.Component {
         <DailyDetail funcs={funcs} data={{ id: 0, title: "" }} />
       ),
       [pageIds.mailBox]: <MailBox_i funcs={funcs} />,
-      [pageIds.Tasks]: <Tasks funcs={funcs} />
+      [pageIds.Tasks]: <Tasks funcs={funcs} />,
+      [pageIds.M11]: <M11 funcs={funcs}></M11>
     };
 
     let data = await initCards({ key: 'integral', data: { love: 20, coins: 20 }}) //初始化数据，已存在则从存储数据中获取
