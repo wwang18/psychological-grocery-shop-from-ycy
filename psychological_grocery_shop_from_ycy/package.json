@@ -15,7 +15,7 @@
     "create-react-context": "^0.2.3",
     "dva-core": "^1.4.0",
     "moment": "^2.22.2",
-    "qs": "^6.7.0",
+    "qs": "^6.7.3",
     "react": "16.6.3",
     "react-native": "0.58.1",
     "react-native-exit-app": "^1.0.0",
