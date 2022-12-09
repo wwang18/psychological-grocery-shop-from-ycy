@@ -17,7 +17,7 @@
     "moment": "^2.22.2",
     "qs": "^6.7.3",
     "react": "16.6.3",
-    "react-native": "0.58.1",
+    "react-native": "0.70.6",
     "react-native-exit-app": "^1.0.0",
     "react-native-fs": "^2.13.3",
     "react-native-gesture-handler": "^1.1.0",
